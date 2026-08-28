@@ -23,11 +23,30 @@ La aplicación utiliza Supabase como base de datos y dispone de migraciones SQL 
 | `website/` | Lógica del sitio web: APIs, controladores, modelos, repositorios, rutas y servicios. |
 | `server.js` | Archivo principal para iniciar y configurar el servidor Express. |
 
+---
+
+# 🚀 Comandos GIT
+
+Descargar enlace [enlace](https://git-scm.com/install/windows)
+![Sitio web de descarga](./docs/install_git.png)
+
+## 📁 Crear proyecto GIT
+
+Inicializa un nuevo repositorio Git:
+    
+```bash
+git init
+```
+
+Loguearse:
+
+    git config --global user.name
+    git config --global user.email
 
 Instalar dependencias:
 
     npm install
-
-npm install -g vercel
-vercel login
-vercel --prod
+    npm install -g vercel
+    vercel login
+    vercel --prod
+    

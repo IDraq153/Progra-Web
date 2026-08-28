@@ -6,3 +6,5 @@ node_modules/
 .env*
 dist
 *.pdf
+uploads
+logs/*
