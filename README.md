@@ -61,7 +61,7 @@ git init
 - `git reset --hard <commit>` — Volver a un commit
 - `git remote -v` — Ver repositorios remotos
 
-
+# NPM
 
 Instalar dependencias:
 
