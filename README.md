@@ -38,10 +38,30 @@ Inicializa un nuevo repositorio Git:
 git init
 ```
 
-Loguearse:
+# Git - Comandos más usados
 
-    git config --global user.name
-    git config --global user.email
+- `git init` — Crear repositorio
+- `git clone <url>` — Clonar repositorio
+- `git status` — Ver estado
+- `git add .` — Agregar cambios
+- `git commit -m "mensaje"` — Crear commit
+- `git push` — Subir cambios
+- `git pull` — Descargar cambios
+- `git fetch` — Descargar cambios sin fusionar
+- `git branch` — Ver ramas
+- `git switch <rama>` — Cambiar de rama
+- `git switch -c <rama>` — Crear y cambiar de rama
+- `git merge <rama>` — Fusionar ramas
+- `git log --oneline` — Ver historial
+- `git diff` — Ver diferencias
+- `git stash` — Guardar cambios temporalmente
+- `git stash pop` — Recuperar cambios
+- `git restore <archivo>` — Deshacer cambios
+- `git revert <commit>` — Revertir un commit
+- `git reset --hard <commit>` — Volver a un commit
+- `git remote -v` — Ver repositorios remotos
+
+
 
 Instalar dependencias:
 
