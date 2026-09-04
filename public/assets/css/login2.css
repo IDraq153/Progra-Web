@@ -1,0 +1,33 @@
+/* Estilos globales y fondo */
+body {
+    background-image: url("/assets/img/login-bd.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Tarjeta con fondo semi-transparente (#FFFFFFE6 = rgba(255, 255, 255, 0.9)) */
+.login-card {
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px); /* Efecto opcional de desenfoque moderno */
+}
+
+/* Botón personalizado con tus colores originales */
+.btn-dark-custom {
+    background-color: #121314;
+    color: #FDFDFD;
+    border: none;
+    border-radius: 0;
+}
+
+.btn-dark-custom:hover {
+    background-color: #2b2c2e;
+    color: #FFFFFF;
+}
+
+/* Sección de comunicado */
+.bg-comunicado {
+    background-color: #E6E6E6;
+}
