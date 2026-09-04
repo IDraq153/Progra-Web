@@ -22,6 +22,10 @@ body {
     border-radius: 0;
 }
 
+.bg-opacity {
+    background-color: #FFFFFFE6;
+}
+
 .btn-dark-custom:hover {
     background-color: #2b2c2e;
     color: #FFFFFF;
