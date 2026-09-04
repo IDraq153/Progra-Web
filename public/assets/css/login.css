@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-image: url("/assets/img/login-bd.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.form {
+    width: 30%;
+    background-color: #FFFFFFE6;
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding: 40px 0px;
+}
+.center {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+.input {
+    border: #343434 1px solid;
+    border-radius: 3px;
+    padding: 16px;
+    background-color: transparent;
+    width: 87%;
+}
+.btn {
+    padding: 16px;
+    width: 100%;
+    border-radius: 0px;
+    background-color: #121314;
+    color: #FDFDFD
+}
+.p-10{
+    padding: 10px;
+}
+.fondo-gris {
+    background-color: #E6E6E6;
+}
