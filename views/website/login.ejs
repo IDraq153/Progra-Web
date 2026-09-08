@@ -30,7 +30,7 @@
                     <input type="password" class="form-control rounded-1 p-3" id="txtPass" placeholder="Ingrese Contraseña" required>
                 </div>
 
-                <button type="submit" class="btn btn-dark-custom w-100 p-3 fw-semibold mb-3">
+                <button type="submit" class="btn btn-dark-custom w-100 p-3 fw-semibold mb-3" onclick="ingresar()">
                     Iniciar Sesión
                 </button>
 
@@ -62,6 +62,18 @@
         </div>
 
     </div>
+
+    <script>
+        // alert("Hola");
+        console.log("Hola mundo");
+        
+        function ingresar() {
+            let username = document.getElementById("txtUser").value;
+            console.log(username);
+            let password = document.getElementById("txtPass").value;
+            console.log(password);
+        }
+    </script>
 
 </body>
 </html>
