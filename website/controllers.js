@@ -16,7 +16,7 @@ export function login(req, res) {
 
 export function password(req, res) { 
   return res.render('website/password', {
-    title: 'Contraseñas',
+    title: '¿Olvidaste tu contraseña?',
   });
 }
 
