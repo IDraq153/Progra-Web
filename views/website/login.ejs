@@ -10,7 +10,7 @@
     <!-- Tu CSS Personalizado -->
     <link rel="stylesheet" href="/assets/css/login.css">
 </head>
-<body class="d-flex align-items-center justify-content-center py-5" style="background-image: url(<%= background %>)">
+<body class="d-flex align-items-center justify-content-center py-5" style="background-image: url('<%= background %>')">
 
     <div class="card login-card shadow-lg border-0 rounded-0" style="max-width: 420px; width: 100%;">
         
@@ -73,6 +73,26 @@
             let password = document.getElementById("txtPass").value;
             console.log(password);
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Hola Mundo");
+        });
+
+
+        // funcion para cambiar fondo en un intervalo de tiempos
+
+        let fondos = [
+            "/assets/img/login-bd1.png",
+            "/assets/img/login-bd2.png",
+            "/assets/img/login-bd3.png"
+        ]
+
+        
+        setInterval(() => {
+            let indice = Math.floor(Math.random() * 3)
+            document.body.style.backgroundImage = `url('${fondos[indice]}')`;
+        }, 1000);
+
     </script>
 
 </body>
