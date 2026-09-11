@@ -9,8 +9,15 @@ export function home(req, res) {
 }
 
 export function login(req, res) { 
+  let fondos = [
+    "/assets/img/login-bd1.png",
+    "/assets/img/login-bd2.png",
+    "/assets/img/login-bd3.png"
+  ]
+
   return res.render('website/login', {
     title: 'Login',
+    background: fondos[Math.floor(Math.random() * 3)]
   });
 }
 
