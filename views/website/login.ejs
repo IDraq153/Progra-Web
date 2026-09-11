@@ -21,7 +21,12 @@
             </div>
 
             <!-- FORMULARIO -->
-            <form class="mt-4">
+             <!-- clase d-none bootstrap oculta el contenedor -->
+            <div class="alert alert-danger d-none" role="alert" id="alertMess">
+               Ingrese su usuario o contraseña!
+            </div>
+
+            <form class="mt-4" onsubmit="return false;">
                 <div class="mb-3">
                     <input type="text" class="form-control rounded-1 p-3" id="txtUser" name="user" placeholder="Ingrese Usuario" required>
                 </div>
@@ -30,7 +35,7 @@
                     <input type="password" class="form-control rounded-1 p-3" id="txtPass" placeholder="Ingrese Contraseña" required>
                 </div>
 
-                <button type="submit" class="btn btn-dark-custom w-100 p-3 fw-semibold mb-3" onclick="ingresar()">
+                <button id="btn-lg" type="submit" class="btn btn-dark-custom w-100 p-3 fw-semibold mb-3" onclick="ingresar()">
                     Iniciar Sesión
                 </button>
 
@@ -69,15 +74,48 @@
         
         function ingresar() {
             let username = document.getElementById("txtUser").value;
-            console.log(username);
             let password = document.getElementById("txtPass").value;
-            console.log(password);
-        }
+            let alertMessage = document.getElementById("alertMess");
+            console.log(alertMessage.classList);
 
+            if(username=="" ||  password==""){
+                // alert("Llena los campos")
+                alertMessage.classList.remove("d-none");
+                alertMessage.classList.add("alert-danger");
+                alertMessage.classList.remove("alert-success");
+                console.log(alertMessage.classList);
+                alertMessage.innerHTML = "Llena los campos";
+            } else {
+                if(username == "admin" && password == "123") {
+                    alertMessage.classList.remove("d-none");
+                    alertMessage.innerHTML = "Bienvenido";
+                    alertMessage.classList.remove("alert-danger");
+                    alertMessage.classList.add("alert-success");
+
+                    document.getElementById("txtUser").disabled = true;
+                    document.getElementById("txtPass").disabled = true;
+                    document.getElementById("btn-lg").disabled = true;
+
+                    setInterval(() => {
+                        window.location.href = "/dashboard.html";
+                    }, 5000);
+
+                } else {
+                    alertMessage.classList.remove("d-none");
+                    alertMessage.classList.add("alert-danger");
+                    alertMessage.classList.remove("alert-success");
+                    alertMessage.innerHTML = "Bienvenido";
+                }
+            }
+            setInterval(() => {
+                alertMessage.classList.add("d-none");
+            }, 2000);
+        }
+        
         document.addEventListener("DOMContentLoaded", function () {
             console.log("Hola Mundo");
         });
-
+        
 
         // funcion para cambiar fondo en un intervalo de tiempos
 
@@ -86,7 +124,6 @@
             "/assets/img/login-bd2.png",
             "/assets/img/login-bd3.png"
         ]
-
         
         setInterval(() => {
             let indice = Math.floor(Math.random() * 3)
