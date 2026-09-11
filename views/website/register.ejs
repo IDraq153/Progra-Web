@@ -1,0 +1,400 @@
+<!--views\website\register.ejs-->
+<% layout("layouts/website") %>
+
+<body>
+    <!-- Contenedor principal -->
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+
+
+                <!-- Tarjeta -->
+                <div class="card border-0 shadow-sm rounded-4">
+
+                    <div class="card-body p-4 p-md-5">
+
+
+                        <!-- Encabezado -->
+                        <div class="text-center mb-4">
+
+                            <div class="mb-3">
+
+                                <i class="bi bi-person-plus-fill
+                                        text-success"
+                                style="font-size: 3rem;">
+                                </i>
+
+                            </div>
+
+                            <h2 class="fw-bold mb-2">
+                                Crear cuenta
+                            </h2>
+
+                            <p class="text-secondary mb-0">
+                                Regístrate como estudiante en ULima Laboral
+                            </p>
+
+                        </div>
+
+
+                        <!-- Formulario -->
+                        <form action="/register" method="POST">
+
+
+                            <!-- Nombres y apellidos -->
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="nombres"
+                                        class="form-label fw-semibold">
+
+                                        Nombres
+
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="nombres"
+                                            name="nombres"
+                                            placeholder="Ingrese sus nombres"
+                                            required>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="apellidos"
+                                        class="form-label fw-semibold">
+
+                                        Apellidos
+
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="apellidos"
+                                            name="apellidos"
+                                            placeholder="Ingrese sus apellidos"
+                                            required>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Código de alumno -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="codigo"
+                                    class="form-label fw-semibold">
+
+                                    Código de estudiante
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-card-text"></i>
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="codigo"
+                                        name="codigo"
+                                        placeholder="Ej. 20231234"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Correo -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="correo"
+                                    class="form-label fw-semibold">
+
+                                    Correo institucional
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        id="correo"
+                                        name="correo"
+                                        placeholder="ejemplo@aloe.ulima.edu.pe"
+                                        required>
+
+                                </div>
+
+                                <div class="form-text">
+                                    Utiliza tu correo institucional de la Universidad de Lima.
+                                </div>
+
+                            </div>
+
+
+                            <!-- Carrera -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="carrera"
+                                    class="form-label fw-semibold">
+
+                                    Carrera
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-mortarboard"></i>
+                                    </span>
+
+                                    <select
+                                        class="form-select"
+                                        id="carrera"
+                                        name="carrera"
+                                        required>
+
+                                        <option value="" selected disabled>
+                                            Seleccione su carrera
+                                        </option>
+
+                                        <option value="ingenieria-sistemas">
+                                            Ingeniería de Sistemas
+                                        </option>
+
+                                        <option value="ingenieria-industrial">
+                                            Ingeniería Industrial
+                                        </option>
+
+                                        <option value="administracion">
+                                            Administración
+                                        </option>
+
+                                        <option value="contabilidad">
+                                            Contabilidad
+                                        </option>
+
+                                        <option value="economia">
+                                            Economía
+                                        </option>
+
+                                        <option value="derecho">
+                                            Derecho
+                                        </option>
+
+                                        <option value="comunicacion">
+                                            Comunicación
+                                        </option>
+
+                                        <option value="arquitectura">
+                                            Arquitectura
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Contraseñas -->
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="password"
+                                        class="form-label fw-semibold">
+
+                                        Contraseña
+
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </span>
+
+                                        <input
+                                            type="password"
+                                            class="form-control"
+                                            id="password"
+                                            name="password"
+                                            placeholder="Ingrese contraseña"
+                                            required>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="confirmPassword"
+                                        class="form-label fw-semibold">
+
+                                        Confirmar contraseña
+
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-lock-fill"></i>
+                                        </span>
+
+                                        <input
+                                            type="password"
+                                            class="form-control"
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            placeholder="Repita su contraseña"
+                                            required>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Términos -->
+                            <div class="form-check mb-4">
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="terminos"
+                                    required>
+
+                                <label
+                                    class="form-check-label text-secondary"
+                                    for="terminos">
+
+                                    Acepto los
+                                    <a href="#"
+                                    class="text-success text-decoration-none fw-semibold">
+                                        términos y condiciones
+                                    </a>
+                                    y la política de privacidad.
+
+                                </label>
+
+                            </div>
+
+
+                            <!-- Botón -->
+                            <div class="d-grid">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-success btn-lg">
+
+                                    <i class="bi bi-person-plus me-2"></i>
+
+                                    Crear cuenta
+
+                                </button>
+
+                            </div>
+
+
+                        </form>
+
+
+                        <!-- Login -->
+                        <div class="text-center mt-4">
+
+                            <p class="text-secondary mb-0">
+
+                                ¿Ya tienes una cuenta?
+
+                                <a
+                                    href="/login"
+                                    class="text-success fw-semibold text-decoration-none">
+
+                                    Inicia sesión
+
+                                </a>
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- Regresar -->
+                <div class="text-center mt-3">
+
+                    <a
+                        href="/"
+                        class="text-secondary text-decoration-none">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+                        Volver al inicio
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+

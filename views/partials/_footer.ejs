@@ -1,68 +1,68 @@
+
 <!-- views/partials/_footer.ejs -->
+
 <footer class="bg-dark text-white mt-auto">
 
   <div class="container py-5">
 
     <div class="row g-4">
 
-      <!-- Información -->
-      <div class="col-12 col-md-6 col-lg-4">
+      <!-- 1. ULima Laboral -->
+      <div class="col-12 col-md-6 col-lg">
 
         <div class="d-flex align-items-center mb-3">
 
-          <i class="bi bi-shield-fill-check text-success fs-3 me-2"></i>
+          <i class="bi bi-briefcase-fill text-success fs-3 me-2"></i>
 
           <h5 class="mb-0 fw-bold">
-            PlayerStats
+            ULima Laboral
           </h5>
 
         </div>
 
         <p class="text-secondary mb-0">
-          Plataforma para consultar, explorar y gestionar
-          información y estadísticas de jugadores de FIFA / EA FC.
+          Plataforma que conecta a estudiantes y egresados
+          de la Universidad de Lima con oportunidades laborales
+          y empresas.
         </p>
 
       </div>
 
-      <!-- Navegación -->
-      <div class="col-6 col-md-3 col-lg-2">
+
+      <!-- 2. Para estudiantes -->
+      <div class="col-6 col-md-3 col-lg">
 
         <h6 class="text-uppercase fw-bold mb-3">
-          Navegación
+          Estudiantes
         </h6>
 
         <ul class="list-unstyled">
 
           <li class="mb-2">
-            <a
-              href="/"
-              class="text-secondary text-decoration-none">
-              Inicio
+            <a href="/convocatorias"
+               class="text-secondary text-decoration-none">
+              Convocatorias
             </a>
           </li>
 
           <li class="mb-2">
-            <a
-              href="/players"
-              class="text-secondary text-decoration-none">
-              Jugadores
+            <a href="/empresas"
+               class="text-secondary text-decoration-none">
+              Empresas
             </a>
           </li>
 
           <li class="mb-2">
-            <a
-              href="/teams"
-              class="text-secondary text-decoration-none">
-              Equipos
+            <a href="/perfil"
+               class="text-secondary text-decoration-none">
+              Mi perfil
             </a>
           </li>
 
           <li class="mb-2">
-            <a
-              href="/leagues"
-              class="text-secondary text-decoration-none">
-              Ligas
+            <a href="/postulaciones"
+               class="text-secondary text-decoration-none">
+              Mis postulaciones
             </a>
           </li>
 
@@ -70,44 +70,41 @@
 
       </div>
 
-      <!-- Explorar -->
-      <div class="col-6 col-md-3 col-lg-3">
+
+      <!-- 3. Empresas -->
+      <div class="col-6 col-md-3 col-lg">
 
         <h6 class="text-uppercase fw-bold mb-3">
-          Explorar
+          Empresas
         </h6>
 
         <ul class="list-unstyled">
 
           <li class="mb-2">
-            <a
-              href="/players"
-              class="text-secondary text-decoration-none">
-              Todos los jugadores
+            <a href="/empresas"
+               class="text-secondary text-decoration-none">
+              Empresas registradas
             </a>
           </li>
 
           <li class="mb-2">
-            <a
-              href="/players?sort=ranking"
-              class="text-secondary text-decoration-none">
-              Mejor valorados
+            <a href="/convocatorias"
+               class="text-secondary text-decoration-none">
+              Ver convocatorias
             </a>
           </li>
 
           <li class="mb-2">
-            <a
-              href="/players?position=GK"
-              class="text-secondary text-decoration-none">
-              Arqueros
+            <a href="/empresas/registrar"
+               class="text-secondary text-decoration-none">
+              Registrar empresa
             </a>
           </li>
 
           <li class="mb-2">
-            <a
-              href="/players?position=ST"
-              class="text-secondary text-decoration-none">
-              Delanteros
+            <a href="/convocatorias/nueva"
+               class="text-secondary text-decoration-none">
+              Publicar convocatoria
             </a>
           </li>
 
@@ -115,42 +112,85 @@
 
       </div>
 
-      <!-- Redes / proyecto -->
-      <div class="col-12 col-lg-3">
+
+      <!-- 4. Información -->
+      <div class="col-6 col-md-6 col-lg">
 
         <h6 class="text-uppercase fw-bold mb-3">
-          PlayerStats
+          Información
         </h6>
 
-        <p class="text-secondary small">
-          Base de datos orientada a la consulta y gestión
-          de estadísticas de jugadores.
+        <ul class="list-unstyled">
+
+          <li class="mb-2">
+            <a href="/nosotros"
+               class="text-secondary text-decoration-none">
+              Sobre nosotros
+            </a>
+          </li>
+
+          <li class="mb-2">
+            <a href="/preguntas"
+               class="text-secondary text-decoration-none">
+              Preguntas frecuentes
+            </a>
+          </li>
+
+          <li class="mb-2">
+            <a href="/terminos"
+               class="text-secondary text-decoration-none">
+              Términos y condiciones
+            </a>
+          </li>
+
+          <li class="mb-2">
+            <a href="/privacidad"
+               class="text-secondary text-decoration-none">
+              Política de privacidad
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- 5. Contacto -->
+      <div class="col-6 col-md-6 col-lg">
+
+        <h6 class="text-uppercase fw-bold mb-3">
+          Contáctanos
+        </h6>
+
+        <p class="text-secondary small mb-2">
+          ¿Tienes alguna consulta? Estamos para ayudarte.
+        </p>
+
+        <p class="text-secondary small mb-2">
+          <i class="bi bi-envelope me-2"></i>
+          ulimalaboral@ulima.edu.pe
+        </p>
+
+        <p class="text-secondary small mb-3">
+          <i class="bi bi-geo-alt me-2"></i>
+          Universidad de Lima
         </p>
 
         <div class="d-flex gap-2">
 
-          <a
-            href="#"
-            class="btn btn-outline-secondary btn-sm rounded-circle">
-
-            <i class="bi bi-github"></i>
-
+          <a href="#"
+             class="btn btn-outline-secondary btn-sm rounded-circle">
+            <i class="bi bi-facebook"></i>
           </a>
 
-          <a
-            href="#"
-            class="btn btn-outline-secondary btn-sm rounded-circle">
-
+          <a href="#"
+             class="btn btn-outline-secondary btn-sm rounded-circle">
             <i class="bi bi-linkedin"></i>
-
           </a>
 
-          <a
-            href="#"
-            class="btn btn-outline-secondary btn-sm rounded-circle">
-
+          <a href="#"
+             class="btn btn-outline-secondary btn-sm rounded-circle">
             <i class="bi bi-instagram"></i>
-
           </a>
 
         </div>
@@ -159,18 +199,21 @@
 
     </div>
 
+
+    <!-- Separador -->
     <hr class="border-secondary my-4">
 
+
     <!-- Copyright -->
-    <div
-      class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="d-flex flex-column flex-md-row
+                justify-content-between align-items-center">
 
       <p class="text-secondary small mb-2 mb-md-0">
-        © 2026 PlayerStats. Todos los derechos reservados.
+        © 2026 ULima Laboral. Todos los derechos reservados.
       </p>
 
       <p class="text-secondary small mb-0">
-        Proyecto de gestión de datos deportivos
+        Universidad de Lima
       </p>
 
     </div>

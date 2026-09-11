@@ -14,10 +14,17 @@ export function login(req, res) {
     "/assets/img/login-bd2.png",
     "/assets/img/login-bd3.png"
   ]
-
+  
   return res.render('website/login', {
     title: 'Login',
     background: fondos[Math.floor(Math.random() * 3)]
+  });
+}
+
+export function register(req, res) { 
+  return res.render('website/register', {
+    title: 'Registrarse',
+    currentPage: 'register',
   });
 }
 
