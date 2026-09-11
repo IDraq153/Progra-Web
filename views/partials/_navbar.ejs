@@ -38,189 +38,76 @@
       id="navbarContent">
 
       <!-- Main navigation -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
-        <!-- Inicio -->
+        <!-- Convocatorias -->
         <li class="nav-item">
-
-          <a
-            class="nav-link active"
-            href="/">
-
-            <i class="fa-solid fa-house me-1"></i>
-            Inicio
-
-          </a>
-
-        </li>
-
-
-        <!-- Jugadores -->
-        <li class="nav-item">
-
           <a
             class="nav-link"
-            href="/players">
+            href="/convocatorias">
 
-            <i class="fa-solid fa-users me-1"></i>
-            Jugadores
+            <i class="fa-solid fa-list-check me-1"></i>
+            Convocatorias
 
           </a>
-
         </li>
 
 
-        <!-- Equipos -->
+        <!-- Empresas -->
         <li class="nav-item">
-
           <a
             class="nav-link"
-            href="/teams">
+            href="/empresas">
 
-            <i class="fa-solid fa-shield-halved me-1"></i>
-            Equipos
+            <i class="fa-solid fa-building me-1"></i>
+            Empresas
 
           </a>
-
         </li>
 
 
-        <!-- Ligas -->
+        <!-- Cómo funciona -->
         <li class="nav-item">
-
           <a
             class="nav-link"
-            href="/leagues">
+            href="/como-funciona">
 
-            <i class="fa-solid fa-trophy me-1"></i>
-            Ligas
-
-          </a>
-
-        </li>
-
-
-        <!-- Explorar -->
-        <li class="nav-item dropdown">
-
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-
-            <i class="fa-solid fa-compass me-1"></i>
-            Explorar
+            <i class="fa-solid fa-circle-question me-1"></i>
+            Cómo funciona
 
           </a>
-
-
-          <ul class="dropdown-menu shadow">
-
-            <li>
-              <h6 class="dropdown-header">
-                Posiciones
-              </h6>
-            </li>
-
-            <li>
-              <a
-                class="dropdown-item"
-                href="/players?position=ST">
-
-                <i class="fa-solid fa-futbol me-2"></i>
-                Delanteros
-
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="dropdown-item"
-                href="/players?position=CM">
-
-                <i class="fa-solid fa-arrows-left-right me-2"></i>
-                Mediocampistas
-
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="dropdown-item"
-                href="/players?position=CB">
-
-                <i class="fa-solid fa-shield me-2"></i>
-                Defensas
-
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="dropdown-item"
-                href="/players?position=GK">
-
-                <i class="fa-solid fa-hand me-2"></i>
-                Arqueros
-
-              </a>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a
-                class="dropdown-item"
-                href="/players">
-
-                <i class="fa-solid fa-table-cells-large me-2"></i>
-                Todos los jugadores
-
-              </a>
-            </li>
-
-          </ul>
-
         </li>
 
       </ul>
 
 
-      <!-- Search -->
-      <form
-        class="d-flex"
-        role="search"
-        action="/players"
-        method="GET">
+      <!-- Authentication buttons -->
+      <div class="d-flex gap-2">
 
-        <div class="input-group">
+        <!-- Iniciar sesión -->
+        <a
+          href="/login"
+          class="btn btn-outline-light">
 
-          <input
-            class="form-control"
-            type="search"
-            name="search"
-            placeholder="Buscar jugador..."
-            aria-label="Buscar jugador"
-          >
+          Iniciar sesión
 
-          <button
-            class="btn btn-success"
-            type="submit">
+        </a>
 
-            <i class="fa-solid fa-magnifying-glass"></i>
 
-          </button>
+        <!-- Registrarse -->
+        <a
+          href="/register"
+          class="btn btn-success">
 
-        </div>
+          Registrarse
 
-      </form>
+        </a>
+
+      </div>
 
     </div>
 
   </div>
 
 </nav>
+
