@@ -1,11 +1,17 @@
-<!-- views/website/home.ejs -->
 <% layout("layouts/website") %>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="bg-dark text-white">
 
-  <div id="heroCarousel"
-       class="carousel slide carousel-fade"
-       data-bs-ride="carousel">
+  <div
+    id="heroCarousel"
+    class="carousel slide carousel-fade"
+    data-bs-ride="carousel"
+    data-bs-interval="5000"
+  >
 
     <!-- Indicadores -->
     <div class="carousel-indicators">
@@ -36,41 +42,49 @@
     </div>
 
 
-    <!-- Slides -->
+    <!-- =====================================================
+         SLIDES
+    ====================================================== -->
+
     <div class="carousel-inner">
 
 
-      <!-- SLIDE 1 -->
+      <!-- =====================================================
+           SLIDE 1
+      ====================================================== -->
+
       <div class="carousel-item active">
 
         <div
-          class="container-fluid"
           style="
-            min-height: 600px;
+            min-height: 650px;
             background:
               linear-gradient(
                 90deg,
-                rgba(0,0,0,.90),
-                rgba(0,0,0,.55),
-                rgba(0,0,0,.25)
+                rgba(5,10,8,.95) 0%,
+                rgba(5,10,8,.80) 45%,
+                rgba(5,10,8,.25) 100%
               ),
               url('/assets/img/slider-1.jpg')
-              center/cover;
-          ">
+              center/cover no-repeat;
+          "
+        >
 
           <div
             class="container d-flex align-items-center"
-            style="min-height: 600px;">
+            style="min-height:650px;"
+          >
 
-            <div class="row">
+            <div class="row w-100">
 
-              <div class="col-lg-7">
+              <div class="col-lg-7 col-xl-6">
 
-                <span class="badge bg-success mb-3 px-3 py-2">
+                <span class="badge bg-success px-3 py-2 mb-4">
+                  <i class="bi bi-bar-chart-fill me-2"></i>
                   FIFA / EA FC PLAYER DATABASE
                 </span>
 
-                <h1 class="display-3 fw-bold mb-4">
+                <h1 class="display-3 fw-bold lh-sm mb-4">
                   Descubre el mundo de
                   <span class="text-success">
                     PlayerStats
@@ -78,27 +92,26 @@
                 </h1>
 
                 <p class="lead text-light mb-4">
-                  Explora una completa base de datos de jugadores,
-                  equipos, ligas, posiciones y estadísticas.
+                  Explora jugadores, equipos, ligas,
+                  posiciones y estadísticas en una
+                  completa base de datos de fútbol.
                 </p>
 
-                <div class="d-flex flex-wrap gap-2">
+                <div class="d-flex flex-wrap gap-3">
 
                   <a
                     href="/players"
-                    class="btn btn-success btn-lg px-4">
-
-                    <i class="bi bi-people me-2"></i>
+                    class="btn btn-success btn-lg px-4"
+                  >
+                    <i class="bi bi-people-fill me-2"></i>
                     Explorar jugadores
-
                   </a>
 
                   <a
                     href="#about"
-                    class="btn btn-outline-light btn-lg px-4">
-
+                    class="btn btn-outline-light btn-lg px-4"
+                  >
                     Conocer más
-
                   </a>
 
                 </div>
@@ -114,54 +127,60 @@
       </div>
 
 
-      <!-- SLIDE 2 -->
+      <!-- =====================================================
+           SLIDE 2
+      ====================================================== -->
+
       <div class="carousel-item">
 
         <div
-          class="container-fluid"
           style="
-            min-height: 600px;
+            min-height:650px;
             background:
               linear-gradient(
                 90deg,
-                rgba(0,0,0,.90),
-                rgba(0,0,0,.55),
-                rgba(0,0,0,.25)
+                rgba(5,10,8,.95) 0%,
+                rgba(5,10,8,.80) 45%,
+                rgba(5,10,8,.25) 100%
               ),
               url('/assets/img/slider-2.jpg')
-              center/cover;
-          ">
+              center/cover no-repeat;
+          "
+        >
 
           <div
             class="container d-flex align-items-center"
-            style="min-height: 600px;">
+            style="min-height:650px;"
+          >
 
             <div class="row w-100">
 
-              <div class="col-lg-7">
+              <div class="col-lg-7 col-xl-6">
 
-                <span class="badge bg-success mb-3 px-3 py-2">
+                <span class="badge bg-success px-3 py-2 mb-4">
+                  <i class="bi bi-graph-up-arrow me-2"></i>
                   PLAYER STATISTICS
                 </span>
 
-                <h2 class="display-4 fw-bold mb-4">
+                <h2 class="display-4 fw-bold lh-sm mb-4">
                   Analiza cada
                   <span class="text-success">
                     estadística
                   </span>
                 </h2>
 
-                <p class="lead mb-4">
+                <p class="lead text-light mb-4">
                   Consulta velocidad, tiro, pase, regate,
-                  defensa, físico y valoración general.
+                  defensa, físico y valoración general
+                  de cada jugador.
                 </p>
 
                 <a
                   href="/players"
-                  class="btn btn-success btn-lg px-4">
-
+                  class="btn btn-success btn-lg px-4"
+                >
+                  <i class="bi bi-bar-chart me-2"></i>
                   Ver estadísticas
-
                 </a>
 
               </div>
@@ -175,55 +194,59 @@
       </div>
 
 
-      <!-- SLIDE 3 -->
+      <!-- =====================================================
+           SLIDE 3
+      ====================================================== -->
+
       <div class="carousel-item">
 
         <div
-          class="container-fluid"
           style="
-            min-height: 600px;
+            min-height:650px;
             background:
               linear-gradient(
                 90deg,
-                rgba(0,0,0,.90),
-                rgba(0,0,0,.55),
-                rgba(0,0,0,.25)
+                rgba(5,10,8,.95) 0%,
+                rgba(5,10,8,.80) 45%,
+                rgba(5,10,8,.25) 100%
               ),
               url('/assets/img/slider-3.jpg')
-              center/cover;
-          ">
+              center/cover no-repeat;
+          "
+        >
 
           <div
             class="container d-flex align-items-center"
-            style="min-height: 600px;">
+            style="min-height:650px;"
+          >
 
             <div class="row w-100">
 
-              <div class="col-lg-7">
+              <div class="col-lg-7 col-xl-6">
 
-                <span class="badge bg-success mb-3 px-3 py-2">
+                <span class="badge bg-success px-3 py-2 mb-4">
+                  <i class="bi bi-funnel-fill me-2"></i>
                   SMART FILTERS
                 </span>
 
-                <h2 class="display-4 fw-bold mb-4">
+                <h2 class="display-4 fw-bold lh-sm mb-4">
                   Encuentra al jugador
                   <span class="text-success">
                     perfecto
                   </span>
                 </h2>
 
-                <p class="lead mb-4">
+                <p class="lead text-light mb-4">
                   Filtra jugadores por posición, nación,
                   liga, equipo, pie y estilo de juego.
                 </p>
 
                 <a
                   href="/players"
-                  class="btn btn-success btn-lg px-4">
-
+                  class="btn btn-success btn-lg px-4"
+                >
                   <i class="bi bi-search me-2"></i>
                   Buscar jugadores
-
                 </a>
 
               </div>
@@ -239,12 +262,16 @@
     </div>
 
 
-    <!-- Controles -->
+    <!-- =====================================================
+         CONTROLES
+    ====================================================== -->
+
     <button
       class="carousel-control-prev"
       type="button"
       data-bs-target="#heroCarousel"
-      data-bs-slide="prev">
+      data-bs-slide="prev"
+    >
 
       <span class="carousel-control-prev-icon"></span>
 
@@ -254,11 +281,13 @@
 
     </button>
 
+
     <button
       class="carousel-control-next"
       type="button"
       data-bs-target="#heroCarousel"
-      data-bs-slide="next">
+      data-bs-slide="next"
+    >
 
       <span class="carousel-control-next-icon"></span>
 
@@ -283,33 +312,36 @@
 
     <div class="text-center mb-4">
 
-      <span class="text-success fw-bold text-uppercase">
+      <span class="text-success fw-bold text-uppercase small">
         Explora la base de datos
       </span>
 
-      <h2 class="fw-bold mt-2">
+      <h2 class="fw-bold mt-2 mb-2">
         Encuentra tu jugador
       </h2>
 
-      <p class="text-muted">
-        Utiliza los filtros para encontrar exactamente
-        el jugador que estás buscando.
+      <p class="text-muted mb-0">
+        Utiliza nuestros filtros para encontrar
+        exactamente el jugador que buscas.
       </p>
 
     </div>
 
 
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-lg">
 
-      <div class="card-body p-4">
+      <div class="card-body p-4 p-lg-5">
 
         <form
           action="/players"
-          method="GET">
+          method="GET"
+        >
 
           <div class="row g-3">
 
-            <!-- Nombre -->
+
+            <!-- Jugador -->
+
             <div class="col-12 col-lg-4">
 
               <label class="form-label fw-semibold">
@@ -319,14 +351,15 @@
               <div class="input-group">
 
                 <span class="input-group-text bg-white">
-                  <i class="bi bi-search"></i>
+                  <i class="bi bi-search text-success"></i>
                 </span>
 
                 <input
                   type="text"
                   class="form-control"
                   name="search"
-                  placeholder="Ej. Messi, Mbappé, Haaland...">
+                  placeholder="Messi, Mbappé, Haaland..."
+                >
 
               </div>
 
@@ -334,6 +367,7 @@
 
 
             <!-- Posición -->
+
             <div class="col-12 col-md-4 col-lg-2">
 
               <label class="form-label fw-semibold">
@@ -342,7 +376,8 @@
 
               <select
                 name="position"
-                class="form-select">
+                class="form-select"
+              >
 
                 <option value="">
                   Todas
@@ -382,6 +417,7 @@
 
 
             <!-- Nación -->
+
             <div class="col-12 col-md-4 col-lg-2">
 
               <label class="form-label fw-semibold">
@@ -390,7 +426,8 @@
 
               <select
                 name="nation"
-                class="form-select">
+                class="form-select"
+              >
 
                 <option value="">
                   Todas
@@ -418,6 +455,7 @@
 
 
             <!-- Liga -->
+
             <div class="col-12 col-md-4 col-lg-2">
 
               <label class="form-label fw-semibold">
@@ -426,7 +464,8 @@
 
               <select
                 name="league"
-                class="form-select">
+                class="form-select"
+              >
 
                 <option value="">
                   Todas
@@ -454,11 +493,13 @@
 
 
             <!-- Botón -->
+
             <div class="col-12 col-lg-2 d-flex align-items-end">
 
               <button
                 type="submit"
-                class="btn btn-success w-100">
+                class="btn btn-success w-100 py-2"
+              >
 
                 <i class="bi bi-search me-2"></i>
                 Buscar
@@ -490,13 +531,17 @@
 
     <div class="text-center mb-5">
 
-      <span class="text-success fw-bold">
-        PLAYERSTATS
+      <span class="text-success fw-bold text-uppercase small">
+        PlayerStats
       </span>
 
       <h2 class="fw-bold mt-2">
         Nuestra base de datos
       </h2>
+
+      <p class="text-muted">
+        Toda la información organizada en un solo lugar.
+      </p>
 
     </div>
 
@@ -505,6 +550,7 @@
 
 
       <!-- Jugadores -->
+
       <div class="col-6 col-lg-3">
 
         <div class="card border-0 shadow-sm h-100">
@@ -516,14 +562,19 @@
                      text-success rounded-circle
                      d-inline-flex align-items-center
                      justify-content-center mb-3"
-              style="width:70px;height:70px;">
+              style="width:70px;height:70px;"
+            >
 
-              <i class="bi bi-people fs-2"></i>
+              <i class="bi bi-people-fill fs-2"></i>
 
             </div>
 
             <h3 class="fw-bold mb-1">
-              <%= typeof playerCount !== 'undefined' ? playerCount : '12K+' %>
+
+              <%= typeof playerCount !== 'undefined'
+                ? playerCount
+                : '12K+' %>
+
             </h3>
 
             <p class="text-muted mb-0">
@@ -538,6 +589,7 @@
 
 
       <!-- Equipos -->
+
       <div class="col-6 col-lg-3">
 
         <div class="card border-0 shadow-sm h-100">
@@ -549,14 +601,19 @@
                      text-primary rounded-circle
                      d-inline-flex align-items-center
                      justify-content-center mb-3"
-              style="width:70px;height:70px;">
+              style="width:70px;height:70px;"
+            >
 
-              <i class="bi bi-shield fs-2"></i>
+              <i class="bi bi-shield-fill fs-2"></i>
 
             </div>
 
             <h3 class="fw-bold mb-1">
-              <%= typeof teamCount !== 'undefined' ? teamCount : '500+' %>
+
+              <%= typeof teamCount !== 'undefined'
+                ? teamCount
+                : '500+' %>
+
             </h3>
 
             <p class="text-muted mb-0">
@@ -571,6 +628,7 @@
 
 
       <!-- Ligas -->
+
       <div class="col-6 col-lg-3">
 
         <div class="card border-0 shadow-sm h-100">
@@ -582,14 +640,19 @@
                      text-warning rounded-circle
                      d-inline-flex align-items-center
                      justify-content-center mb-3"
-              style="width:70px;height:70px;">
+              style="width:70px;height:70px;"
+            >
 
-              <i class="bi bi-trophy fs-2"></i>
+              <i class="bi bi-trophy-fill fs-2"></i>
 
             </div>
 
             <h3 class="fw-bold mb-1">
-              <%= typeof leagueCount !== 'undefined' ? leagueCount : '40+' %>
+
+              <%= typeof leagueCount !== 'undefined'
+                ? leagueCount
+                : '40+' %>
+
             </h3>
 
             <p class="text-muted mb-0">
@@ -604,6 +667,7 @@
 
 
       <!-- Naciones -->
+
       <div class="col-6 col-lg-3">
 
         <div class="card border-0 shadow-sm h-100">
@@ -615,14 +679,19 @@
                      text-danger rounded-circle
                      d-inline-flex align-items-center
                      justify-content-center mb-3"
-              style="width:70px;height:70px;">
+              style="width:70px;height:70px;"
+            >
 
               <i class="bi bi-globe-americas fs-2"></i>
 
             </div>
 
             <h3 class="fw-bold mb-1">
-              <%= typeof nationCount !== 'undefined' ? nationCount : '200+' %>
+
+              <%= typeof nationCount !== 'undefined'
+                ? nationCount
+                : '200+' %>
+
             </h3>
 
             <p class="text-muted mb-0">
@@ -643,20 +712,226 @@
 
 
 <!-- =========================================================
-     SOBRE LA APLICACIÓN
+     EXPLORA CATEGORÍAS
+========================================================= -->
+
+<section class="bg-light py-5">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <span class="text-success fw-bold text-uppercase small">
+        Explora
+      </span>
+
+      <h2 class="fw-bold mt-2">
+        Descubre más de PlayerStats
+      </h2>
+
+      <p class="text-muted">
+        Encuentra jugadores utilizando diferentes categorías.
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+      <!-- Posiciones -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/players"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm h-100
+                   text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-person-badge fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Posiciones
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Encuentra porteros, defensas,
+              centrocampistas y delanteros.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Ligas -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/players"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm h-100
+                   text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-trophy fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Ligas
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Explora jugadores de las principales
+              ligas del mundo.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Naciones -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/players"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm h-100
+                   text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-globe2 fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Naciones
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Descubre jugadores según
+              su nacionalidad.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Equipos -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/players"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm h-100
+                   text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-shield-check fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Equipos
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Consulta los jugadores
+              pertenecientes a cada equipo.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOBRE PLAYERSTATS
 ========================================================= -->
 
 <section
   id="about"
-  class="bg-dark text-white py-5">
+  class="bg-dark text-white py-5"
+>
 
   <div class="container">
 
     <div class="row align-items-center g-5">
 
+
+      <!-- Texto -->
+
       <div class="col-lg-6">
 
-        <span class="badge bg-success mb-3">
+        <span class="badge bg-success px-3 py-2 mb-3">
           SOBRE PLAYERSTATS
         </span>
 
@@ -665,22 +940,24 @@
           para explorar jugadores.
         </h2>
 
-        <p class="text-secondary lead">
+        <p class="lead text-light">
           PlayerStats es una plataforma diseñada para
-          consultar y gestionar información relacionada
+          consultar y explorar información relacionada
           con jugadores de FIFA / EA FC.
         </p>
 
         <p class="text-secondary">
-          La información está organizada mediante jugadores,
-          equipos, ligas, naciones, posiciones, pies y
-          estilos de juego.
+          La información está organizada mediante
+          jugadores, equipos, ligas, naciones,
+          posiciones, pies y estilos de juego.
         </p>
 
         <a
           href="/players"
-          class="btn btn-success mt-3">
+          class="btn btn-success mt-3 px-4"
+        >
 
+          <i class="bi bi-database me-2"></i>
           Explorar base de datos
 
         </a>
@@ -688,19 +965,28 @@
       </div>
 
 
+      <!-- Características -->
+
       <div class="col-lg-6">
 
         <div class="row g-3">
 
+
+          <!-- Estadísticas -->
+
           <div class="col-6">
 
-            <div class="card bg-secondary bg-opacity-10
-                        border-secondary h-100">
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
 
               <div class="card-body p-4">
 
-                <i class="bi bi-bar-chart-fill
-                          text-success fs-1"></i>
+                <i
+                  class="bi bi-bar-chart-fill
+                         text-success fs-1"
+                ></i>
 
                 <h5 class="mt-3">
                   Estadísticas
@@ -718,15 +1004,21 @@
           </div>
 
 
+          <!-- Filtros -->
+
           <div class="col-6">
 
-            <div class="card bg-secondary bg-opacity-10
-                        border-secondary h-100">
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
 
               <div class="card-body p-4">
 
-                <i class="bi bi-funnel-fill
-                          text-success fs-1"></i>
+                <i
+                  class="bi bi-funnel-fill
+                         text-success fs-1"
+                ></i>
 
                 <h5 class="mt-3">
                   Filtros
@@ -744,15 +1036,21 @@
           </div>
 
 
+          <!-- Base de datos -->
+
           <div class="col-6">
 
-            <div class="card bg-secondary bg-opacity-10
-                        border-secondary h-100">
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
 
               <div class="card-body p-4">
 
-                <i class="bi bi-database-fill
-                          text-success fs-1"></i>
+                <i
+                  class="bi bi-database-fill
+                         text-success fs-1"
+                ></i>
 
                 <h5 class="mt-3">
                   Base de datos
@@ -769,15 +1067,21 @@
           </div>
 
 
+          <!-- Rápido -->
+
           <div class="col-6">
 
-            <div class="card bg-secondary bg-opacity-10
-                        border-secondary h-100">
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
 
               <div class="card-body p-4">
 
-                <i class="bi bi-lightning-fill
-                          text-success fs-1"></i>
+                <i
+                  class="bi bi-lightning-fill
+                         text-success fs-1"
+                ></i>
 
                 <h5 class="mt-3">
                   Rápido
@@ -814,22 +1118,27 @@
   <div class="container">
 
     <div
-      class="bg-success rounded-4 p-5 text-center text-white">
+      class="bg-success rounded-4
+             p-4 p-md-5
+             text-center text-white
+             shadow"
+    >
 
       <i class="bi bi-shield-fill-check fs-1"></i>
 
       <h2 class="fw-bold mt-3">
-        ¿Listo para explorar?
+        ¿Listo para explorar PlayerStats?
       </h2>
 
       <p class="lead mb-4">
         Descubre jugadores, estadísticas,
-        equipos y mucho más.
+        equipos, ligas y mucho más.
       </p>
 
       <a
         href="/players"
-        class="btn btn-light btn-lg px-5">
+        class="btn btn-light btn-lg px-5"
+      >
 
         <i class="bi bi-search me-2"></i>
         Explorar jugadores

@@ -1,0 +1,1038 @@
+<!--views\website\empresas.ejs-->
+<% layout("layouts/website") %>
+
+<!-- =========================================================
+     HERO / HEADER
+========================================================= -->
+
+<section class="bg-dark text-white py-5">
+
+  <div class="container py-4">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-8">
+
+        <span class="badge bg-success px-3 py-2 mb-3">
+          <i class="bi bi-building-fill me-2"></i>
+          EMPRESAS
+        </span>
+
+        <h1 class="display-4 fw-bold mb-3">
+          Empresas
+        </h1>
+
+        <p class="lead text-light mb-0">
+          Explora las empresas relacionadas con el mundo
+          del fútbol, sus equipos, jugadores y competiciones.
+        </p>
+
+      </div>
+
+      <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+
+        <i
+          class="bi bi-buildings-fill text-success"
+          style="font-size:7rem;"
+        ></i>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BUSCADOR
+========================================================= -->
+
+<section class="bg-light py-4">
+
+  <div class="container">
+
+    <div class="card border-0 shadow-sm">
+
+      <div class="card-body p-4">
+
+        <form
+          action="/empresas"
+          method="GET"
+        >
+
+          <div class="row g-3 align-items-end">
+
+
+            <!-- Buscar empresa -->
+
+            <div class="col-12 col-lg-6">
+
+              <label class="form-label fw-semibold">
+                Buscar empresa
+              </label>
+
+              <div class="input-group">
+
+                <span class="input-group-text bg-white">
+                  <i class="bi bi-search text-success"></i>
+                </span>
+
+                <input
+                  type="text"
+                  name="search"
+                  class="form-control"
+                  placeholder="Nombre de la empresa..."
+                  value="<%= typeof search !== 'undefined' ? search : '' %>"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Tipo -->
+
+            <div class="col-12 col-md-4 col-lg-3">
+
+              <label class="form-label fw-semibold">
+                Tipo
+              </label>
+
+              <select
+                name="type"
+                class="form-select"
+              >
+
+                <option value="">
+                  Todos
+                </option>
+
+                <option value="Club">
+                  Club
+                </option>
+
+                <option value="Marca">
+                  Marca
+                </option>
+
+                <option value="Patrocinador">
+                  Patrocinador
+                </option>
+
+                <option value="Organización">
+                  Organización
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Botón -->
+
+            <div class="col-12 col-md-8 col-lg-3">
+
+              <button
+                type="submit"
+                class="btn btn-success w-100"
+              >
+
+                <i class="bi bi-search me-2"></i>
+                Buscar empresas
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ESTADÍSTICAS
+========================================================= -->
+
+<section class="py-4">
+
+  <div class="container">
+
+    <div class="row g-4">
+
+
+      <!-- Empresas -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-building-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof empresaCount !== 'undefined'
+                ? empresaCount
+                : (typeof empresas !== 'undefined'
+                    ? empresas.length
+                    : '0') %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Empresas
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Clubes -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-primary bg-opacity-10
+                     text-primary rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-shield-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof clubCount !== 'undefined'
+                ? clubCount
+                : '-' %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Clubes
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Marcas -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-warning bg-opacity-10
+                     text-warning rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-award-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof brandCount !== 'undefined'
+                ? brandCount
+                : '-' %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Marcas
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Organizaciones -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-danger bg-opacity-10
+                     text-danger rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-diagram-3-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof organizationCount !== 'undefined'
+                ? organizationCount
+                : '-' %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Organizaciones
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LISTADO DE EMPRESAS
+========================================================= -->
+
+<section class="bg-light py-5">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <span class="text-success fw-bold text-uppercase small">
+        Directorio
+      </span>
+
+      <h2 class="fw-bold mt-2">
+        Empresas registradas
+      </h2>
+
+      <p class="text-muted">
+        Consulta las empresas disponibles en PlayerStats.
+      </p>
+
+    </div>
+
+
+    <% if (typeof empresas !== 'undefined' && empresas.length > 0) { %>
+
+
+      <!-- =====================================================
+           EMPRESAS DINÁMICAS
+      ====================================================== -->
+
+      <div class="row g-4">
+
+        <% empresas.forEach(empresa => { %>
+
+          <div class="col-12 col-md-6 col-xl-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+              <div class="card-body p-4">
+
+
+                <!-- Cabecera -->
+
+                <div class="d-flex
+                            justify-content-between
+                            align-items-start mb-4">
+
+                  <div
+                    class="bg-success bg-opacity-10
+                           text-success rounded-3
+                           d-flex align-items-center
+                           justify-content-center"
+                    style="width:60px;height:60px;"
+                  >
+
+                    <% if (empresa.logo) { %>
+
+                      <img
+                        src="<%= empresa.logo %>"
+                        alt="<%= empresa.name || empresa.nombre %>"
+                        style="
+                          width:45px;
+                          height:45px;
+                          object-fit:contain;
+                        "
+                      >
+
+                    <% } else { %>
+
+                      <i class="bi bi-building-fill fs-3"></i>
+
+                    <% } %>
+
+                  </div>
+
+
+                  <% if (empresa.type || empresa.tipo) { %>
+
+                    <span class="badge bg-success">
+
+                      <%= empresa.type || empresa.tipo %>
+
+                    </span>
+
+                  <% } %>
+
+                </div>
+
+
+                <!-- Nombre -->
+
+                <h4 class="fw-bold mb-2">
+
+                  <%= empresa.name
+                    || empresa.nombre
+                    || 'Empresa' %>
+
+                </h4>
+
+
+                <!-- Descripción -->
+
+                <p class="text-muted mb-4">
+
+                  <%= empresa.description
+                    || empresa.descripcion
+                    || 'Información de la empresa disponible en PlayerStats.' %>
+
+                </p>
+
+
+                <!-- Información -->
+
+                <div class="border-top pt-3">
+
+
+                  <% if (empresa.country || empresa.pais) { %>
+
+                    <div class="d-flex
+                                justify-content-between
+                                mb-2">
+
+                      <span class="text-muted">
+                        País
+                      </span>
+
+                      <span class="fw-semibold">
+
+                        <%= empresa.country
+                          || empresa.pais %>
+
+                      </span>
+
+                    </div>
+
+                  <% } %>
+
+
+                  <% if (empresa.website || empresa.web) { %>
+
+                    <div class="d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2">
+
+                      <span class="text-muted">
+                        Sitio web
+                      </span>
+
+                      <a
+                        href="<%= empresa.website || empresa.web %>"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-success text-decoration-none"
+                      >
+
+                        Visitar
+                        <i class="bi bi-box-arrow-up-right ms-1"></i>
+
+                      </a>
+
+                    </div>
+
+                  <% } %>
+
+
+                  <% if (empresa.teamCount !== undefined) { %>
+
+                    <div class="d-flex
+                                justify-content-between">
+
+                      <span class="text-muted">
+                        Equipos
+                      </span>
+
+                      <span class="fw-semibold">
+
+                        <%= empresa.teamCount %>
+
+                      </span>
+
+                    </div>
+
+                  <% } %>
+
+                </div>
+
+
+                <!-- Botón -->
+
+                <% if (empresa._id || empresa.id) { %>
+
+                  <a
+                    href="/empresas/<%= empresa._id || empresa.id %>"
+                    class="btn btn-outline-success w-100 mt-4"
+                  >
+
+                    Ver empresa
+                    <i class="bi bi-arrow-right ms-2"></i>
+
+                  </a>
+
+                <% } %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% }) %>
+
+      </div>
+
+
+    <% } else { %>
+
+
+      <!-- =====================================================
+           SIN EMPRESAS
+      ====================================================== -->
+
+      <div class="card border-0 shadow-sm">
+
+        <div class="card-body text-center py-5">
+
+          <div
+            class="bg-success bg-opacity-10
+                   text-success rounded-circle
+                   d-inline-flex
+                   align-items-center
+                   justify-content-center mb-4"
+            style="width:85px;height:85px;"
+          >
+
+            <i class="bi bi-building fs-1"></i>
+
+          </div>
+
+          <h4 class="fw-bold">
+            No hay empresas disponibles
+          </h4>
+
+          <p class="text-muted mb-4">
+            Actualmente no se encontraron empresas
+            con los criterios seleccionados.
+          </p>
+
+          <a
+            href="/empresas"
+            class="btn btn-success"
+          >
+
+            <i class="bi bi-arrow-clockwise me-2"></i>
+            Ver todas
+
+          </a>
+
+        </div>
+
+      </div>
+
+    <% } %>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CATEGORÍAS
+========================================================= -->
+
+<section class="py-5">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <span class="text-success fw-bold text-uppercase small">
+        Explora
+      </span>
+
+      <h2 class="fw-bold mt-2">
+        Explora por categoría
+      </h2>
+
+      <p class="text-muted">
+        Encuentra rápidamente el tipo de empresa que buscas.
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+      <!-- Clubes -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/empresas?type=Club"
+          class="text-decoration-none"
+        >
+
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-shield-fill fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Clubes
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Explora empresas y organizaciones
+              relacionadas con clubes.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Marcas -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/empresas?type=Marca"
+          class="text-decoration-none"
+        >
+
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-award-fill fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Marcas
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Consulta marcas relacionadas
+              con el mundo del fútbol.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Patrocinadores -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/empresas?type=Patrocinador"
+          class="text-decoration-none"
+        >
+
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-cash-stack fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Patrocinadores
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Descubre empresas que participan
+              como patrocinadores.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Organizaciones -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/empresas?type=Organización"
+          class="text-decoration-none"
+        >
+
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-diagram-3-fill fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Organizaciones
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Consulta organizaciones vinculadas
+              al fútbol.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOBRE EMPRESAS
+========================================================= -->
+
+<section class="bg-dark text-white py-5">
+
+  <div class="container">
+
+    <div class="row align-items-center g-5">
+
+
+      <!-- Texto -->
+
+      <div class="col-lg-6">
+
+        <span class="badge bg-success px-3 py-2 mb-3">
+          EMPRESAS EN PLAYERSTATS
+        </span>
+
+        <h2 class="display-6 fw-bold mb-4">
+          Conoce las empresas
+          detrás del fútbol.
+        </h2>
+
+        <p class="lead text-light">
+          PlayerStats permite organizar y consultar
+          información relacionada con diferentes
+          empresas y organizaciones.
+        </p>
+
+        <p class="text-secondary">
+          Encuentra información, categorías y relaciones
+          con equipos, jugadores y competiciones desde
+          una única plataforma.
+        </p>
+
+        <a
+          href="/players"
+          class="btn btn-success mt-3 px-4"
+        >
+
+          <i class="bi bi-people-fill me-2"></i>
+          Explorar jugadores
+
+        </a>
+
+      </div>
+
+
+      <!-- Características -->
+
+      <div class="col-lg-6">
+
+        <div class="row g-3">
+
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-building-fill
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Empresas
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Directorio organizado de empresas.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-search
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Búsqueda
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Encuentra empresas rápidamente.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-diagram-3-fill
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Relaciones
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Información relacionada con equipos
+                  y jugadores.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-database-fill
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Información
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Datos organizados en un solo lugar.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA FINAL
+========================================================= -->
+
+<section class="py-5">
+
+  <div class="container">
+
+    <div
+      class="bg-success rounded-4
+             p-4 p-md-5
+             text-center text-white
+             shadow"
+    >
+
+      <i class="bi bi-building-fill fs-1"></i>
+
+      <h2 class="fw-bold mt-3">
+        Explora PlayerStats
+      </h2>
+
+      <p class="lead mb-4">
+        Descubre empresas, equipos, jugadores,
+        ligas y mucho más.
+      </p>
+
+      <div class="d-flex
+                  flex-wrap
+                  justify-content-center
+                  gap-2">
+
+        <a
+          href="/empresas"
+          class="btn btn-light btn-lg px-4"
+        >
+
+          <i class="bi bi-building me-2"></i>
+          Ver empresas
+
+        </a>
+
+        <a
+          href="/players"
+          class="btn btn-outline-light btn-lg px-4"
+        >
+
+          <i class="bi bi-people me-2"></i>
+          Ver jugadores
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

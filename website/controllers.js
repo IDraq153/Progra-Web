@@ -7,7 +7,38 @@ export function home(req, res) {
       'Esta es una aplicación de ejemplo creada con Node.js, Express y EJS.'
   });
 }
-
+export function convocatorias(req, res) { 
+  return res.render('website/convocatorias', {
+    title: 'Convocatorias',
+    currentPage: 'convocatorias',
+    description:
+      'Esta es una aplicación de ejemplo creada con Node.js, Express y EJS.'
+  });
+}
+export function empresas(req, res) { 
+  return res.render('website/empresas', {
+    title: 'empresas',
+    currentPage: 'empresas',
+    description:
+      'Esta es una aplicación de ejemplo creada con Node.js, Express y EJS.'
+  });
+}
+export function estudiantes(req, res) { 
+  return res.render('website/estudiantes', {
+    title: 'estudiantes',
+    currentPage: 'estudiantes',
+    description:
+      'Esta es una aplicación de ejemplo creada con Node.js, Express y EJS.'
+  });
+}
+export function funcion(req, res) { 
+  return res.render('website/como-funciona', {
+    title: 'como-funciona',
+    currentPage: 'como-funciona',
+    description:
+      'Esta es una aplicación de ejemplo creada con Node.js, Express y EJS.'
+  });
+}
 export function login(req, res) { 
   let fondos = [
     "/assets/img/login-bd1.png",

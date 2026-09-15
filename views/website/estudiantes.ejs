@@ -1,0 +1,1150 @@
+<!--views\website\estudiantes.ejs-->
+<% layout("layouts/website") %>
+
+<!-- =========================================================
+     HERO / HEADER
+========================================================= -->
+
+<section class="bg-dark text-white py-5">
+
+  <div class="container py-4">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-8">
+
+        <span class="badge bg-success px-3 py-2 mb-3">
+          <i class="bi bi-mortarboard-fill me-2"></i>
+          ESTUDIANTES
+        </span>
+
+        <h1 class="display-4 fw-bold mb-3">
+          Estudiantes
+        </h1>
+
+        <p class="lead text-light mb-0">
+          Gestiona, consulta y explora la información
+          de los estudiantes registrados en la plataforma.
+        </p>
+
+      </div>
+
+      <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+
+        <i
+          class="bi bi-mortarboard-fill text-success"
+          style="font-size:7rem;"
+        ></i>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BUSCADOR
+========================================================= -->
+
+<section class="bg-light py-4">
+
+  <div class="container">
+
+    <div class="card border-0 shadow-sm">
+
+      <div class="card-body p-4">
+
+        <form
+          action="/estudiantes"
+          method="GET"
+        >
+
+          <div class="row g-3 align-items-end">
+
+
+            <!-- Buscar estudiante -->
+
+            <div class="col-12 col-lg-5">
+
+              <label class="form-label fw-semibold">
+                Buscar estudiante
+              </label>
+
+              <div class="input-group">
+
+                <span class="input-group-text bg-white">
+                  <i class="bi bi-search text-success"></i>
+                </span>
+
+                <input
+                  type="text"
+                  name="search"
+                  class="form-control"
+                  placeholder="Nombre, apellido o código..."
+                  value="<%= typeof search !== 'undefined' ? search : '' %>"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Carrera -->
+
+            <div class="col-12 col-md-4 col-lg-2">
+
+              <label class="form-label fw-semibold">
+                Carrera
+              </label>
+
+              <select
+                name="career"
+                class="form-select"
+              >
+
+                <option value="">
+                  Todas
+                </option>
+
+                <option value="Ingeniería">
+                  Ingeniería
+                </option>
+
+                <option value="Administración">
+                  Administración
+                </option>
+
+                <option value="Contabilidad">
+                  Contabilidad
+                </option>
+
+                <option value="Sistemas">
+                  Sistemas
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Estado -->
+
+            <div class="col-12 col-md-4 col-lg-2">
+
+              <label class="form-label fw-semibold">
+                Estado
+              </label>
+
+              <select
+                name="status"
+                class="form-select"
+              >
+
+                <option value="">
+                  Todos
+                </option>
+
+                <option value="Activo">
+                  Activo
+                </option>
+
+                <option value="Inactivo">
+                  Inactivo
+                </option>
+
+                <option value="Egresado">
+                  Egresado
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Semestre -->
+
+            <div class="col-12 col-md-4 col-lg-1">
+
+              <label class="form-label fw-semibold">
+                Sem.
+              </label>
+
+              <select
+                name="semester"
+                class="form-select"
+              >
+
+                <option value="">
+                  Todos
+                </option>
+
+                <option value="1">
+                  1
+                </option>
+
+                <option value="2">
+                  2
+                </option>
+
+                <option value="3">
+                  3
+                </option>
+
+                <option value="4">
+                  4
+                </option>
+
+                <option value="5">
+                  5
+                </option>
+
+                <option value="6">
+                  6
+                </option>
+
+                <option value="7">
+                  7
+                </option>
+
+                <option value="8">
+                  8
+                </option>
+
+                <option value="9">
+                  9
+                </option>
+
+                <option value="10">
+                  10
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Botón -->
+
+            <div class="col-12 col-lg-2">
+
+              <button
+                type="submit"
+                class="btn btn-success w-100"
+              >
+
+                <i class="bi bi-search me-2"></i>
+                Buscar
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ESTADÍSTICAS
+========================================================= -->
+
+<section class="py-4">
+
+  <div class="container">
+
+    <div class="row g-4">
+
+
+      <!-- Estudiantes -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-people-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof estudianteCount !== 'undefined'
+                ? estudianteCount
+                : (typeof estudiantes !== 'undefined'
+                    ? estudiantes.length
+                    : '0') %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Estudiantes
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Activos -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-primary bg-opacity-10
+                     text-primary rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-person-check-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof activeStudentCount !== 'undefined'
+                ? activeStudentCount
+                : '-' %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Activos
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Carreras -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-warning bg-opacity-10
+                     text-warning rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-book-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof careerCount !== 'undefined'
+                ? careerCount
+                : '-' %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Carreras
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Egresados -->
+
+      <div class="col-6 col-lg-3">
+
+        <div class="card border-0 shadow-sm h-100">
+
+          <div class="card-body text-center p-4">
+
+            <div
+              class="bg-danger bg-opacity-10
+                     text-danger rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mb-3"
+              style="width:65px;height:65px;"
+            >
+
+              <i class="bi bi-mortarboard-fill fs-3"></i>
+
+            </div>
+
+            <h3 class="fw-bold mb-1">
+
+              <%= typeof graduatedStudentCount !== 'undefined'
+                ? graduatedStudentCount
+                : '-' %>
+
+            </h3>
+
+            <p class="text-muted mb-0">
+              Egresados
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LISTADO DE ESTUDIANTES
+========================================================= -->
+
+<section class="bg-light py-5">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <span class="text-success fw-bold text-uppercase small">
+        Directorio
+      </span>
+
+      <h2 class="fw-bold mt-2">
+        Estudiantes registrados
+      </h2>
+
+      <p class="text-muted">
+        Consulta la información de los estudiantes.
+      </p>
+
+    </div>
+
+
+    <% if (typeof estudiantes !== 'undefined' && estudiantes.length > 0) { %>
+
+
+      <!-- =====================================================
+           ESTUDIANTES DINÁMICOS
+      ====================================================== -->
+
+      <div class="row g-4">
+
+        <% estudiantes.forEach(estudiante => { %>
+
+          <div class="col-12 col-md-6 col-xl-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+              <div class="card-body p-4">
+
+
+                <!-- Cabecera -->
+
+                <div class="d-flex
+                            justify-content-between
+                            align-items-start mb-4">
+
+                  <div
+                    class="bg-success bg-opacity-10
+                           text-success rounded-circle
+                           d-flex align-items-center
+                           justify-content-center"
+                    style="width:65px;height:65px;"
+                  >
+
+                    <% if (estudiante.photo || estudiante.foto || estudiante.image) { %>
+
+                      <img
+                        src="<%= estudiante.photo || estudiante.foto || estudiante.image %>"
+                        alt="<%= estudiante.name || estudiante.nombre || 'Estudiante' %>"
+                        class="rounded-circle"
+                        style="
+                          width:65px;
+                          height:65px;
+                          object-fit:cover;
+                        "
+                      >
+
+                    <% } else { %>
+
+                      <i class="bi bi-person-fill fs-2"></i>
+
+                    <% } %>
+
+                  </div>
+
+
+                  <span
+                    class="badge
+                    <%= (estudiante.status || estudiante.estado) === 'Activo'
+                      ? 'bg-success'
+                      : 'bg-secondary' %>"
+                  >
+
+                    <%= estudiante.status
+                      || estudiante.estado
+                      || 'Activo' %>
+
+                  </span>
+
+                </div>
+
+
+                <!-- Nombre -->
+
+                <h4 class="fw-bold mb-1">
+
+                  <%= estudiante.name
+                    || estudiante.nombre
+                    || (
+                      (estudiante.firstName || '')
+                      + ' '
+                      + (estudiante.lastName || '')
+                    ).trim()
+                    || 'Estudiante' %>
+
+                </h4>
+
+
+                <!-- Código -->
+
+                <% if (
+                  estudiante.code ||
+                  estudiante.codigo ||
+                  estudiante.studentCode
+                ) { %>
+
+                  <p class="text-success fw-semibold small mb-3">
+
+                    <i class="bi bi-person-vcard me-1"></i>
+
+                    Código:
+                    <%= estudiante.code
+                      || estudiante.codigo
+                      || estudiante.studentCode %>
+
+                  </p>
+
+                <% } %>
+
+
+                <!-- Información -->
+
+                <div class="border-top pt-3">
+
+
+                  <!-- Carrera -->
+
+                  <div class="d-flex
+                              justify-content-between
+                              mb-2">
+
+                    <span class="text-muted">
+                      Carrera
+                    </span>
+
+                    <span class="fw-semibold text-end">
+
+                      <%= estudiante.career
+                        || estudiante.carrera
+                        || '—' %>
+
+                    </span>
+
+                  </div>
+
+
+                  <!-- Semestre -->
+
+                  <div class="d-flex
+                              justify-content-between
+                              mb-2">
+
+                    <span class="text-muted">
+                      Semestre
+                    </span>
+
+                    <span class="fw-semibold">
+
+                      <%= estudiante.semester
+                        || estudiante.semestre
+                        || '—' %>
+
+                    </span>
+
+                  </div>
+
+
+                  <!-- Universidad -->
+
+                  <div class="d-flex
+                              justify-content-between">
+
+                    <span class="text-muted">
+                      Institución
+                    </span>
+
+                    <span class="fw-semibold text-end">
+
+                      <%= estudiante.university
+                        || estudiante.universidad
+                        || '—' %>
+
+                    </span>
+
+                  </div>
+
+                </div>
+
+
+                <!-- Botón -->
+
+                <% if (estudiante._id || estudiante.id) { %>
+
+                  <a
+                    href="/estudiantes/<%= estudiante._id || estudiante.id %>"
+                    class="btn btn-outline-success w-100 mt-4"
+                  >
+
+                    Ver estudiante
+
+                    <i class="bi bi-arrow-right ms-2"></i>
+
+                  </a>
+
+                <% } %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% }) %>
+
+      </div>
+
+
+    <% } else { %>
+
+
+      <!-- =====================================================
+           SIN RESULTADOS
+      ====================================================== -->
+
+      <div class="card border-0 shadow-sm">
+
+        <div class="card-body text-center py-5">
+
+          <div
+            class="bg-success bg-opacity-10
+                   text-success rounded-circle
+                   d-inline-flex
+                   align-items-center
+                   justify-content-center mb-4"
+            style="width:85px;height:85px;"
+          >
+
+            <i class="bi bi-people fs-1"></i>
+
+          </div>
+
+          <h4 class="fw-bold">
+            No hay estudiantes disponibles
+          </h4>
+
+          <p class="text-muted mb-4">
+            Actualmente no se encontraron estudiantes
+            con los criterios seleccionados.
+          </p>
+
+          <a
+            href="/estudiantes"
+            class="btn btn-success"
+          >
+
+            <i class="bi bi-arrow-clockwise me-2"></i>
+            Ver todos
+
+          </a>
+
+        </div>
+
+      </div>
+
+    <% } %>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CATEGORÍAS
+========================================================= -->
+
+<section class="py-5">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <span class="text-success fw-bold text-uppercase small">
+        Explora
+      </span>
+
+      <h2 class="fw-bold mt-2">
+        Explora estudiantes
+      </h2>
+
+      <p class="text-muted">
+        Consulta los estudiantes utilizando diferentes categorías.
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+      <!-- Carreras -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/estudiantes?career=Ingeniería"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm
+                   h-100 text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-book-fill fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Carreras
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Encuentra estudiantes según
+              su carrera profesional.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Semestres -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/estudiantes"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm
+                   h-100 text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-calendar3 fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Semestres
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Consulta estudiantes por
+              semestre académico.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Estudiantes activos -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/estudiantes?status=Activo"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm
+                   h-100 text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-person-check-fill fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Activos
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Consulta estudiantes que actualmente
+              se encuentran activos.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- Egresados -->
+
+      <div class="col-12 col-md-6 col-lg-3">
+
+        <a
+          href="/estudiantes?status=Egresado"
+          class="text-decoration-none"
+        >
+
+          <div
+            class="card border-0 shadow-sm
+                   h-100 text-center p-4"
+          >
+
+            <div
+              class="bg-success bg-opacity-10
+                     text-success rounded-circle
+                     d-inline-flex align-items-center
+                     justify-content-center mx-auto"
+              style="width:70px;height:70px;"
+            >
+
+              <i class="bi bi-mortarboard-fill fs-2"></i>
+
+            </div>
+
+            <h5 class="fw-bold mt-3 text-dark">
+              Egresados
+            </h5>
+
+            <p class="text-muted small mb-0">
+              Consulta estudiantes que
+              finalizaron sus estudios.
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     INFORMACIÓN
+========================================================= -->
+
+<section class="bg-dark text-white py-5">
+
+  <div class="container">
+
+    <div class="row align-items-center g-5">
+
+
+      <!-- Texto -->
+
+      <div class="col-lg-6">
+
+        <span class="badge bg-success px-3 py-2 mb-3">
+          GESTIÓN DE ESTUDIANTES
+        </span>
+
+        <h2 class="display-6 fw-bold mb-4">
+          Toda la información
+          de tus estudiantes.
+        </h2>
+
+        <p class="lead text-light">
+          Mantén organizada la información de los
+          estudiantes y facilita su consulta desde
+          una sola plataforma.
+        </p>
+
+        <p class="text-secondary">
+          Puedes buscar estudiantes, consultar su
+          carrera, semestre, estado académico y
+          otros datos relevantes.
+        </p>
+
+        <a
+          href="/estudiantes"
+          class="btn btn-success mt-3 px-4"
+        >
+
+          <i class="bi bi-people-fill me-2"></i>
+          Ver estudiantes
+
+        </a>
+
+      </div>
+
+
+      <!-- Características -->
+
+      <div class="col-lg-6">
+
+        <div class="row g-3">
+
+
+          <!-- Búsqueda -->
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-search
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Búsqueda
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Encuentra estudiantes rápidamente.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Carreras -->
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-book-fill
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Carreras
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Organiza estudiantes por carrera.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Estado -->
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-person-check-fill
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Estado académico
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Identifica estudiantes activos,
+                  inactivos y egresados.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Información -->
+
+          <div class="col-6">
+
+            <div
+              class="card bg-white bg-opacity-10
+                     border-secondary h-100"
+            >
+
+              <div class="card-body p-4">
+
+                <i
+                  class="bi bi-database-fill
+                         text-success fs-1"
+                ></i>
+
+                <h5 class="mt-3">
+                  Información
+                </h5>
+
+                <p class="text-secondary small mb-0">
+                  Datos organizados en un solo lugar.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA FINAL
+========================================================= -->
+
+<section class="py-5">
+
+  <div class="container">
+
+    <div
+      class="bg-success rounded-4
+             p-4 p-md-5
+             text-center text-white
+             shadow"
+    >
+
+      <i class="bi bi-mortarboard-fill fs-1"></i>
+
+      <h2 class="fw-bold mt-3">
+        Gestiona tus estudiantes
+      </h2>
+
+      <p class="lead mb-4">
+        Consulta, busca y organiza la información
+        de todos los estudiantes.
+      </p>
+
+      <a
+        href="/estudiantes"
+        class="btn btn-light btn-lg px-5"
+      >
+
+        <i class="bi bi-people me-2"></i>
+        Ver estudiantes
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
