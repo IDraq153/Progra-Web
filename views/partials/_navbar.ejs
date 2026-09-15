@@ -3,14 +3,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
   <div class="container">
 
-    <!-- Brand -->
+    <!-- Logo / Brand -->
     <a
       class="navbar-brand d-flex align-items-center fw-bold text-success"
       href="/"
-      aria-label="Ulima Laboral - Inicio"
     >
-      <i class="fa-solid fa-shield-halved fs-4 me-2"></i>
-      <span>Ulima Laboral</span>
+      <i class="fa-solid fa-shield-halved fs-3 me-2"></i>
+
+      <span>
+        Ulima Laboral
+      </span>
     </a>
 
     <!-- Mobile button -->
@@ -30,35 +32,49 @@
     <div class="collapse navbar-collapse" id="navbarContent">
 
       <!-- Main navigation -->
-      <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-2 my-3 my-lg-0">
+      <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-1 my-3 my-lg-0">
 
+        <!-- Convocatorias -->
         <li class="nav-item">
           <a
-            class="nav-link px-lg-3"
+            class="nav-link px-3 d-flex align-items-center"
             href="/convocatorias"
           >
-            <i class="fa-solid fa-list-check me-1"></i>
-            Convocatorias
+            <i class="fa-solid fa-briefcase me-2 text-success"></i>
+            <span>Convocatorias</span>
           </a>
         </li>
 
+        <!-- Empresas -->
         <li class="nav-item">
           <a
-            class="nav-link px-lg-3"
+            class="nav-link px-3 d-flex align-items-center"
             href="/empresas"
           >
-            <i class="fa-solid fa-building me-1"></i>
-            Empresas
+            <i class="fa-solid fa-building me-2 text-success"></i>
+            <span>Empresas</span>
           </a>
         </li>
 
+        <!-- Estudiantes -->
         <li class="nav-item">
           <a
-            class="nav-link px-lg-3"
+            class="nav-link px-3 d-flex align-items-center"
+            href="/estudiantes"
+          >
+            <i class="fa-solid fa-user-graduate me-2 text-success"></i>
+            <span>Estudiantes</span>
+          </a>
+        </li>
+
+        <!-- Cómo funciona -->
+        <li class="nav-item">
+          <a
+            class="nav-link px-3 d-flex align-items-center"
             href="/como-funciona"
           >
-            <i class="fa-solid fa-circle-question me-1"></i>
-            Cómo funciona
+            <i class="fa-solid fa-circle-question me-2 text-success"></i>
+            <span>Cómo funciona</span>
           </a>
         </li>
 
@@ -67,19 +83,21 @@
       <!-- Authentication -->
       <div class="d-flex flex-column flex-lg-row gap-2">
 
+        <!-- Login -->
         <a
           href="/login"
           class="btn btn-outline-light px-3"
         >
-          <i class="fa-solid fa-right-to-bracket me-1"></i>
+          <i class="fa-solid fa-right-to-bracket me-2"></i>
           Iniciar sesión
         </a>
 
+        <!-- Register -->
         <a
           href="/register"
           class="btn btn-success px-3"
         >
-          <i class="fa-solid fa-user-plus me-1"></i>
+          <i class="fa-solid fa-user-plus me-2"></i>
           Registrarse
         </a>
 
