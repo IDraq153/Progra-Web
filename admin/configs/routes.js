@@ -6,8 +6,9 @@ import { redirectIfAuthenticated, requireAuth } from '../../configs/middlewares.
 
 const router = Router();
 
+// Entrar a administrador para dar mantenimiento a tablas fuertes
 // react views
-router.get('/admin', requireAuth, admins.home);
+router.get('/admin', admins.home);
 router.get('/admin/players', requireAuth, admins.home);
 router.get('/admin/teams', requireAuth, admins.home);
 router.get('/admin/leagues', requireAuth, admins.home);

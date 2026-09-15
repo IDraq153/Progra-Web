@@ -1,4 +1,4 @@
-@startuml
+@startuml diagrama
 
 !define table(x) entity x << (T,#FFAAAA) >>
 !define primary_key(x) <b><color:red>x</color></b>
