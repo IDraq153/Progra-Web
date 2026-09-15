@@ -1,21 +1,17 @@
 <!-- views/partials/_navbar.ejs -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
   <div class="container">
 
     <!-- Brand -->
     <a
-      class="navbar-brand fw-bold text-success d-flex align-items-center"
-      href="/">
-
+      class="navbar-brand d-flex align-items-center fw-bold text-success"
+      href="/"
+      aria-label="Ulima Laboral - Inicio"
+    >
       <i class="fa-solid fa-shield-halved fs-4 me-2"></i>
-
-      <span>
-        Ulima Laboral
-      </span>
-
+      <span>Ulima Laboral</span>
     </a>
-
 
     <!-- Mobile button -->
     <button
@@ -25,89 +21,70 @@
       data-bs-target="#navbarContent"
       aria-controls="navbarContent"
       aria-expanded="false"
-      aria-label="Abrir menú">
-
+      aria-label="Abrir menú"
+    >
       <span class="navbar-toggler-icon"></span>
-
     </button>
 
-
     <!-- Navbar content -->
-    <div
-      class="collapse navbar-collapse"
-      id="navbarContent">
+    <div class="collapse navbar-collapse" id="navbarContent">
 
       <!-- Main navigation -->
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-2 my-3 my-lg-0">
 
-        <!-- Convocatorias -->
         <li class="nav-item">
           <a
-            class="nav-link"
-            href="/convocatorias">
-
+            class="nav-link px-lg-3"
+            href="/convocatorias"
+          >
             <i class="fa-solid fa-list-check me-1"></i>
             Convocatorias
-
           </a>
         </li>
 
-
-        <!-- Empresas -->
         <li class="nav-item">
           <a
-            class="nav-link"
-            href="/empresas">
-
+            class="nav-link px-lg-3"
+            href="/empresas"
+          >
             <i class="fa-solid fa-building me-1"></i>
             Empresas
-
           </a>
         </li>
 
-
-        <!-- Cómo funciona -->
         <li class="nav-item">
           <a
-            class="nav-link"
-            href="/como-funciona">
-
+            class="nav-link px-lg-3"
+            href="/como-funciona"
+          >
             <i class="fa-solid fa-circle-question me-1"></i>
             Cómo funciona
-
           </a>
         </li>
 
       </ul>
 
+      <!-- Authentication -->
+      <div class="d-flex flex-column flex-lg-row gap-2">
 
-      <!-- Authentication buttons -->
-      <div class="d-flex gap-2">
-
-        <!-- Iniciar sesión -->
         <a
           href="/login"
-          class="btn btn-outline-light">
-
+          class="btn btn-outline-light px-3"
+        >
+          <i class="fa-solid fa-right-to-bracket me-1"></i>
           Iniciar sesión
-
         </a>
 
-
-        <!-- Registrarse -->
         <a
           href="/register"
-          class="btn btn-success">
-
+          class="btn btn-success px-3"
+        >
+          <i class="fa-solid fa-user-plus me-1"></i>
           Registrarse
-
         </a>
 
       </div>
 
     </div>
-
   </div>
-
 </nav>
-
