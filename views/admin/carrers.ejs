@@ -1,0 +1,23 @@
+<!--views\admin\carrers.ejs-->
+<% layout("layouts/admin") %>
+
+Lista de carreras
+
+<%= carrers %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (const carrer of carrers) { %>
+      <tr>
+        <td><%= carrer.id %></td>
+        <td><%= carrer.name %></td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
