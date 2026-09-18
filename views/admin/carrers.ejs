@@ -3,21 +3,21 @@
 
 <div class="container-fluid py-4">
 
-<!-- Título de la vista -->
-<div class="mb-4">
-  <div class="d-flex align-items-center gap-3">
-    <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3">
-      <i class="bi bi-mortarboard-fill fs-3"></i>
-    </div>
+  <!-- Título de la vista -->
+  <div class="mb-4">
+    <div class="d-flex align-items-center gap-3">
+      <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3">
+        <i class="bi bi-mortarboard-fill fs-3"></i>
+      </div>
 
-    <div>
-      <h1 class="h3 fw-bold mb-1">Gestión de Carreras</h1>
-      <p class="text-muted mb-0">
-        Administra y registra las carreras académicas de la institución.
-      </p>
+      <div>
+        <h1 class="h3 fw-bold mb-1">Gestión de Carreras</h1>
+        <p class="text-muted mb-0">
+          Administra y registra las carreras académicas de la institución.
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
   <div class="row g-4">
 
@@ -55,7 +55,12 @@
                 Limpiar
               </button>
 
-              <button type="submit" class="btn btn-primary">
+              <button
+                id="btnRegistrar"
+                type="submit"
+                class="btn btn-primary"
+                onclick="registrar(event)"
+              >
                 <i class="bi bi-plus-lg me-1"></i>
                 Registrar carrera
               </button>
@@ -69,29 +74,70 @@
     <!-- Tabla de carreras -->
     <div class="col-12 col-lg-8">
       <div class="card shadow-sm border-0">
+
         <div class="card-header bg-white py-3">
           <h5 class="mb-0">Listado de carreras</h5>
         </div>
 
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
+
+            <table class="table table-hover align-middle mb-0" id="careers">
+
               <thead class="table-light">
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Nombre</th>
+                  <th scope="col" class="text-center">Acciones</th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody id="tcareers">
+
                 <% for (const carrer of carrers) { %>
+
                   <tr>
                     <td><%= carrer.id %></td>
-                    <td><%= carrer.name %></td>
+
+                    <td>
+                      <%= carrer.name %>
+                    </td>
+
+                    <td class="text-center">
+                      <div class="d-flex justify-content-center gap-2">
+
+                        <!-- Botón editar -->
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-primary"
+                          title="Editar"
+                          onclick="editar('<%= carrer.id %>', event)"
+                        >
+                          <i class="bi bi-pencil-square me-1"></i>
+                          Editar
+                        </button>
+
+                        <!-- Botón eliminar -->
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-danger"
+                          title="Eliminar"
+                          onclick="eliminar('<%= carrer.id %>', event)"
+                        >
+                          <i class="bi bi-trash me-1"></i>
+                          Eliminar
+                        </button>
+
+                      </div>
+                    </td>
                   </tr>
+
                 <% } %>
+
               </tbody>
+
             </table>
+
           </div>
         </div>
       </div>
@@ -99,3 +145,55 @@
 
   </div>
 </div>
+
+<script>
+  let carrerRows = document.getElementById("careers").children[1].children.length;
+  //console.log(carrerRows);
+
+  function registrar(event) {
+    
+    // Evita que se refresque
+    event.preventDefault();
+    
+    // Codigo para ir creando estas nuevas secciones en nuestra web para agregar carreras
+    let newCareer = document.getElementById("name").value;
+    let careerTable = document.getElementById("careers");
+    
+    //console.log(newCareer);
+
+    let tr = document.createElement("TR");
+    let td1 = document.createElement("TD");
+    let td2 = document.createElement("TD");
+    let td3 = document.createElement("TD");
+    
+    carrerRows+=1;
+    td1.innerHTML = carrerRows;
+    td2.innerHTML = newCareer;
+    
+    //console.log(tr); 
+    
+    // "juntar" adentro del tr los td como un arbol nodo hijo
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    careerTable.children[1].appendChild(tr);
+  }
+
+  function eliminar(ID, event) {
+    // que event.currentTarget captura el elemento con el que tuve interaccion
+
+    let td = event.currentTarget.parentElement.parentElement;
+    td.parentElement.remove();
+  }
+
+  function editar(ID, event) {
+
+    // 
+    let tr = event.currentTarget.parentElement.parentElement.parentElement;
+    let id = tr.children[0].innerHTML;
+    let name =tr.children[1].innerHTML;
+
+    document.getElementById("name").value = name;
+
+  }
+</script>
