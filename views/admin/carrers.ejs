@@ -25,7 +25,7 @@
     <div class="col-12 col-lg-4">
       <div class="card shadow-sm border-0">
         <div class="card-header bg-white py-3">
-          <h5 class="mb-0">Nueva carrera</h5>
+          <h5 id="careerTitle" class="mb-0">Nueva carrera</h5>
         </div>
 
         <div class="card-body">
@@ -212,25 +212,30 @@
           tr.children[1].innerHTML = newCareer;
         }
         document.getElementById("careerId").value = "";
-      } 
+      }
+      
+      document.getElementById("careerTitle").innerHTML = "Nueva carrera";
     }
   }
-
+  
   function eliminar(ID, event) {
     // que event.currentTarget captura el elemento con el que tuve interaccion
     let tr = event.currentTarget.parentElement.parentElement;
     tr.parentElement.remove();
+    document.getElementById("careerTitle").innerHTML = "Nueva carrera";
   }
-
+  
   function editar(ID, event) {
-
+    
     // 
     let tr = event.currentTarget.parentElement.parentElement.parentElement;
     let id = tr.children[0].innerHTML;
     let name =tr.children[1].innerHTML;
-
+    
     document.getElementById("name").value = name.trim();
     document.getElementById("careerId").value = id;
     
+    document.getElementById("careerTitle").innerHTML = "Editar carrera";
+    console.log(document.getElementById("careerTitle"));
   }
 </script>
