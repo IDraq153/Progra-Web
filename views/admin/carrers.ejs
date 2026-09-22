@@ -174,7 +174,29 @@
       carrerRows+=1;
       td1.innerHTML = carrerRows;
       td2.innerHTML = newCareer;
-      
+      td3.innerHTML = `
+      <div class="d-flex justify-content-center gap-2">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-primary"
+          title="Editar"
+          onclick="editar('${carrerRows}', event)"
+        >
+          <i class="bi bi-pencil-square me-1"></i>
+          Editar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-danger"
+          title="Eliminar"
+          onclick="eliminar('${carrerRows}', event)"
+        >
+          <i class="bi bi-trash me-1"></i>
+          Eliminar
+        </button>
+      </div>
+    `;
       //console.log(tr); 
       
       // "juntar" adentro del tr los td como un arbol nodo hijo
