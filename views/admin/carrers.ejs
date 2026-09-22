@@ -36,6 +36,8 @@
                 Nombre de la carrera
               </label>
 
+              <input type="hidden" name="" id="careerId">
+
               <input
                 type="text"
                 class="form-control"
@@ -158,32 +160,44 @@
     // Codigo para ir creando estas nuevas secciones en nuestra web para agregar carreras
     let newCareer = document.getElementById("name").value;
     let careerTable = document.getElementById("careers");
-    
-    //console.log(newCareer);
+    let careerId = document.getElementById("careerId").value;
 
-    let tr = document.createElement("TR");
-    let td1 = document.createElement("TD");
-    let td2 = document.createElement("TD");
-    let td3 = document.createElement("TD");
-    
-    carrerRows+=1;
-    td1.innerHTML = carrerRows;
-    td2.innerHTML = newCareer;
-    
-    //console.log(tr); 
-    
-    // "juntar" adentro del tr los td como un arbol nodo hijo
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-    careerTable.children[1].appendChild(tr);
+    // Cuando le damos al boton editar ese valor se guarda en el input hidden y si no le damos estaremos editando
+    if(careerId == "") {
+      //console.log(newCareer);
+      // la fila es tr las celdas son td
+      let tr = document.createElement("TR");
+      let td1 = document.createElement("TD");
+      let td2 = document.createElement("TD");
+      let td3 = document.createElement("TD");
+      
+      carrerRows+=1;
+      td1.innerHTML = carrerRows;
+      td2.innerHTML = newCareer;
+      
+      //console.log(tr); 
+      
+      // "juntar" adentro del tr los td como un arbol nodo hijo
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      careerTable.children[1].appendChild(tr);
+    } else {
+      let tbody = careerTable.children[1];
+      
+      for (let tr of tbody.children) {
+        if(tr.children[0].innerHTML.trim() == careerId) {
+          tr.children[1].innerHTML = newCareer;
+        }
+        document.getElementById("careerId").value = "";
+      } 
+    }
   }
 
   function eliminar(ID, event) {
     // que event.currentTarget captura el elemento con el que tuve interaccion
-
-    let td = event.currentTarget.parentElement.parentElement;
-    td.parentElement.remove();
+    let tr = event.currentTarget.parentElement.parentElement;
+    tr.parentElement.remove();
   }
 
   function editar(ID, event) {
@@ -193,7 +207,8 @@
     let id = tr.children[0].innerHTML;
     let name =tr.children[1].innerHTML;
 
-    document.getElementById("name").value = name;
-
+    document.getElementById("name").value = name.trim();
+    document.getElementById("careerId").value = id;
+    
   }
 </script>
