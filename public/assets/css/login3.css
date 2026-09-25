@@ -1,0 +1,59 @@
+/* Contenedor principal del formulario */
+.form {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Claves para la adaptabilidad */
+  width: 100%;
+  max-width: 500px; /* Evita que se estire demasiado en PC */
+  box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+/* El elemento <form> interno usando Flexbox para ordenar en vertical */
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Separación uniforme entre campos */
+}
+
+/* Contenedor de cada etiqueta e input */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Inputs y Selects adaptables */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px; /* Evita el zoom automático molesto en iPhones (iOS) */
+}
+
+/* Botón adaptable */
+.form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Media Query opcional para pantallas muy pequeñas (celulares) */
+@media (max-width: 480px) {
+  .form {
+    padding: 16px; /* Reduce el espacio interno en pantallas pequeñas */
+    border-radius: 0; /* Opcional: llena toda la pantalla en móviles */
+  }
+}

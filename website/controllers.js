@@ -51,6 +51,11 @@ export function login(req, res) {
     background: fondos[Math.floor(Math.random() * 3)]
   });
 }
+export function login3(req, res) { 
+  return res.render('website/login3', {
+    title: 'Login3',
+  });
+}
 
 export function register(req, res) { 
   return res.render('website/register', {

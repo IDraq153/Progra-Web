@@ -12,6 +12,7 @@ router.get('/empresas', controller.empresas);
 router.get('/estudiantes', controller.estudiantes);
 router.get('/como-funciona', controller.funcion);
 router.get('/login', controller.login);
+router.get('/login3', controller.login3);
 router.get('/register', controller.register);
 router.get('/password', controller.password);
 router.get('/about', controller.about);

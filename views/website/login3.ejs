@@ -1,0 +1,34 @@
+<% layout("layouts/website") %>
+<link rel="stylesheet" href="/assets/css/login3.css">
+
+
+    <div class="form">
+    <h2>Contacto</h2>
+    <form action="#" method="POST">
+        <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+        </div>
+        
+        <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com">
+        </div>
+
+        <button type="submit" onclick="login(event)">Enviar</button>
+    </form>
+    </div>
+
+<script>
+    // event nos permite no enviar formulario o refrescar
+    function login(event) {
+        event.preventDefault();
+        let username = document.getElementById("nombre").value;
+        let pass = document.getElementById("email").value;
+    
+        if(username == "juan" && pass == "123@a.com") {
+            console.log("jajaja");
+        }
+    }
+
+</script>
