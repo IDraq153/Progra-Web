@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // 1. Importas la estructura (Partials)
-import Cabecera from '../partials/CabeceraEnterprise';
-import Footer from '../partials/FooterEnterprise';
-import SideBar from '../partials/SideBarEnterprise';
+import Cabecera from '../partials/ControlPanel/HeaderPanel/CabeceraEnterprise';
+import Footer from '../partials/ControlPanel/FooterPanel/FooterPanel';
+import SideBar from '../partials/ControlPanel/SideBarPanel/SideBarPanel';
 
 // 2. Importas tus Vistas dinámicas (Pages)
 import Bandeja from '../pages/Bandeja';
