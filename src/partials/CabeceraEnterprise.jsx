@@ -1,69 +1,73 @@
-// src/partials/CabeceraEnterprise.jsx
+import { Link, NavLink } from 'react-router-dom'
 import './CabeceraEnterprise.css'
+
 export default function CabeceraEnterprise() {
-    // Por ahora son datos de ejemplo.
-    // Más adelante puedes obtenerlos desde tu usuario/contexto/API.
-    const sede = 'Cafetería Central'
-    const localAbierto = true
-    const inicialesUsuario = 'JP'
+  const sede = 'Cafetería Central'
+  const localAbierto = true
+  const inicialesUsuario = 'JP'
 
-    return (
-        <nav className="enterprise-navbar">
-            <div className="enterprise-navbar__left">
+  return (
+    <nav className="enterprise-navbar">
 
-                {/* Logo / Nombre de aplicación */}
-                <a
-                    className="enterprise-navbar__brand"
-                    href="/enterprise"
-                >
-                    Campus Pide
-                </a>
+      <div className="enterprise-navbar__left">
 
-                {/* Navegación */}
-                <a
-                    className="enterprise-navbar__link enterprise-navbar__link--active"
-                    href="/enterprise"
-                >
-                    Panel del local
-                </a>
+        <Link
+          className="enterprise-navbar__brand"
+          to="/"
+        >
+          Campus Pide
+        </Link>
 
-                {/* Sede actual */}
-                <div className="enterprise-navbar__sede">
-                    <span className="enterprise-navbar__sede-label">
-                        Sede
-                    </span>
+        <NavLink
+          className={({ isActive }) =>
+            `enterprise-navbar__link ${
+              isActive
+                ? 'enterprise-navbar__link--active'
+                : ''
+            }`
+          }
+          to="/"
+        >
+          Panel del local
+        </NavLink>
 
-                    <span className="enterprise-navbar__sede-name">
-                        {sede}
-                    </span>
-                </div>
-            </div>
+        <div className="enterprise-navbar__sede">
+          <span className="enterprise-navbar__sede-label">
+            Sede
+          </span>
 
-            <div className="enterprise-navbar__right">
+          <span className="enterprise-navbar__sede-name">
+            {sede}
+          </span>
+        </div>
 
-                {/* Estado del local */}
-                <div
-                    className={`enterprise-navbar__status ${
-                        localAbierto
-                            ? 'enterprise-navbar__status--open'
-                            : 'enterprise-navbar__status--closed'
-                    }`}
-                >
-                    <span className="enterprise-navbar__status-dot"></span>
+      </div>
 
-                    <span>
-                        {localAbierto ? 'Abierto' : 'Cerrado'}
-                    </span>
-                </div>
+      <div className="enterprise-navbar__right">
 
-                {/* Usuario */}
-                <div
-                    className="enterprise-navbar__user"
-                    title="Perfil de usuario"
-                >
-                    {inicialesUsuario}
-                </div>
-            </div>
-        </nav>
-    )
+        <div
+          className={`enterprise-navbar__status ${
+            localAbierto
+              ? 'enterprise-navbar__status--open'
+              : 'enterprise-navbar__status--closed'
+          }`}
+        >
+          <span className="enterprise-navbar__status-dot" />
+
+          <span>
+            {localAbierto ? 'Abierto' : 'Cerrado'}
+          </span>
+        </div>
+
+        <div
+          className="enterprise-navbar__user"
+          title="Perfil de usuario"
+        >
+          {inicialesUsuario}
+        </div>
+
+      </div>
+
+    </nav>
+  )
 }

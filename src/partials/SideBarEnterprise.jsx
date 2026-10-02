@@ -1,59 +1,95 @@
-import React from "react";
-import "./SideBarEnterprise.css";
+import { NavLink } from 'react-router-dom'
+import './SideBarEnterprise.css'
 
 const sections = [
   {
-    title: "ATENCIÓN",
+    title: 'ATENCIÓN',
     items: [
-      { label: "Bandeja del día", badge: 7 },
-      { label: "Entrega contra código", active: true },
-      { label: "Resumen del día" },
+      {
+        label: 'Bandeja del día',
+        path: '/enterprises/bandeja',
+      },
+      {
+        label: 'Entrega contra código',
+        path: '/enterprises/entrega-contra-codigo',
+      },
+      {
+        label: 'Resumen del día',
+        path: '/enterprises/resumen',
+      },
     ],
   },
   {
-    title: "CARTA",
+    title: 'CARTA',
     items: [
-      { label: "Mi carta" },
-      { label: "Opciones y agregados" },
-      { label: "Agotados del día", badge: 3 },
+      {
+        label: 'Mi carta',
+        path: '/enterprises/carta',
+      },
+      {
+        label: 'Opciones y agregados',
+        path: '/enterprises/opciones-agregados',
+      },
+      {
+        label: 'Agotados del día',
+        path: '/enterprises/agotados',
+      },
     ],
   },
   {
-    title: "LOCAL",
+    title: 'LOCAL',
     items: [
-      { label: "Perfil del local" },
-      { label: "Horario de atención" },
-      { label: "Reseñas" },
+      {
+        label: 'Perfil del local',
+        path: '/enterprises/perfil',
+      },
+      {
+        label: 'Horario de atención',
+        path: '/enterprises/horario',
+      },
+      {
+        label: 'Reseñas',
+        path: '/enterprises/resenas',
+      },
     ],
   },
-];
+]
 
 export default function SideBarEnterprise() {
   return (
     <aside className="sidebar-enterprise">
       {sections.map((section) => (
-        <section className="sidebar-section" key={section.title}>
-          <h3 className="sidebar-section-title">{section.title}</h3>
+        <section
+          className="sidebar-section"
+          key={section.title}
+        >
+          <h3 className="sidebar-section-title">
+            {section.title}
+          </h3>
 
           <nav>
             {section.items.map((item) => (
-              <button
+              <NavLink
                 key={item.label}
-                type="button"
-                className={`sidebar-item ${
-                  item.active ? "sidebar-item--active" : ""
-                }`}
+                to={item.path}
+                className={({ isActive }) =>
+                  `sidebar-item ${
+                    isActive ? 'sidebar-item--active' : ''
+                  }`
+                }
               >
                 <span>{item.label}</span>
 
                 {item.badge !== undefined && (
-                  <span className="sidebar-badge">{item.badge}</span>
+                  <span className="sidebar-badge">
+                    {item.badge}
+                  </span>
                 )}
-              </button>
+              </NavLink>
             ))}
           </nav>
         </section>
       ))}
     </aside>
-  );
+  )
 }
