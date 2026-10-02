@@ -1,0 +1,400 @@
+/* =========================================
+   CABECERA ENTERPRISE - CAMPUS PIDE
+   ========================================= */
+
+.enterprise-navbar {
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background-color: #211815;
+    color: #FFFFFF;
+
+    box-sizing: border-box;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   PARTE IZQUIERDA
+   ========================================= */
+
+.enterprise-navbar__left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    height: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================
+   NOMBRE DE LA APLICACIÓN
+   ========================================= */
+
+.enterprise-navbar__brand {
+    color: #FFFFFF;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1;
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+.enterprise-navbar__brand:hover {
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   PANEL DEL LOCAL
+   ========================================= */
+
+.enterprise-navbar__link {
+    position: relative;
+
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
+    color: #D8D0CC;
+    background-color: #211815;
+
+    border: 1px solid #4A3E39;
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.enterprise-navbar__link:hover {
+    color: #FFFFFF;
+    background-color: #2B211E;
+    border-color: #665750;
+}
+
+
+/* Elemento activo */
+
+.enterprise-navbar__link--active {
+    color: #E8E1DD;
+}
+
+
+/* Sin línea inferior */
+
+.enterprise-navbar__link--active::after {
+    display: none;
+}
+
+
+/* =========================================
+   SEDE
+   ========================================= */
+
+.enterprise-navbar__sede {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
+.enterprise-navbar__sede-label {
+    color: #A99F9A;
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.enterprise-navbar__sede-name {
+    color: #FFFFFF;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   PARTE DERECHA
+   ========================================= */
+
+.enterprise-navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    height: 100%;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   ESTADO DEL LOCAL
+   ========================================= */
+
+.enterprise-navbar__status {
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #A99F9A;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   PUNTO DE ESTADO
+   ========================================= */
+
+.enterprise-navbar__status-dot {
+    width: 7px;
+    height: 7px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   TEXTO ABIERTO / CERRADO
+   ========================================= */
+
+.enterprise-navbar__status span:last-child {
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    border-radius: 7px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   LOCAL ABIERTO
+   ========================================= */
+
+.enterprise-navbar__status--open .enterprise-navbar__status-dot {
+    background-color: #6BAE35;
+}
+
+.enterprise-navbar__status--open span:last-child {
+    background-color: #6BAE35;
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   LOCAL CERRADO
+   ========================================= */
+
+.enterprise-navbar__status--closed .enterprise-navbar__status-dot {
+    background-color: #B4322B;
+}
+
+.enterprise-navbar__status--closed span:last-child {
+    background-color: #B4322B;
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   USUARIO
+   ========================================= */
+
+.enterprise-navbar__user {
+    min-width: 115px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 0 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #4A3E39;
+    border-radius: 9px;
+
+    background-color: #211815;
+    color: #D8D0CC;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.enterprise-navbar__user:hover {
+    background-color: #2B211E;
+    border-color: #665750;
+}
+
+
+/* =========================================
+   AVATAR
+   ========================================= */
+
+.enterprise-navbar__user::before {
+    content: "";
+
+    width: 22px;
+    height: 22px;
+
+    display: block;
+
+    flex-shrink: 0;
+
+    border-radius: 6px;
+
+    background-color: #E7E1DD;
+}
+
+
+/* =========================================
+   FLECHA DEL USUARIO
+   ========================================= */
+
+.enterprise-navbar__user::after {
+    content: "⌄";
+
+    color: #A99F9A;
+
+    font-size: 13px;
+    line-height: 1;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .enterprise-navbar {
+        padding: 0 20px;
+    }
+
+    .enterprise-navbar__left {
+        gap: 10px;
+    }
+
+    .enterprise-navbar__sede {
+        display: none;
+    }
+
+    .enterprise-navbar__right {
+        gap: 10px;
+    }
+}
+
+
+@media (max-width: 560px) {
+
+    .enterprise-navbar {
+        padding: 0 14px;
+    }
+
+    .enterprise-navbar__link {
+        display: none;
+    }
+
+    .enterprise-navbar__brand {
+        font-size: 14px;
+    }
+
+    .enterprise-navbar__status {
+        font-size: 0;
+    }
+
+    .enterprise-navbar__status span:last-child {
+        width: 30px;
+
+        padding: 0;
+
+        justify-content: center;
+
+        font-size: 0;
+    }
+
+    .enterprise-navbar__status--open span:last-child::before {
+        content: "";
+
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background-color: #FFFFFF;
+    }
+
+    .enterprise-navbar__user {
+        min-width: 36px;
+        width: 36px;
+
+        padding: 0;
+    }
+
+    .enterprise-navbar__user::after {
+        display: none;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .enterprise-navbar {
+        padding: 0 10px;
+    }
+
+    .enterprise-navbar__brand {
+        font-size: 13px;
+    }
+
+    .enterprise-navbar__status {
+        display: none;
+    }
+}
+

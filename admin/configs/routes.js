@@ -3,6 +3,7 @@ import { Router } from 'express';
 import * as admins from '../controllers/admin_controllers.js';
 import * as carrers from '../controllers/carrer_controllers.js';
 import * as owners from '../controllers/owner_controllers.js';
+import * as enterprises from '../controllers/enterprise_controllers.js';
 import * as nationApis from '../apis/nations_apis.js';
 import { redirectIfAuthenticated, requireAuth } from '../../configs/middlewares.js'; 
 
@@ -25,5 +26,6 @@ router.delete('/api/v1/nations/:id', nationApis.deleteNation);
 
 router.get('/admin/carrers', carrers.home);
 router.get('/owner', owners.home);
+router.get('/enterprises', enterprises.home);
 
 export default router;
