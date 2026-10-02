@@ -6,3 +6,10 @@ export function home(req, res) {
     currentPage: 'home',
   });
 }
+
+export function bandeja(req, res) {
+  return res.render('enterprises/bandeja', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'bandeja',
+  });
+}

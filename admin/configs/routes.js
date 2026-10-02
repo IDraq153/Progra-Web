@@ -27,5 +27,6 @@ router.delete('/api/v1/nations/:id', nationApis.deleteNation);
 router.get('/admin/carrers', carrers.home);
 router.get('/owner', owners.home);
 router.get('/enterprises', enterprises.home);
+router.get('/enterprises/bandeja', enterprises.bandeja);
 
 export default router;

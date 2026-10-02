@@ -1,167 +1,65 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Cabecera from '../partials/CabeceraEnterprise'
-import Footer from '../partials/FooterEnterprise'
-import SideBar from '../partials/SideBarEnterprise'
+// 1. Importas la estructura (Partials)
+import Cabecera from '../partials/CabeceraEnterprise';
+import Footer from '../partials/FooterEnterprise';
+import SideBar from '../partials/SideBarEnterprise';
 
-import './enterprise.css'
+// 2. Importas tus Vistas dinámicas (Pages)
+import Bandeja from '../pages/Bandeja';
+// import Agotados from '../pages/Agotados'; // Importarás las demás cuando las crees
 
+// 3. Importas el CSS base (el que tiene el zoom al 130%)
+import './enterprise.css';
 
-function Page({ title, text }) {
-  return (
-    <main className="app-content">
-      <div className="page-container">
-        <h1>{title}</h1>
-        <p>{text}</p>
-      </div>
-    </main>
-  )
-}
-
-
-function Enterprise() {
+function EnterpriseApp() {
   return (
     <BrowserRouter>
       <div className="app">
-
+        
+        {/* Cabecera fija */}
         <header className="app-header">
           <Cabecera />
         </header>
 
         <div className="app-body">
-
+          
+          {/* Menú lateral fijo */}
           <aside className="app-sidebar">
             <SideBar />
           </aside>
 
+          {/* 4. El Router inyecta la página aquí adentro */}
           <Routes>
-
-            <Route
-              path="/enterprises"
-              element={
-                <Page
-                  title="Bandeja del día"
-                  text="Aquí se mostrarán los pedidos del día."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/bandeja"
-              element={
-                <Page
-                  title="Bandeja del día"
-                  text="Aquí se mostrarán los pedidos del día."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/entrega-contra-codigo"
-              element={
-                <Page
-                  title="Entrega contra código"
-                  text="Aquí se gestionarán las entregas contra código."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/resumen"
-              element={
-                <Page
-                  title="Resumen del día"
-                  text="Aquí aparecerá el resumen del día."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/carta"
-              element={
-                <Page
-                  title="Mi carta"
-                  text="Administración de la carta."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/opciones-agregados"
-              element={
-                <Page
-                  title="Opciones y agregados"
-                  text="Administración de opciones y agregados."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/agotados"
-              element={
-                <Page
-                  title="Agotados del día"
-                  text="Productos agotados actualmente."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/perfil"
-              element={
-                <Page
-                  title="Perfil del local"
-                  text="Información del local."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/horario"
-              element={
-                <Page
-                  title="Horario de atención"
-                  text="Configuración del horario."
-                />
-              }
-            />
-
-            <Route
-              path="/enterprises/resenas"
-              element={
-                <Page
-                  title="Reseñas"
-                  text="Reseñas del local."
-                />
-              }
-            />
-
+            {/* Si entras a /enterprises a secas, te redirige automáticamente a la bandeja */}
+            <Route path="/enterprises" element={<Navigate to="/enterprises/bandeja" replace />} />
+            
+            {/* Esta es la ruta que llama a todo el código Kanban que hicimos */}
+            <Route path="/enterprises/bandeja" element={<Bandeja />} />
+            
+            {/* Aquí irás agregando las demás rutas: */}
+            {/* <Route path="/enterprises/agotados" element={<Agotados />} /> */}
           </Routes>
 
         </div>
 
+        {/* Footer fijo */}
         <footer className="app-footer">
           <Footer />
         </footer>
-
+        
       </div>
     </BrowserRouter>
-  )
+  );
 }
 
-
-const container = document.getElementById('root')
-
+const container = document.getElementById('root');
 if (container) {
   ReactDOM.createRoot(container).render(
     <React.StrictMode>
-      <Enterprise />
+      <EnterpriseApp />
     </React.StrictMode>
-  )
+  );
 }

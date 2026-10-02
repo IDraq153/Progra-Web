@@ -1,60 +1,80 @@
 /* =========================================
-   CABECERA ENTERPRISE - CAMPUS PIDE
+   CABECERA ENTERPRISE
    ========================================= */
 
 .enterprise-navbar {
     width: 100%;
-    height: 52px;
-    min-height: 52px;
+    height: 42px;
+    min-height: 42px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 30px;
-
-    background-color: #211815;
-    color: #FFFFFF;
+    padding: 0 18px 0 24px;
 
     box-sizing: border-box;
 
-    font-family: Arial, Helvetica, sans-serif;
+    background: #211815;
+    color: #FFFFFF;
+
+    border-bottom: 1px solid #3A302C;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 
 /* =========================================
-   PARTE IZQUIERDA
+   IZQUIERDA
    ========================================= */
 
 .enterprise-navbar__left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
     height: 100%;
     min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0;
+
+    overflow: hidden;
 }
 
 
 /* =========================================
-   NOMBRE DE LA APLICACIÓN
+   MARCA
    ========================================= */
 
 .enterprise-navbar__brand {
+    flex-shrink: 0;
+
     color: #FFFFFF;
+
     text-decoration: none;
 
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
 
     line-height: 1;
-    white-space: nowrap;
 
-    transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
-.enterprise-navbar__brand:hover {
-    color: #FFFFFF;
+
+/* =========================================
+   SEPARADOR
+   ========================================= */
+
+.enterprise-navbar__separator {
+    margin: 0 5px;
+
+    color: #8D817B;
+
+    font-size: 11px;
+    line-height: 1;
 }
 
 
@@ -62,93 +82,87 @@
    PANEL DEL LOCAL
    ========================================= */
 
-.enterprise-navbar__link {
-    position: relative;
+.enterprise-navbar__panel {
+    flex-shrink: 0;
 
-    height: 36px;
+    color: #AFA5A0;
 
-    display: flex;
-    align-items: center;
+    font-size: 10px;
+    font-weight: 400;
 
-    padding: 0 15px;
-
-    color: #D8D0CC;
-    background-color: #211815;
-
-    border: 1px solid #4A3E39;
-    border-radius: 9px;
-
-    text-decoration: none;
-
-    font-size: 12px;
-    font-weight: 500;
+    line-height: 1;
 
     white-space: nowrap;
-
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.enterprise-navbar__link:hover {
-    color: #FFFFFF;
-    background-color: #2B211E;
-    border-color: #665750;
-}
-
-
-/* Elemento activo */
-
-.enterprise-navbar__link--active {
-    color: #E8E1DD;
-}
-
-
-/* Sin línea inferior */
-
-.enterprise-navbar__link--active::after {
-    display: none;
 }
 
 
 /* =========================================
-   SEDE
+   SELECTOR DE SEDE
    ========================================= */
 
 .enterprise-navbar__sede {
+    height: 28px;
+
     display: flex;
     align-items: center;
-    gap: 8px;
+
+    margin-left: 12px;
+    padding: 0 9px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #4B403B;
+    border-radius: 7px;
+
+    background: #2A211E;
+    color: #D8D0CC;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.enterprise-navbar__sede:hover {
+    background: #312622;
+    border-color: #62554E;
+}
+
+.enterprise-navbar__sede-name {
+    color: #D8D0CC;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 1;
 
     white-space: nowrap;
 }
 
-.enterprise-navbar__sede-label {
-    color: #A99F9A;
+.enterprise-navbar__chevron {
+    margin-left: 7px;
 
-    font-size: 11px;
-    font-weight: 400;
-}
+    color: #9E938E;
 
-.enterprise-navbar__sede-name {
-    color: #FFFFFF;
-
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 9px;
+    line-height: 1;
 }
 
 
 /* =========================================
-   PARTE DERECHA
+   DERECHA
    ========================================= */
 
 .enterprise-navbar__right {
+    height: 100%;
+
     display: flex;
     align-items: center;
-    gap: 16px;
 
-    height: 100%;
+    gap: 10px;
 
     flex-shrink: 0;
 }
@@ -159,78 +173,89 @@
    ========================================= */
 
 .enterprise-navbar__status {
-    height: 32px;
+    height: 100%;
 
     display: flex;
     align-items: center;
+
     gap: 7px;
-
-    color: #A99F9A;
-
-    font-size: 11px;
-    font-weight: 500;
 
     white-space: nowrap;
 }
 
+.enterprise-navbar__status-label {
+    color: #A99F9A;
 
-/* =========================================
-   PUNTO DE ESTADO
-   ========================================= */
+    font-size: 9px;
+    font-weight: 400;
 
-.enterprise-navbar__status-dot {
-    width: 7px;
-    height: 7px;
-
-    display: inline-block;
-
-    border-radius: 50%;
+    line-height: 1;
 }
 
 
 /* =========================================
-   TEXTO ABIERTO / CERRADO
+   BOTÓN ABIERTO / CERRADO
    ========================================= */
 
-.enterprise-navbar__status span:last-child {
-    height: 30px;
+.enterprise-navbar__status-button {
+    height: 28px;
 
     display: flex;
     align-items: center;
 
-    padding: 0 12px;
-
-    border-radius: 7px;
+    padding: 0 8px;
 
     box-sizing: border-box;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    line-height: 1;
+
+    white-space: nowrap;
 }
 
-
-/* =========================================
-   LOCAL ABIERTO
-   ========================================= */
-
-.enterprise-navbar__status--open .enterprise-navbar__status-dot {
-    background-color: #6BAE35;
+.enterprise-navbar__status-button--open {
+    background: #6BAE35;
+    color: #FFFFFF;
 }
 
-.enterprise-navbar__status--open span:last-child {
-    background-color: #6BAE35;
+.enterprise-navbar__status-button--closed {
+    background: #B4322B;
     color: #FFFFFF;
 }
 
 
 /* =========================================
-   LOCAL CERRADO
+   PUNTO
    ========================================= */
 
-.enterprise-navbar__status--closed .enterprise-navbar__status-dot {
-    background-color: #B4322B;
+.enterprise-navbar__status-dot {
+    width: 6px;
+    height: 6px;
+
+    margin-right: 5px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.95);
 }
 
-.enterprise-navbar__status--closed span:last-child {
-    background-color: #B4322B;
-    color: #FFFFFF;
+
+/* =========================================
+   FLECHA ESTADO
+   ========================================= */
+
+.enterprise-navbar__status-chevron {
+    margin-left: 6px;
+
+    font-size: 8px;
+
+    opacity: 0.85;
 }
 
 
@@ -239,37 +264,33 @@
    ========================================= */
 
 .enterprise-navbar__user {
-    min-width: 115px;
-    height: 36px;
+    height: 30px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 7px;
 
-    padding: 0 12px;
+    padding: 0 8px 0 5px;
 
     box-sizing: border-box;
 
-    border: 1px solid #4A3E39;
-    border-radius: 9px;
+    border: 1px solid #4B403B;
+    border-radius: 7px;
 
-    background-color: #211815;
+    background: #211815;
     color: #D8D0CC;
 
-    font-size: 11px;
-    font-weight: 500;
+    font-family: inherit;
 
     cursor: pointer;
 
     transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease;
+        background-color 0.15s ease,
+        border-color 0.15s ease;
 }
 
 .enterprise-navbar__user:hover {
-    background-color: #2B211E;
-    border-color: #665750;
+    background: #2A211E;
+    border-color: #62554E;
 }
 
 
@@ -277,32 +298,56 @@
    AVATAR
    ========================================= */
 
-.enterprise-navbar__user::before {
-    content: "";
-
+.enterprise-navbar__avatar {
     width: 22px;
     height: 22px;
 
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     flex-shrink: 0;
 
-    border-radius: 6px;
+    border-radius: 50%;
 
-    background-color: #E7E1DD;
+    background: #E8E2DE;
+    color: #6C5E57;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    line-height: 1;
 }
 
 
 /* =========================================
-   FLECHA DEL USUARIO
+   NOMBRE / ROL
    ========================================= */
 
-.enterprise-navbar__user::after {
-    content: "⌄";
+.enterprise-navbar__user-name {
+    margin-left: 6px;
 
-    color: #A99F9A;
+    color: #D8D0CC;
 
-    font-size: 13px;
+    font-size: 9px;
+    font-weight: 500;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   FLECHA USUARIO
+   ========================================= */
+
+.enterprise-navbar__user-chevron {
+    margin-left: 7px;
+
+    color: #9E938E;
+
+    font-size: 8px;
     line-height: 1;
 }
 
@@ -311,90 +356,59 @@
    RESPONSIVE
    ========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
 
     .enterprise-navbar {
-        padding: 0 20px;
+        padding-left: 16px;
+        padding-right: 12px;
     }
 
-    .enterprise-navbar__left {
-        gap: 10px;
+    .enterprise-navbar__status-label {
+        display: none;
     }
+
+    .enterprise-navbar__panel {
+        display: none;
+    }
+
+    .enterprise-navbar__separator {
+        display: none;
+    }
+}
+
+
+@media (max-width: 520px) {
 
     .enterprise-navbar__sede {
         display: none;
     }
 
-    .enterprise-navbar__right {
-        gap: 10px;
-    }
-}
-
-
-@media (max-width: 560px) {
-
-    .enterprise-navbar {
-        padding: 0 14px;
-    }
-
-    .enterprise-navbar__link {
+    .enterprise-navbar__user-name {
         display: none;
     }
 
-    .enterprise-navbar__brand {
-        font-size: 14px;
-    }
-
-    .enterprise-navbar__status {
-        font-size: 0;
-    }
-
-    .enterprise-navbar__status span:last-child {
+    .enterprise-navbar__user {
         width: 30px;
 
         padding: 0;
 
         justify-content: center;
-
-        font-size: 0;
     }
 
-    .enterprise-navbar__status--open span:last-child::before {
-        content: "";
-
-        width: 7px;
-        height: 7px;
-
-        border-radius: 50%;
-
-        background-color: #FFFFFF;
-    }
-
-    .enterprise-navbar__user {
-        min-width: 36px;
-        width: 36px;
-
-        padding: 0;
-    }
-
-    .enterprise-navbar__user::after {
+    .enterprise-navbar__user-chevron {
         display: none;
     }
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 380px) {
 
     .enterprise-navbar {
-        padding: 0 10px;
-    }
-
-    .enterprise-navbar__brand {
-        font-size: 13px;
+        padding-left: 12px;
+        padding-right: 10px;
     }
 
     .enterprise-navbar__status {
         display: none;
     }
 }
-
