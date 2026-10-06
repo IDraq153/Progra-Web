@@ -29,5 +29,6 @@ router.get('/owner', owners.home);
 router.get('/enterprises', enterprises.home);
 router.get('/enterprises/bandeja', enterprises.bandeja);
 router.get('/enterprises/resumenDia', enterprises.resumenDia);
+router.get('/enterprises/entrega', enterprises.entrega);
 
 export default router;

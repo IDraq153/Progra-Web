@@ -20,3 +20,10 @@ export function resumenDia(req, res) {
     currentPage: 'resumenDia',
   });
 }
+
+export function entrega(req, res) {
+  return res.render('enterprises/entrega', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'entrega',
+  });
+}

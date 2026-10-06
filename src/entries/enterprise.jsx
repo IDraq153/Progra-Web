@@ -10,6 +10,7 @@ import SideBar from '../partials/ControlPanel/SideBarPanel/SideBarPanel';
 // 2. Vistas (Pages)
 import Bandeja from '../pages/Bandeja';
 import ResumenDia from '../pages/ResumenDia';
+import Entrega from '../pages/Entrega';
 // import Agotados from '../pages/Agotados';
 
 // 3. CSS base
@@ -34,6 +35,7 @@ function EnterpriseApp() {
             <Route path="/enterprises" element={<Navigate to="/enterprises/bandeja" replace />} />
             <Route path="/enterprises/bandeja" element={<Bandeja />} />
             <Route path="/enterprises/resumenDia" element={<ResumenDia />} />
+            <Route path="/enterprises/entrega" element={<Entrega />} />
             {/* <Route path="/enterprises/agotados" element={<Agotados />} /> */}
           </Routes>
 

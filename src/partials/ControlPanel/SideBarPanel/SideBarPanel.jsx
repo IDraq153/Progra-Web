@@ -11,7 +11,7 @@ const sections = [
       },
       {
         label: 'Entrega contra código',
-        path: '/enterprises/entrega-contra-codigo',
+        path: '/enterprises/entrega',
       },
       {
         label: 'Resumen del día',
