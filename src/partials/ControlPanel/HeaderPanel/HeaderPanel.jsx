@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import './CabeceraEnterprise.css'
+import './HeaderPanel.css'
 
-export default function CabeceraEnterprise() {
+export default function HeaderPanel() {
   const sede = 'Cafetería Central'
   const localAbierto = true
   const rolUsuario = 'Encargado'

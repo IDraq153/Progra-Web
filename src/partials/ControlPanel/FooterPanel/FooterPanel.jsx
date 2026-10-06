@@ -1,5 +1,5 @@
 //src\partials\FooterEnterprise.jsx
-import './Footer.css'
+import './FooterPanel.css'
 
 export default function PieEnterprise() {
     const soporte = 'campuspide@ulima.edu.pe'

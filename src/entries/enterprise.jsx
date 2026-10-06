@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // 1. Importas la estructura (Partials)
-import Cabecera from '../partials/ControlPanel/HeaderPanel/CabeceraEnterprise';
+import Cabecera from '../partials/ControlPanel/HeaderPanel/HeaderPanel';
 import Footer from '../partials/ControlPanel/FooterPanel/FooterPanel';
 import SideBar from '../partials/ControlPanel/SideBarPanel/SideBarPanel';
 

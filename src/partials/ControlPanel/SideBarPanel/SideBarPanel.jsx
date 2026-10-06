@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import './SideBarEnterprise.css'
+import './SideBarPanel.css'
 
 const sections = [
   {
