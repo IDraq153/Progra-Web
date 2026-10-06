@@ -1,0 +1,254 @@
+@startuml diagram
+!define table(x) entity x << (T,#FFAAAA) >>
+!define primary_key(x) <b><color:red>x</color></b>
+!define foreign_key(x) <color:blue>x</color>
+
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam ranksep 80
+skinparam nodesep 60
+skinparam entityFontSize 10
+skinparam entityFontStyle bold
+skinparam entityBackgroundColor #FEFECE
+skinparam entityBorderColor #A80036
+
+entity "roles" as roles {
+  * id : INT
+  --
+  name : VARCHAR(20)
+}
+
+entity "users" as users {
+  * id : INT
+  --
+  email : VARCHAR(60)
+  password : VARCHAR(100)
+  role_id : INT
+  status : VARCHAR(20)
+  created : DATETIME
+  updated : DATETIME
+}
+
+entity "diners" as diners {
+  * id : INT
+  --
+  first_name : VARCHAR(50)
+  last_name : VARCHAR(50)
+  phone : VARCHAR(15)
+  user_id : INT
+  created : DATETIME
+  updated : DATETIME
+}
+
+entity "stores" as stores {
+  * id : INT
+  --
+  commercial_name : VARCHAR(60)
+  ruc : VARCHAR(11)
+  campus_seat : VARCHAR(50)
+  campus_location : VARCHAR(100)
+  email : VARCHAR(60)
+  phone : VARCHAR(15)
+  description : TEXT
+  logo_url : VARCHAR(150)
+  banner_url : VARCHAR(150)
+  status : VARCHAR(20)
+  user_id : INT
+  created : DATETIME
+  updated : DATETIME
+}
+
+entity "store_schedules" as store_schedules {
+  * id : INT
+  --
+  day_of_week : INT
+  open_time : TIME
+  close_time : TIME
+  is_closed : BOOLEAN
+  store_id : INT
+}
+
+entity "categories" as categories {
+  * id : INT
+  --
+  name : VARCHAR(40)
+  display_order : INT
+  store_id : INT
+}
+
+entity "products" as products {
+  * id : INT
+  --
+  name : VARCHAR(60)
+  description : TEXT
+  price : DECIMAL(10,2)
+  picture_url : VARCHAR(150)
+  prep_time_minutes : INT
+  status : VARCHAR(20)
+  category_id : INT
+  store_id : INT
+  created : DATETIME
+  updated : DATETIME
+}
+
+entity "option_groups" as option_groups {
+  * id : INT
+  --
+  name : VARCHAR(50)
+  selection_type : VARCHAR(20)
+  is_required : BOOLEAN
+  product_id : INT
+}
+
+entity "product_options" as product_options {
+  * id : INT
+  --
+  name : VARCHAR(50)
+  additional_price : DECIMAL(10,2)
+  option_group_id : INT
+}
+
+entity "carts" as carts {
+  * id : INT
+  --
+  diner_id : INT
+  store_id : INT
+  created : DATETIME
+  updated : DATETIME
+}
+
+entity "cart_items" as cart_items {
+  * id : INT
+  --
+  quantity : INT
+  notes : VARCHAR(120)
+  cart_id : INT
+  product_id : INT
+}
+
+entity "cart_item_options" as cart_item_options {
+  * id : INT
+  --
+  cart_item_id : INT
+  product_option_id : INT
+}
+
+entity "order_statuses" as order_statuses {
+  * id : INT
+  --
+  name : VARCHAR(30)
+}
+
+entity "orders" as orders {
+  * id : INT
+  --
+  code : VARCHAR(10)
+  pickup_date : DATE
+  pickup_time : TIME
+  subtotal : DECIMAL(10,2)
+  total_amount : DECIMAL(10,2)
+  rejection_reason : VARCHAR(160)
+  created : DATETIME
+  updated : DATETIME
+  diner_id : INT
+  store_id : INT
+  status_id : INT
+}
+
+entity "order_items" as order_items {
+  * id : INT
+  --
+  product_name : VARCHAR(60)
+  unit_price : DECIMAL(10,2)
+  quantity : INT
+  subtotal : DECIMAL(10,2)
+  notes : VARCHAR(120)
+  order_id : INT
+  product_id : INT
+}
+
+entity "order_item_options" as order_item_options {
+  * id : INT
+  --
+  option_name : VARCHAR(50)
+  additional_price : DECIMAL(10,2)
+  order_item_id : INT
+  product_option_id : INT
+}
+
+entity "order_reviews" as order_reviews {
+  * id : INT
+  --
+  store_rating : INT
+  comment : TEXT
+  created : DATETIME
+  updated : DATETIME
+  order_id : INT
+  diner_id : INT
+  store_id : INT
+}
+
+entity "product_reviews" as product_reviews {
+  * id : INT
+  --
+  rating : INT
+  comment : TEXT
+  created : DATETIME
+  order_review_id : INT
+  product_id : INT
+}
+
+entity "user_blocks" as user_blocks {
+  * id : INT
+  --
+  reason : VARCHAR(100)
+  detail : TEXT
+  created : DATETIME
+  user_id : INT
+  blocked_by_user_id : INT
+}
+
+' =========================
+' RELACIONES
+' =========================
+
+' Usuarios y Roles
+roles ||--o{ users : "has"
+users ||--o| diners : "has profile"
+users ||--o| stores : "has profile"
+users ||--o{ user_blocks : "blocked in"
+
+' Local, Horarios y Carta
+stores ||--o{ store_schedules : "has"
+stores ||--o{ categories : "owns"
+stores ||--o{ products : "offers"
+categories ||--o{ products : "contains"
+products ||--o{ option_groups : "has"
+option_groups ||--o{ product_options : "contains"
+
+' Carrito
+diners ||--o| carts : "has"
+stores ||--o{ carts : "belongs to"
+carts ||--o{ cart_items : "contains"
+products ||--o{ cart_items : "added as"
+cart_items ||--o{ cart_item_options : "has"
+product_options ||--o{ cart_item_options : "selected as"
+
+' Pedidos
+diners ||--o{ orders : "places"
+stores ||--o{ orders : "receives"
+order_statuses ||--o{ orders : "defines"
+orders ||--o{ order_items : "contains"
+products ||--o{ order_items : "ordered as"
+order_items ||--o{ order_item_options : "has"
+product_options ||--o{ order_item_options : "chosen as"
+
+' Valoraciones
+orders ||--o| order_reviews : "evaluated by"
+diners ||--o{ order_reviews : "writes"
+stores ||--o{ order_reviews : "receives"
+order_reviews ||--o{ product_reviews : "includes"
+products ||--o{ product_reviews : "rated in"
+
+@enduml

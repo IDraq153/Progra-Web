@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS cart_items (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    quantity   INTEGER NOT NULL DEFAULT 1 CHECK (quantity > 0),
+    notes      VARCHAR(120),
+    cart_id    INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    FOREIGN KEY (cart_id)    REFERENCES carts(id)    ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE
+);

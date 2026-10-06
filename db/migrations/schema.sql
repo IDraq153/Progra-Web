@@ -1,0 +1,23 @@
+-- Uso:  sqlite3 database.db ".read schema.sql"
+.read 00_pragmas.sql
+.read 01_roles.sql
+.read 02_users.sql
+.read 03_user_blocks.sql
+.read 04_stores.sql
+.read 05_diners.sql
+.read 06_order_statuses.sql
+.read 07_categories.sql
+.read 08_store_schedules.sql
+.read 09_products.sql
+.read 10_option_groups.sql
+.read 11_product_options.sql
+.read 12_carts.sql
+.read 13_cart_items.sql
+.read 14_cart_item_options.sql
+.read 15_orders.sql
+.read 16_order_items.sql
+.read 17_order_item_options.sql
+.read 18_order_reviews.sql
+.read 19_product_reviews.sql
+.read 20_indexes.sql
+.read 21_seed.sql

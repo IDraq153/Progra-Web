@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS categories (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    name          VARCHAR(40) NOT NULL,
+    display_order INTEGER NOT NULL DEFAULT 0,
+    store_id      INTEGER NOT NULL,
+    FOREIGN KEY (store_id) REFERENCES stores(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
