@@ -32,6 +32,7 @@ router.get('/enterprises/resumenDia', enterprises.resumenDia);
 router.get('/enterprises/entrega', enterprises.entrega);
 router.get('/enterprises/opcionesAgregados', enterprises.opcionesAgregados);
 router.get('/enterprises/agotados', enterprises.agotados);
-router.get('/enterprises/agotados', enterprises.perfil);
+router.get('/enterprises/perfil', enterprises.perfil);
+router.get('/enterprises/horario', enterprises.horario);
 
 export default router;

@@ -45,3 +45,9 @@ export function perfil(req, res) {
     currentPage: 'perfil',
   });
 }
+export function horario(req, res) {
+  return res.render('enterprises/horario', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'horario',
+  });
+}
