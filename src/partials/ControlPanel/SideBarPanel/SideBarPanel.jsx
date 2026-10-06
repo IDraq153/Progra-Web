@@ -15,7 +15,7 @@ const sections = [
       },
       {
         label: 'Resumen del día',
-        path: '/enterprises/resumen',
+        path: '/enterprises/resumenDia',
       },
     ],
   },

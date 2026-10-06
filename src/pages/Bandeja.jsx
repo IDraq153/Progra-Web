@@ -1,16 +1,109 @@
+import { useState } from 'react';
 import './Bandeja.css';
 
+const AHORA = '11:24'; // hora de referencia (luego puedes usar la real)
+
+const aMinutos = (hhmm) => {
+    const [h, m] = hhmm.split(':').map(Number);
+    return h * 60 + m;
+};
+
+const horaActualReal = () =>
+    new Date().toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+const COLUMNAS = [
+    { estado: 'recibido',    titulo: 'RECIBIDOS' },
+    { estado: 'preparacion', titulo: 'EN PREPARACIÓN' },
+    { estado: 'listo',       titulo: 'LISTOS' },
+    { estado: 'entregado',   titulo: 'ENTREGADOS' },
+];
+
+const PEDIDOS_INICIALES = [
+    { id: 'PED-4842', items: 3, total: 36.0, cliente: 'Mateo Rojas',   hora: '11:30', estado: 'recibido' },
+    { id: 'PED-4843', items: 1, total: 3.5,  cliente: 'Lucía Farfán',  hora: '11:30', estado: 'recibido' },
+    { id: 'PED-4821', items: 3, total: 21.0, cliente: 'Mateo Rojas',   hora: '11:30', estado: 'preparacion', notas: 1 },
+    { id: 'PED-4835', items: 1, total: 7.5,  cliente: 'Andrea Núñez',  hora: '11:00', estado: 'listo' },
+    { id: 'PED-4805', items: 2, total: 12.5, cliente: 'Renzo Vílchez', hora: '10:30', estado: 'entregado', entregadoA: '10:34' },
+];
+
 export default function Bandeja() {
+    const [pedidos, setPedidos] = useState(PEDIDOS_INICIALES);
+
+    const cambiarEstado = (id, nuevoEstado, extra = {}) =>
+        setPedidos((prev) =>
+            prev.map((p) => (p.id === id ? { ...p, estado: nuevoEstado, ...extra } : p))
+        );
+
+    const preparar   = (id) => cambiarEstado(id, 'preparacion');
+    const marcarListo = (id) => cambiarEstado(id, 'listo');
+    const entregar   = (id) => cambiarEstado(id, 'entregado', { entregadoA: horaActualReal() });
+    const rechazar   = (id) => {
+        if (window.confirm(`¿Rechazar el pedido ${id}?`)) {
+            setPedidos((prev) => prev.filter((p) => p.id !== id));
+        }
+    };
+
+    const enCola = pedidos.filter((p) => p.estado !== 'entregado').length;
+
+    const renderAcciones = (p) => {
+        switch (p.estado) {
+            case 'recibido':
+                return (
+                    <div className="pedido-actions">
+                        <button className="btn btn-danger-custom w-100" onClick={() => preparar(p.id)}>Preparar</button>
+                        <button className="btn btn-outline-danger w-50" onClick={() => rechazar(p.id)}>Rechazar</button>
+                    </div>
+                );
+            case 'preparacion':
+                return <button className="btn btn-success-custom w-100 mt-2" onClick={() => marcarListo(p.id)}>Marcar listo</button>;
+            case 'listo':
+                return <button className="btn btn-dark-custom w-100 mt-2" onClick={() => entregar(p.id)}>Entregar</button>;
+            default:
+                return null;
+        }
+    };
+
+    const renderDetalle = (p) => {
+        const precio = `S/ ${p.total.toFixed(2)}`;
+        const items = `${p.items} ${p.items === 1 ? 'item' : 'items'}`;
+
+        if (p.estado === 'preparacion') {
+            return (
+                <>
+                    {items} • recojo {p.hora}<br />
+                    {p.cliente}{p.notas ? ` • ${p.notas} nota${p.notas > 1 ? 's' : ''}` : ''}
+                </>
+            );
+        }
+        if (p.estado === 'entregado') {
+            return <>{items} • {precio}<br />{p.cliente} • entregado {p.entregadoA}</>;
+        }
+        return <>{items} • {precio}<br />{p.cliente}</>;
+    };
+
+    const renderTiempo = (p) => {
+        if (p.estado === 'preparacion') {
+            const min = aMinutos(p.hora) - aMinutos(AHORA);
+            return (
+                <span className={`pedido-time fw-bold ${min <= 5 ? 'urgente' : ''}`}>
+                    {min > 0 ? `en ${min} min` : 'ya toca'}
+                </span>
+            );
+        }
+        return <span className="pedido-time">{p.hora}</span>;
+    };
+
     return (
         <main className="app-content">
             <div className="page-container bandeja-container">
-                
-                {/* Cabecera superior de la vista */}
+
                 <div className="bandeja-topbar">
                     <div>
                         <span className="text-muted-custom small">Atención &gt; Bandeja del día</span>
                         <h1 className="mb-1">Bandeja del día</h1>
-                        <p className="text-muted-custom small">15/09/2026 - 12 pedidos de la jornada - 7 en cola - hora actual 11:24</p>
+                        <p className="text-muted-custom small">
+                            15/09/2026 - {pedidos.length} pedidos de la jornada - {enCola} en cola - hora actual {AHORA}
+                        </p>
                     </div>
                     <div className="bandeja-actions">
                         <button className="btn btn-outline-custom">Agrupar por: estado ▼</button>
@@ -18,103 +111,33 @@ export default function Bandeja() {
                     </div>
                 </div>
 
-                {/* Tablero Kanban */}
                 <div className="kanban-board">
-                    
-                    {/* COLUMNA 1: RECIBIDOS */}
-                    <div className="kanban-column">
-                        <div className="column-header header-recibidos">
-                            <span>RECIBIDOS</span>
-                            <span className="badge">3</span>
-                        </div>
-                        
-                        {/* Tarjeta de Pedido */}
-                        <div className="pedido-card">
-                            <div className="pedido-info">
-                                <div>
-                                    <h4 className="pedido-id">PED-4842</h4>
-                                    <p className="pedido-details">3 items • S/ 36.00<br/>Mateo Rojas</p>
+                    {COLUMNAS.map(({ estado, titulo }) => {
+                        const lista = pedidos.filter((p) => p.estado === estado);
+                        return (
+                            <div key={estado} className={`kanban-column column-${estado}`}>
+                                <div className={`column-header header-${estado}`}>
+                                    <span>{titulo}</span>
+                                    <span className="badge">{lista.length}</span>
                                 </div>
-                                <span className="pedido-time">11:30</span>
-                            </div>
-                            <div className="pedido-actions">
-                                <button className="btn btn-danger-custom w-100">Preparar</button>
-                                <button className="btn btn-outline-danger w-50">Rechazar</button>
-                            </div>
-                        </div>
 
-                        {/* Otra Tarjeta */}
-                        <div className="pedido-card">
-                            <div className="pedido-info">
-                                <div>
-                                    <h4 className="pedido-id">PED-4843</h4>
-                                    <p className="pedido-details">1 item • S/ 3.50<br/>Lucía Farfán</p>
-                                </div>
-                                <span className="pedido-time">11:30</span>
-                            </div>
-                            <div className="pedido-actions">
-                                <button className="btn btn-danger-custom w-100">Preparar</button>
-                                <button className="btn btn-outline-danger w-50">Rechazar</button>
-                            </div>
-                        </div>
-                    </div>
+                                {lista.length === 0 && <p className="empty-column">Sin pedidos</p>}
 
-                    {/* COLUMNA 2: EN PREPARACIÓN */}
-                    <div className="kanban-column column-preparacion">
-                        <div className="column-header header-preparacion">
-                            <span>EN PREPARACIÓN</span>
-                            <span className="badge">2</span>
-                        </div>
-                        
-                        <div className="pedido-card border-warning">
-                            <div className="pedido-info">
-                                <div>
-                                    <h4 className="pedido-id">PED-4821</h4>
-                                    <p className="pedido-details text-warning-custom">3 items • recojo 11:30<br/>Mateo Rojas • 1 nota</p>
-                                </div>
-                                <span className="pedido-time text-warning-custom fw-bold">en 6 min</span>
+                                {lista.map((p) => (
+                                    <div key={p.id} className={`pedido-card card-${estado}`}>
+                                        <div className="pedido-info">
+                                            <div>
+                                                <h4 className="pedido-id">{p.id}</h4>
+                                                <p className="pedido-details">{renderDetalle(p)}</p>
+                                            </div>
+                                            {renderTiempo(p)}
+                                        </div>
+                                        {renderAcciones(p)}
+                                    </div>
+                                ))}
                             </div>
-                            <button className="btn btn-success-custom w-100 mt-2">Marcar listo</button>
-                        </div>
-                    </div>
-
-                    {/* COLUMNA 3: LISTOS */}
-                    <div className="kanban-column column-listos">
-                        <div className="column-header header-listos">
-                            <span>LISTOS</span>
-                            <span className="badge badge-light">2</span>
-                        </div>
-                        
-                        <div className="pedido-card border-success">
-                            <div className="pedido-info">
-                                <div>
-                                    <h4 className="pedido-id text-success-custom">PED-4835</h4>
-                                    <p className="pedido-details text-success-custom">1 item • S/ 7.50<br/>Andrea Núñez</p>
-                                </div>
-                                <span className="pedido-time">11:00</span>
-                            </div>
-                            <button className="btn btn-dark-custom w-100 mt-2">Entregar</button>
-                        </div>
-                    </div>
-
-                    {/* COLUMNA 4: ENTREGADOS */}
-                    <div className="kanban-column column-entregados">
-                        <div className="column-header header-entregados">
-                            <span>ENTREGADOS</span>
-                            <span className="badge">5</span>
-                        </div>
-                        
-                        <div className="pedido-card card-disabled">
-                            <div className="pedido-info">
-                                <div>
-                                    <h4 className="pedido-id text-muted">PED-4805</h4>
-                                    <p className="pedido-details text-muted">2 items • S/ 12.50<br/>Renzo Vílchez • entregado 10:34</p>
-                                </div>
-                                <span className="pedido-time text-muted">10:30</span>
-                            </div>
-                        </div>
-                    </div>
-
+                        );
+                    })}
                 </div>
             </div>
         </main>

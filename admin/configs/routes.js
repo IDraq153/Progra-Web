@@ -28,5 +28,6 @@ router.get('/admin/carrers', carrers.home);
 router.get('/owner', owners.home);
 router.get('/enterprises', enterprises.home);
 router.get('/enterprises/bandeja', enterprises.bandeja);
+router.get('/enterprises/resumenDia', enterprises.resumenDia);
 
 export default router;

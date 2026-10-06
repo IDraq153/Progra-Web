@@ -1,129 +1,67 @@
-/* =========================================
-   CABECERA ENTERPRISE
-   ========================================= */
-
 .enterprise-navbar {
     width: 100%;
-    height: 42px;
-    min-height: 42px;
-
+    height: 52px;
+    min-height: 52px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 18px 0 24px;
-
+    padding: 0 22px 0 28px;
     box-sizing: border-box;
-
     background: #211815;
     color: #FFFFFF;
-
     border-bottom: 1px solid #3A302C;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
-
-/* =========================================
-   IZQUIERDA
-   ========================================= */
 
 .enterprise-navbar__left {
     height: 100%;
     min-width: 0;
-
     display: flex;
     align-items: center;
-
     gap: 0;
-
     overflow: hidden;
 }
 
-
-/* =========================================
-   MARCA
-   ========================================= */
-
 .enterprise-navbar__brand {
     flex-shrink: 0;
-
     color: #FFFFFF;
-
     text-decoration: none;
-
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 700;
-
     line-height: 1;
-
     white-space: nowrap;
 }
 
-
-/* =========================================
-   SEPARADOR
-   ========================================= */
-
 .enterprise-navbar__separator {
-    margin: 0 5px;
-
+    margin: 0 8px;
     color: #8D817B;
-
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1;
 }
-
-
-/* =========================================
-   PANEL DEL LOCAL
-   ========================================= */
 
 .enterprise-navbar__panel {
     flex-shrink: 0;
-
     color: #AFA5A0;
-
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
-
     line-height: 1;
-
     white-space: nowrap;
 }
 
-
-/* =========================================
-   SELECTOR DE SEDE
-   ========================================= */
-
 .enterprise-navbar__sede {
-    height: 28px;
-
+    height: 34px;
     display: flex;
     align-items: center;
-
-    margin-left: 12px;
-    padding: 0 9px;
-
+    margin-left: 14px;
+    padding: 0 12px;
     box-sizing: border-box;
-
     border: 1px solid #4B403B;
     border-radius: 7px;
-
     background: #2A211E;
     color: #D8D0CC;
-
     font-family: inherit;
-
     cursor: pointer;
-
-    transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .enterprise-navbar__sede:hover {
@@ -133,159 +71,86 @@
 
 .enterprise-navbar__sede-name {
     color: #D8D0CC;
-
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 500;
-
     line-height: 1;
-
     white-space: nowrap;
 }
 
 .enterprise-navbar__chevron {
-    margin-left: 7px;
-
+    margin-left: 8px;
     color: #9E938E;
-
-    font-size: 9px;
+    font-size: 11px;
     line-height: 1;
 }
 
-
-/* =========================================
-   DERECHA
-   ========================================= */
-
 .enterprise-navbar__right {
     height: 100%;
-
     display: flex;
     align-items: center;
-
-    gap: 10px;
-
+    gap: 14px;
     flex-shrink: 0;
 }
 
-
-/* =========================================
-   ESTADO DEL LOCAL
-   ========================================= */
-
 .enterprise-navbar__status {
     height: 100%;
-
     display: flex;
     align-items: center;
-
-    gap: 7px;
-
+    gap: 8px;
     white-space: nowrap;
 }
 
 .enterprise-navbar__status-label {
     color: #A99F9A;
-
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 400;
-
     line-height: 1;
 }
 
-
-/* =========================================
-   BOTÓN ABIERTO / CERRADO
-   ========================================= */
-
 .enterprise-navbar__status-button {
-    height: 28px;
-
+    height: 34px;
     display: flex;
     align-items: center;
-
-    padding: 0 8px;
-
+    padding: 0 12px;
     box-sizing: border-box;
-
     border-radius: 6px;
-
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 600;
-
     line-height: 1;
-
     white-space: nowrap;
 }
 
-.enterprise-navbar__status-button--open {
-    background: #6BAE35;
-    color: #FFFFFF;
-}
-
-.enterprise-navbar__status-button--closed {
-    background: #B4322B;
-    color: #FFFFFF;
-}
-
-
-/* =========================================
-   PUNTO
-   ========================================= */
+.enterprise-navbar__status-button--open   { background: #6BAE35; color: #FFFFFF; }
+.enterprise-navbar__status-button--closed { background: #B4322B; color: #FFFFFF; }
 
 .enterprise-navbar__status-dot {
-    width: 6px;
-    height: 6px;
-
-    margin-right: 5px;
-
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
     flex-shrink: 0;
-
     border-radius: 50%;
-
     background: rgba(255, 255, 255, 0.95);
 }
 
-
-/* =========================================
-   FLECHA ESTADO
-   ========================================= */
-
 .enterprise-navbar__status-chevron {
-    margin-left: 6px;
-
-    font-size: 8px;
-
+    margin-left: 8px;
+    font-size: 10px;
     opacity: 0.85;
 }
 
-
-/* =========================================
-   USUARIO
-   ========================================= */
-
 .enterprise-navbar__user {
-    height: 30px;
-
+    height: 36px;
     display: flex;
     align-items: center;
-
-    padding: 0 8px 0 5px;
-
+    padding: 0 10px 0 6px;
     box-sizing: border-box;
-
     border: 1px solid #4B403B;
     border-radius: 7px;
-
     background: #211815;
     color: #D8D0CC;
-
     font-family: inherit;
-
     cursor: pointer;
-
-    transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .enterprise-navbar__user:hover {
@@ -293,122 +158,53 @@
     border-color: #62554E;
 }
 
-
-/* =========================================
-   AVATAR
-   ========================================= */
-
 .enterprise-navbar__avatar {
-    width: 22px;
-    height: 22px;
-
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex-shrink: 0;
-
     border-radius: 50%;
-
     background: #E8E2DE;
     color: #6C5E57;
-
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 700;
-
     line-height: 1;
 }
 
-
-/* =========================================
-   NOMBRE / ROL
-   ========================================= */
-
 .enterprise-navbar__user-name {
-    margin-left: 6px;
-
+    margin-left: 8px;
     color: #D8D0CC;
-
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 500;
-
     line-height: 1;
-
     white-space: nowrap;
 }
 
-
-/* =========================================
-   FLECHA USUARIO
-   ========================================= */
-
 .enterprise-navbar__user-chevron {
-    margin-left: 7px;
-
+    margin-left: 8px;
     color: #9E938E;
-
-    font-size: 8px;
+    font-size: 10px;
     line-height: 1;
 }
 
-
-/* =========================================
-   RESPONSIVE
-   ========================================= */
-
+/* RESPONSIVE */
 @media (max-width: 700px) {
-
-    .enterprise-navbar {
-        padding-left: 16px;
-        padding-right: 12px;
-    }
-
-    .enterprise-navbar__status-label {
-        display: none;
-    }
-
-    .enterprise-navbar__panel {
-        display: none;
-    }
-
-    .enterprise-navbar__separator {
-        display: none;
-    }
+    .enterprise-navbar { padding-left: 16px; padding-right: 12px; }
+    .enterprise-navbar__status-label,
+    .enterprise-navbar__panel,
+    .enterprise-navbar__separator { display: none; }
 }
-
 
 @media (max-width: 520px) {
-
-    .enterprise-navbar__sede {
-        display: none;
-    }
-
-    .enterprise-navbar__user-name {
-        display: none;
-    }
-
-    .enterprise-navbar__user {
-        width: 30px;
-
-        padding: 0;
-
-        justify-content: center;
-    }
-
-    .enterprise-navbar__user-chevron {
-        display: none;
-    }
+    .enterprise-navbar__sede,
+    .enterprise-navbar__user-name,
+    .enterprise-navbar__user-chevron { display: none; }
+    .enterprise-navbar__user { width: 36px; padding: 0; justify-content: center; }
 }
 
-
 @media (max-width: 380px) {
-
-    .enterprise-navbar {
-        padding-left: 12px;
-        padding-right: 10px;
-    }
-
-    .enterprise-navbar__status {
-        display: none;
-    }
+    .enterprise-navbar { padding-left: 12px; padding-right: 10px; }
+    .enterprise-navbar__status { display: none; }
 }

@@ -13,3 +13,10 @@ export function bandeja(req, res) {
     currentPage: 'bandeja',
   });
 }
+
+export function resumenDia(req, res) {
+  return res.render('enterprises/resumenDia', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'resumenDia',
+  });
+}
