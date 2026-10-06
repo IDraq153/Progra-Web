@@ -39,3 +39,9 @@ export function agotados(req, res) {
     currentPage: 'agotados',
   });
 }
+export function perfil(req, res) {
+  return res.render('enterprises/perfil', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'perfil',
+  });
+}

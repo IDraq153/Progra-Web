@@ -13,6 +13,7 @@ import ResumenDia from '../pages/ResumenDia';
 import Entrega from '../pages/Entrega';
 import OpcionesAgregados from '../pages/OpcionesAgregados';
 import Agotados from '../pages/Agotados';
+import Perfil from '../pages/Perfil';
 // import Agotados from '../pages/Agotados';
 
 // 3. CSS base
@@ -40,6 +41,7 @@ function EnterpriseApp() {
             <Route path="/enterprises/entrega" element={<Entrega />} />
             <Route path="/enterprises/opcionesAgregados" element={<OpcionesAgregados />} />
             <Route path="/enterprises/agotados" element={<Agotados />} />
+            <Route path="/enterprises/perfil" element={<Perfil />} />
             {/* <Route path="/enterprises/agotados" element={<Agotados />} /> */}
           </Routes>
 
