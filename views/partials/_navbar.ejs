@@ -1,108 +1,58 @@
-<!-- views/partials/_navbar.ejs -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
-  <div class="container">
+            <a class="navbar-brand" href="/">
+                Campus Pide
+            </a>
 
-    <!-- Logo / Brand -->
-    <a
-      class="navbar-brand d-flex align-items-center fw-bold text-success"
-      href="/"
-    >
-      <i class="fa-solid fa-shield-halved fs-3 me-2"></i>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <span>
-        Ulima Laboral
-      </span>
-    </a>
+            <div
+                class="collapse navbar-collapse"
+                id="navbarMenu"
+            >
 
-    <!-- Mobile button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarContent"
-      aria-controls="navbarContent"
-      aria-expanded="false"
-      aria-label="Abrir menú"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-    <!-- Navbar content -->
-    <div class="collapse navbar-collapse" id="navbarContent">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="#">
+                            Locales
+                        </a>
+                    </li>
 
-      <!-- Main navigation -->
-      <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-1 my-3 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Cómo funciona
+                        </a>
+                    </li>
 
-        <!-- Convocatorias -->
-        <li class="nav-item">
-          <a
-            class="nav-link px-3 d-flex align-items-center"
-            href="/convocatorias"
-          >
-            <i class="fa-solid fa-briefcase me-2 text-success"></i>
-            <span>Convocatorias</span>
-          </a>
-        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Registrar mi local
+                        </a>
+                    </li>
 
-        <!-- Empresas -->
-        <li class="nav-item">
-          <a
-            class="nav-link px-3 d-flex align-items-center"
-            href="/empresas"
-          >
-            <i class="fa-solid fa-building me-2 text-success"></i>
-            <span>Empresas</span>
-          </a>
-        </li>
+                </ul>
 
-        <!-- Estudiantes -->
-        <li class="nav-item">
-          <a
-            class="nav-link px-3 d-flex align-items-center"
-            href="/estudiantes"
-          >
-            <i class="fa-solid fa-user-graduate me-2 text-success"></i>
-            <span>Estudiantes</span>
-          </a>
-        </li>
+                <div class="d-flex align-items-center">
 
-        <!-- Cómo funciona -->
-        <li class="nav-item">
-          <a
-            class="nav-link px-3 d-flex align-items-center"
-            href="/como-funciona"
-          >
-            <i class="fa-solid fa-circle-question me-2 text-success"></i>
-            <span>Cómo funciona</span>
-          </a>
-        </li>
+                    <a href="#" class="btn-login">
+                        Iniciar sesión
+                    </a>
 
-      </ul>
+                    <a href="#" class="btn btn-register">
+                        Crear cuenta
+                    </a>
 
-      <!-- Authentication -->
-      <div class="d-flex flex-column flex-lg-row gap-2">
+                </div>
 
-        <!-- Login -->
-        <a
-          href="/login"
-          class="btn btn-outline-light px-3"
-        >
-          <i class="fa-solid fa-right-to-bracket me-2"></i>
-          Iniciar sesión
-        </a>
-
-        <!-- Register -->
-        <a
-          href="/register"
-          class="btn btn-success px-3"
-        >
-          <i class="fa-solid fa-user-plus me-2"></i>
-          Registrarse
-        </a>
-
-      </div>
-
-    </div>
-  </div>
-</nav>
+            </div>
+        </div>
+    </nav>
