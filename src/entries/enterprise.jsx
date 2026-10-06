@@ -11,6 +11,8 @@ import SideBar from '../partials/ControlPanel/SideBarPanel/SideBarPanel';
 import Bandeja from '../pages/Bandeja';
 import ResumenDia from '../pages/ResumenDia';
 import Entrega from '../pages/Entrega';
+import OpcionesAgregados from '../pages/OpcionesAgregados';
+import Agotados from '../pages/Agotados';
 // import Agotados from '../pages/Agotados';
 
 // 3. CSS base
@@ -36,6 +38,8 @@ function EnterpriseApp() {
             <Route path="/enterprises/bandeja" element={<Bandeja />} />
             <Route path="/enterprises/resumenDia" element={<ResumenDia />} />
             <Route path="/enterprises/entrega" element={<Entrega />} />
+            <Route path="/enterprises/opcionesAgregados" element={<OpcionesAgregados />} />
+            <Route path="/enterprises/agotados" element={<Agotados />} />
             {/* <Route path="/enterprises/agotados" element={<Agotados />} /> */}
           </Routes>
 

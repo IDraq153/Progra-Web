@@ -30,5 +30,7 @@ router.get('/enterprises', enterprises.home);
 router.get('/enterprises/bandeja', enterprises.bandeja);
 router.get('/enterprises/resumenDia', enterprises.resumenDia);
 router.get('/enterprises/entrega', enterprises.entrega);
+router.get('/enterprises/opcionesAgregados', enterprises.opcionesAgregados);
+router.get('/enterprises/agotados', enterprises.agotados);
 
 export default router;

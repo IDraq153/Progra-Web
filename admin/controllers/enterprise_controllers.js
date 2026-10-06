@@ -27,3 +27,15 @@ export function entrega(req, res) {
     currentPage: 'entrega',
   });
 }
+export function opcionesAgregados(req, res) {
+  return res.render('enterprises/opcionesAgregados', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'opcionesAgregados',
+  });
+}
+export function agotados(req, res) {
+  return res.render('enterprises/agotados', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'agotados',
+  });
+}

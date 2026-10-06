@@ -28,7 +28,7 @@ const sections = [
       },
       {
         label: 'Opciones y agregados',
-        path: '/enterprises/opciones-agregados',
+        path: '/enterprises/opcionesAgregados',
       },
       {
         label: 'Agotados del día',
