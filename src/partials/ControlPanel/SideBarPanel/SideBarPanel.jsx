@@ -24,7 +24,7 @@ const sections = [
     items: [
       {
         label: 'Mi carta',
-        path: '/enterprises/carta',
+        path: '/enterprises/Micarta',
       },
       {
         label: 'Opciones y agregados',

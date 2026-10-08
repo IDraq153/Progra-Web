@@ -51,3 +51,10 @@ export function horario(req, res) {
     currentPage: 'horario',
   });
 }
+
+export function Micarta(req, res) {
+  return res.render('enterprises/Micarta', {
+    title: 'Bienvenido Empresa',
+    currentPage: 'Micarta',
+  });
+}
