@@ -65,10 +65,6 @@ export default function HeaderPanel() {
             <span>
               {localAbierto ? 'Abierto' : 'Cerrado'}
             </span>
-
-            <span className="enterprise-navbar__status-chevron">
-              ▾
-            </span>
           </span>
 
         </div>

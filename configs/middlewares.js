@@ -143,6 +143,32 @@ export function redireccionarSiLogueado(req, res, next) {
   // Si no está autenticado o no es una ruta de auth, continuar
   next();
 }
+export function soloRolEnterprise(req, res, next) {
+  // Verificar si el usuario tiene sesión activa
+  const role = req.session.role;
+
+  if(role != 'enterprises') {
+    return res.status(401).render('401', {
+    title: 'Acceso no autorizado',
+    message: 'Debes tener el rol de Enterprise.',
+    statusCode: 401
+  });
+  }
+  next();
+}
+export function soloRolOwner(req, res, next) {
+  // Verificar si el usuario tiene sesión activa
+  const role = req.session.role;
+
+  if(role != 'owner') {
+    return res.status(401).render('401', {
+    title: 'Acceso no autorizado',
+    message: 'Debes tener el rol de Owner.',
+    statusCode: 401
+  });
+  }
+  next();
+}
 
 export function viewFlash(req, res, next) {
   res.locals.successMessage = req.flash('success');
