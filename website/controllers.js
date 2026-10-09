@@ -40,17 +40,44 @@ export function funcion(req, res) {
   });
 }
 export function login(req, res) { 
-  let fondos = [
-    "/assets/img/login-bd1.png",
-    "/assets/img/login-bd2.png",
-    "/assets/img/login-bd3.png"
-  ]
-  
   return res.render('website/login', {
     title: 'Login',
-    background: fondos[Math.floor(Math.random() * 3)]
   });
 }
+
+export async function loginP(req, res) {
+   const {username, password} = req.body;
+   const usuarios = [ 
+    {username: 'admin', password: '123', role: 'enterprises'}, 
+    {username: 'owner', password: '123', role: 'owner'}, 
+   ];
+
+   let usuarioEncontrado = null;
+   for(let i = 0; i < usuarios.length; i++) {
+    if(usuarios[i].username == username && usuarios[i].password == password) {
+      usuarioEncontrado = usuarios[i];
+    }
+   }
+
+   if(usuarioEncontrado != null) {
+     req.session.username = usuarioEncontrado.username;
+     req.session.role = usuarioEncontrado.role;
+
+     return req.session.save(() => {
+      if(req.session.role == 'enterprises') {
+        res.redirect('/enterprises'); 
+      } else {
+        res.redirect('/owner'); 
+      }
+     });
+    } else {
+      return res.render('website/login', {
+        title: 'Login',
+        mensaje: 'Usuario incorrecto',
+      });   
+    }
+}
+
 export function login3(req, res) { 
   return res.render('website/login3', {
     title: 'Login3',

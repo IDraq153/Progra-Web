@@ -48,30 +48,30 @@
 
         <!-- Columna derecha -->
         <div class="login-right col-lg-6">
-
+            
             <div class="login-card">
-
+                
                 <h2>
                     Inicia sesión
                 </h2>
-
+                
+                <!-- FORMULARIO -->
                 <form action="/login" method="POST">
 
                     <div class="mb-3">
                         <label
-                            for="correo"
+                            for="username"
                             class="form-label-custom"
                         >
-                            Correo Institucional
+                            Usuario
                         </label>
 
                         <input
-                            type="email"
-                            id="correo"
-                            name="correo"
+                            type=""
+                            id="username"
+                            name="username"
                             class="form-control-custom"
-                            placeholder="tucorreo@aloe.ulima.edu.pe"
-                            required
+                            placeholder="Usuario"
                         >
                     </div>
 
@@ -89,12 +89,10 @@
                             name="password"
                             class="form-control-custom"
                             placeholder="••••••••"
-                            required
                         >
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
-
                         <div class="form-check m-0">
                             <input
                                 class="form-check-input"
@@ -102,19 +100,10 @@
                                 id="remember"
                                 name="remember"
                             >
-
-                            <label
-                                class="form-check-label"
-                                for="remember"
-                            >
-                                Recordarme
-                            </label>
+                            <label class="form-check-label" for="remember">Recordarme</label>
                         </div>
 
-                        <a href="#" class="forgot-link">
-                            ¿Olvidaste tu contraseña?
-                        </a>
-
+                        <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     <button
