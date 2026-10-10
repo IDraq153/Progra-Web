@@ -101,6 +101,7 @@ export function requireAuth(req, res, next) {
 }
 
 // configs/middlewares.js
+
 /** 
  * Middleware para redirigir a usuarios autenticados
  * Si el usuario ya tiene sesión activa, lo redirige a la página principal
@@ -111,11 +112,10 @@ export function redirectIfAuthenticated(req, res, next) {
   
   // Si está autenticado Y está intentando acceder a rutas de autenticación
   const isAuthRoute = [
-    '/sign-in',
-    '/sign-up',
-    '/login',
-    '/register',
-    '/reset-password'
+    // '/sign-in',
+    // '/sign-up',
+    '/login'//, '/register',
+    // '/reset-password'
   ].some(route => req.path === route);
   
   if (isAuthenticated && isAuthRoute) {
@@ -126,9 +126,10 @@ export function redirectIfAuthenticated(req, res, next) {
   // Si no está autenticado o no es una ruta de auth, continuar
   next();
 }
-export function redireccionarSiLogueado(req, res, next) {
+
+export function redirecionarSiLogueado(req, res, next) {
   // Verificar si el usuario tiene sesión activa
-  const isAuthenticated = req.session && req.session.username && req.session.role;
+  const isAuthenticated = req.session && req.session.correo && req.session.role;
   
   // Si está autenticado Y está intentando acceder a rutas de autenticación
   const isAuthRoute = [
@@ -143,32 +144,32 @@ export function redireccionarSiLogueado(req, res, next) {
   // Si no está autenticado o no es una ruta de auth, continuar
   next();
 }
-export function soloRolEnterprise(req, res, next) {
-  // Verificar si el usuario tiene sesión activa
-  const role = req.session.role;
 
-  if(role != 'enterprises') {
-    return res.status(401).render('401', {
-    title: 'Acceso no autorizado',
-    message: 'Debes tener el rol de Enterprise.',
-    statusCode: 401
-  });
-  }
-  next();
-}
-export function soloRolOwner(req, res, next) {
-  // Verificar si el usuario tiene sesión activa
-  const role = req.session.role;
+// Verificar que el usuario tenga el rol autorizado
+export function requireRole(rolePermitido) {
+ return (req, res, next) => {
+  // Verificar si existe una sesión autenticada
+  const isAuthenticated = req.session && req.session.correo && req.session.role;
 
-  if(role != 'owner') {
-    return res.status(401).render('401', {
-    title: 'Acceso no autorizado',
-    message: 'Debes tener el rol de Owner.',
-    statusCode: 401
-  });
+  // Si no ha iniciado sesión, redirigir al login
+  if (!isAuthenticated) { return res.redirect('/login'); }
+
+  // Si el rol no corresponde, enviarlo a su propia vista
+  // if (req.session.role !== rolePermitido) { return res.redirect(`/${req.session.role}`); }
+
+  // Si el rol no corresponde, error
+  if (req.session.role !== rolePermitido){
+    return res.status(401).render('401',{
+      title: 'Acceso no autorizado',
+      message: `Debes tener el rol de ${req.session.role}`,
+      statusCode: 401,
+    }
+
+    )
   }
-  next();
-}
+
+  // El usuario tiene permiso para acceder
+  next(); }; }
 
 export function viewFlash(req, res, next) {
   res.locals.successMessage = req.flash('success');

@@ -8,14 +8,14 @@ import Footer from '../partials/ControlPanel/FooterPanel/FooterPanel';
 import SideBar from '../partials/ControlPanel/SideBarPanel/SideBarPanel';
 
 // 2. Vistas (Pages)
-import Bandeja from '../pages/Bandeja';
-import ResumenDia from '../pages/ResumenDia';
-import Entrega from '../pages/Entrega';
-import OpcionesAgregados from '../pages/OpcionesAgregados';
-import Agotados from '../pages/Agotados';
-import Perfil from '../pages/Perfil';
-import Horario from '../pages/Horario';
-import Micarta from '../pages/Micarta';
+import Bandeja from '../pages/Bandeja/Bandeja';
+import ResumenDia from '../pages/ResumenDia/ResumenDia';
+import Entrega from '../pages/Entrega/Entrega';
+import OpcionesAgregados from '../pages/OpcionesAgregados/OpcionesAgregados';
+import Agotados from '../pages/Agotados/Agotados';
+import Perfil from '../pages/Perfil/Perfil';
+import Horario from '../pages/Horario/Horario';
+import Micarta from '../pages/Micarta/Micarta';
 // import Agotados from '../pages/Agotados';
 
 // 3. CSS base

@@ -1,7 +1,7 @@
 // admin\controllers\enterprise_controllers.js
 
 export function home(req, res) {
-  return res.render('enterprises/bandeja', {
+  return res.render('enterprises/home', {
     title: 'Bienvenido Empresa',
     currentPage: 'home',
   });
@@ -57,4 +57,4 @@ export function Micarta(req, res) {
     title: 'Bienvenido Empresa',
     currentPage: 'Micarta',
   });
-}
+} 

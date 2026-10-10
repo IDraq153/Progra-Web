@@ -23,50 +23,48 @@ La aplicación utiliza Supabase como base de datos y dispone de migraciones SQL 
 | `website/` | Lógica del sitio web: APIs, controladores, modelos, repositorios, rutas y servicios. |
 | `server.js` | Archivo principal para iniciar y configurar el servidor Express. |
 
----
 
-# 🚀 Comandos GIT
+## Comandos GIT
 
-Descargar enlace [enlace](https://git-scm.com/install/windows)
-![Sitio web de descarga](./docs/install_git.png)
+Descargar GIT del [enlace](https://git-scm.com/install/windows)
 
-## 📁 Crear proyecto GIT
+![Sitio web de descarga](./docs/gitwindows.png)
 
-Inicializa un nuevo repositorio Git:
+Crear proyecto GIT
+
+    > git init
     
-```bash
-git init
-```
+Loguearse
 
-# Git - Comandos más usados
+    > git config --global user.name "Tu Nombre"
+    > git config --global user.email "tu@email.com"
 
-- `git init` — Crear repositorio
-- `git clone <url>` — Clonar repositorio
-- `git status` — Ver estado
-- `git add .` — Agregar cambios
-- `git commit -m "mensaje"` — Crear commit
-- `git push` — Subir cambios
-- `git pull` — Descargar cambios
-- `git fetch` — Descargar cambios sin fusionar
-- `git branch` — Ver ramas
-- `git switch <rama>` — Cambiar de rama
-- `git switch -c <rama>` — Crear y cambiar de rama
-- `git merge <rama>` — Fusionar ramas
-- `git log --oneline` — Ver historial
-- `git diff` — Ver diferencias
-- `git stash` — Guardar cambios temporalmente
-- `git stash pop` — Recuperar cambios
-- `git restore <archivo>` — Deshacer cambios
-- `git revert <commit>` — Revertir un commit
-- `git reset --hard <commit>` — Volver a un commit
-- `git remote -v` — Ver repositorios remotos
+Crear rama
 
-# NPM
+    > git checkout -b feature/prueba
+
+Ver ramas
+
+    > git branch
+
+Cambiar rama
+
+    > git checkout #nombre_rama
+
+Cambiar a commit
+
+    > git reset --hard #commit
+
+Cambiar remote
+
+    > git remote set-url origin git@github.com:usuario/repositorio.git
+
+    git remote set-url origin git@github.com:jovaldiv-ops/pw-2026-2.git
 
 Instalar dependencias:
 
     npm install
-    npm install -g vercel
-    vercel login
-    vercel --prod
-    
+
+npm install -g vercel
+vercel login
+vercel --prod
