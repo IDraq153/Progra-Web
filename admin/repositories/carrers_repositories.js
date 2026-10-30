@@ -20,6 +20,17 @@ class CarrerRepository {
   /**
    * Obtiene registros con paginación
    */
+  async findAllSimple(options = {}) {
+    try {
+      const { order = [['id', 'ASC']] } = options;
+      return await Carrer.findAll({
+        order,
+      });
+    } catch (error) {
+      if (showLogs) console.error('🔥 [CarrerRepo.findAllPaginated] Error:', error);
+      throw error;
+    }
+  }
   async findAllPaginated(options = {}) {
     try {
       const { where = {}, offset = 0, limit = 10, order = [['id', 'DESC']] } = options;

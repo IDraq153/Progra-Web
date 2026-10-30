@@ -9,6 +9,27 @@ export function test(req, res) {
   });
 }
 
+export async function listCarrersSimple(req, res, next) {
+  try {
+    const result = await carrerService.fetchAllSimple();
+    console.log(result);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Carreras listadas con éxito',
+      data: result,
+      error: null
+    });
+  } catch (error) {
+    console.error(error.stack);
+    return res.status(500).json({
+      success: false,
+      message: 'Error al listar las carreras',
+      data: null,
+      error: error.message
+    });
+  }
+}
 export async function listCarrers(req, res, next) {
   try {
     const page = parseInt(req.query.page) || 1;
