@@ -23,7 +23,7 @@
     <div class="card">
 
       <div class="card-header">
-        <h6 class="mb-0">
+        <h6 class="mb-0" id="cardTitle">
           <i class="fa fa-plus me-2"></i>
           Nueva Carrera
         </h6>
@@ -37,6 +37,24 @@
 
             <label for="name" class="form-label">
               Nombre
+            </label>
+
+            <input type="hidden" name="" id="carrerId">
+
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Ingrese el nombre de la carrera..."
+              required
+            >
+          </div>
+
+          <div class="mb-3">
+
+            <label for="name" class="form-label">
+              edad
             </label>
 
             <input
@@ -53,13 +71,13 @@
 
           <div class="d-flex justify-content-end gap-2">
 
-            <a
-              href="/carrers"
+            <button
               class="btn btn-outline-secondary"
+              onclick="limpiar(event)"
             >
               <i class="fa fa-refresh me-1"></i>
               Limpiar
-            </a>
+          </button>
 
             <button
               type="submit"
@@ -200,43 +218,4 @@
 
 </div> </main>
 
-<script>
-    let carrerRows = document.getElementById("carrers").children[1].children.length;
-
-    function agregar(event){
-        event.preventDefault();
-
-        let name = document.getElementById("name").value;
-        let carrersTable = document.getElementById("carrers");
-        
-        let tr = document.createElement("TR");
-        let td1 = document.createElement("TD");
-        let td2 = document.createElement("TD");
-        let td3 = document.createElement("TD");
-
-        carrerRows = carrerRows + 1;
-        td1.innerHTML = carrerRows;
-        td2.innerHTML = name;
-
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-
-        console.log(tr);
-
-        carrersTable.children[1].appendChild(tr);
-    }
-
-    function eliminar(id, event){
-        let tr = event.currentTarget.parentElement.parentElement;
-        tr.remove();
-    }
-
-    function editar(id, event){
-        let tr = event.currentTarget.parentElement.parentElement;
-        let idRow = tr.children[0].innerHTML;
-        let name = tr.children[1].innerHTML;
-
-        document.getElementById("name").value = name;
-    }
-</script>
+<script src="/assets/js/carrer.js"></script>

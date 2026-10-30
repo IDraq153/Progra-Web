@@ -1,0 +1,98 @@
+/* src/partials/SideBarEnterprise.css */
+
+.enterprise-sidebar {
+  width: 250px;
+  min-width: 250px;
+
+  min-height: 100%;
+
+  background-color: #FFFFFF;
+
+  border-right: 1px solid #DCE3EA;
+}
+
+/* Secciones */
+.enterprise-sidebar-section {
+  padding: 18px 12px 4px;
+}
+
+/* Títulos */
+.enterprise-sidebar-title {
+  margin: 0 0 8px 6px;
+
+  color: #67757F;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+/* Lista */
+.enterprise-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+/* Enlaces */
+.enterprise-sidebar-link {
+  min-height: 30px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 10px;
+
+  border-radius: 5px;
+
+  color: #16212B;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* Cuadradito/bullet */
+.enterprise-sidebar-bullet {
+  width: 5px;
+  height: 5px;
+
+  margin-right: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 1px;
+
+  background-color: #C5D3DF;
+}
+
+/* Hover */
+.enterprise-sidebar-link:hover {
+  background-color: #F7F9FB;
+
+  color: #123A5F;
+}
+
+.enterprise-sidebar-link:hover .enterprise-sidebar-bullet {
+  background-color: #0F8B7E;
+}
+
+/* Elemento activo */
+.enterprise-sidebar-link.active {
+  background-color: #E6EEF5;
+
+  color: #123A5F;
+
+  font-weight: 600;
+}
+
+.enterprise-sidebar-link.active .enterprise-sidebar-bullet {
+  background-color: #123A5F;
+}

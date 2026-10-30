@@ -1,0 +1,195 @@
+/* =========================================================
+   PALETA DE COLORES
+   ========================================================= */
+
+:root {
+  --color-primary: #123A5F;
+  --color-primary-dark: #0C2A46;
+  --color-primary-soft: #E6EEF5;
+
+  --color-accent: #0F8B7E;
+
+  --color-bg: #F7F9FB;
+  --color-surface: #FFFFFF;
+  --color-border: #DCE3EA;
+
+  --color-text: #16212B;
+  --color-text-muted: #67757F;
+
+  --color-success: #1E7F4D;
+  --color-warning: #B7791F;
+  --color-danger: #B4322B;
+  --color-info: #3B6FA8;
+
+  /* Bootstrap */
+  --bs-primary: #123A5F;
+  --bs-primary-rgb: 18, 58, 95;
+
+  --bs-success: #1E7F4D;
+  --bs-success-rgb: 30, 127, 77;
+
+  --bs-warning: #B7791F;
+  --bs-warning-rgb: 183, 121, 31;
+
+  --bs-danger: #B4322B;
+  --bs-danger-rgb: 180, 50, 43;
+
+  --bs-info: #3B6FA8;
+  --bs-info-rgb: 59, 111, 168;
+
+  --bs-body-bg: #F7F9FB;
+  --bs-body-color: #16212B;
+
+  --bs-border-color: #DCE3EA;
+}
+
+
+/* =========================================================
+   ESTRUCTURA GENERAL
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+
+/*
+ * #root ocupa como mínimo toda la pantalla.
+ *
+ * Esto permite que:
+ * Cabecera
+ *      ↓
+ * contenido
+ *      ↓
+ * Footer
+ *
+ * se distribuyan correctamente en vertical.
+ */
+#root {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   LAYOUT ENTERPRISE
+   ========================================================= */
+
+/*
+ * Área que contiene:
+ *
+ * ┌──────────────┬─────────────────────┐
+ * │              │                     │
+ * │   SIDEBAR    │      CONTENT        │
+ * │              │                     │
+ * └──────────────┴─────────────────────┘
+ */
+.enterprise-layout {
+  width: 100%;
+
+  flex: 1;
+
+  display: flex;
+
+  min-width: 0;
+}
+
+
+/*
+ * Contenido principal.
+ *
+ * El flex: 1 hace que ocupe todo el espacio
+ * disponible que deja el sidebar.
+ */
+.enterprise-content {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 30px;
+
+  background-color: var(--color-bg);
+}
+
+
+/* =========================================================
+   COMPONENTES GENERALES
+   ========================================================= */
+
+.card {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+
+/* =========================================================
+   UTILIDADES PERSONALIZADAS
+   ========================================================= */
+
+.bg-primary-soft {
+  background-color: var(--color-primary-soft) !important;
+}
+
+.bg-surface {
+  background-color: var(--color-surface) !important;
+}
+
+.text-primary-custom {
+  color: var(--color-primary) !important;
+}
+
+.text-muted-custom {
+  color: var(--color-text-muted) !important;
+}
+
+.border-custom {
+  border-color: var(--color-border) !important;
+}
+
+
+/* =========================================================
+   BOTÓN ACCENT
+   ========================================================= */
+
+.btn-accent {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0F8B7E;
+  --bs-btn-border-color: #0F8B7E;
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0C746A;
+  --bs-btn-hover-border-color: #0C746A;
+
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #095F57;
+  --bs-btn-active-border-color: #095F57;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+
+  .enterprise-content {
+    padding: 20px;
+  }
+
+}

@@ -65,6 +65,7 @@ export function login(req, res) {
   ];
   return res.render('website/login', {
     title: 'Bienvenido',
+    mensaje: null,
     background: fondos[Math.floor(Math.random() * 3)]
   });
 }
@@ -72,6 +73,37 @@ export function login(req, res) {
 export function resetPassword(req, res) {
   return res.render('website/reset-password', {
     title: 'Recuperar Contraseña',
+  });
+}
+
+export function ingresar(req, res){
+  const { username, password } = req.body;
+  //const username = req.body.username;
+  //const password= req.body.password;
+  const users = [
+    {username: 'owner', password: '123', role: 'owner'},
+    {username: 'admin', password: '123', role: 'enterprise'},
+  ];
+
+  for(let i=0; i < users.length; i++){
+    if(users[i].username == username && users[i].password == password){
+      req.session.username = username;
+      req.session.role = users[i].role;
+
+      return req.session.save(() => {
+        res.redirect('/' + users[i].role);
+      });
+    }
+  }
+  let fondos = [
+    "/assets/img/login-bg.png",
+    "/assets/img/login-bg2.png",
+    "/assets/img/login-bg3.jpg"
+  ];
+  return res.render('website/login', {
+    title: 'Bienvenido',
+    mensaje: 'Usuario y contraseña no coinciden',
+    background: fondos[Math.floor(Math.random() * 3)]
   });
 }
 
@@ -131,6 +163,6 @@ export function logout(req, res) {
     res.clearCookie('connect.sid');
 
     // Redirige al login
-    res.redirect('/sign-in');
+    res.redirect('/login');
   });
 }

@@ -1,0 +1,460 @@
+/* =========================================================
+   NUEVA CONVOCATORIA
+   ========================================================= */
+
+.nueva-convocatoria {
+  width: 100%;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.convocatoria-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 16px;
+}
+
+.breadcrumb-custom {
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--color-text-muted);
+}
+
+.breadcrumb-custom span {
+  margin: 0 4px;
+  color: var(--color-border);
+}
+
+.convocatoria-header h1 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.convocatoria-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.convocatoria-actions .btn {
+  min-height: 34px;
+
+  padding: 7px 13px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  border-radius: 5px;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+.convocatoria-form {
+  --bs-gutter-y: 10px;
+}
+
+
+/* =========================================================
+   CARDS / SECCIONES
+   ========================================================= */
+
+.convocatoria-card {
+  padding: 16px;
+
+  margin-bottom: 10px;
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+
+/* =========================================================
+   TÍTULO DE SECCIÓN
+   ========================================================= */
+
+.section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 14px;
+
+  color: var(--color-text);
+
+  font-size: 11px;
+  line-height: 1;
+
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.section-title span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  color: #fff;
+  background-color: var(--color-primary);
+
+  border-radius: 50%;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+.convocatoria-card .form-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--color-text);
+
+  font-size: 10px;
+  line-height: 1.25;
+
+  font-weight: 700;
+  letter-spacing: 0.45px;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.convocatoria-card .form-control,
+.convocatoria-card .form-select {
+  min-height: 34px;
+
+  padding: 7px 10px;
+
+  color: var(--color-text);
+
+  background-color: #fff;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 5px;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  box-shadow: none;
+}
+
+.convocatoria-card textarea.form-control {
+  min-height: 76px;
+
+  line-height: 1.5;
+
+  resize: vertical;
+}
+
+.convocatoria-card .form-control::placeholder {
+  color: #9AA6AF;
+}
+
+.convocatoria-card .form-control:focus,
+.convocatoria-card .form-select:focus {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 2px rgba(18, 58, 95, 0.08);
+}
+
+.convocatoria-card .form-select {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+   ========================================================= */
+
+.convocatoria-card .input-group-text {
+  min-height: 34px;
+
+  padding: 7px 10px;
+
+  color: var(--color-text-muted);
+
+  background-color: #fff;
+
+  border-color: var(--color-border);
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   AYUDA
+   ========================================================= */
+
+.form-help {
+  margin-top: 4px;
+
+  color: var(--color-text-muted);
+
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   TAGS / MULTISELECT
+   ========================================================= */
+
+.tag-input {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 5px;
+
+  padding: 5px 7px;
+
+  background-color: #fff;
+
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+.selection-tag {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 5px 7px;
+
+  color: var(--color-primary);
+
+  background-color: var(--color-primary-soft);
+
+  border-radius: 4px;
+
+  font-size: 11px;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.selection-tag button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: var(--color-primary);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 13px;
+  line-height: 10px;
+
+  cursor: pointer;
+}
+
+.selection-tag button:hover {
+  color: var(--color-danger);
+}
+
+.add-tag {
+  padding: 3px;
+
+  color: var(--color-text-muted);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.add-tag:hover {
+  color: var(--color-primary);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.notification-check {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 6px;
+}
+
+.notification-check .form-check-input {
+  width: 14px;
+  height: 14px;
+
+  margin: 0;
+
+  border-color: var(--color-border);
+
+  border-radius: 3px;
+
+  cursor: pointer;
+}
+
+.notification-check .form-check-input:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.notification-check .form-check-label {
+  color: var(--color-text);
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   AVISO DE PUBLICACIÓN
+   ========================================================= */
+
+.publication-notice {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  min-height: 72px;
+
+  padding: 12px;
+
+  color: var(--color-primary);
+
+  background-color: var(--color-primary-soft);
+
+  border-radius: 5px;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.notice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 17px;
+  height: 17px;
+
+  color: #fff;
+
+  background-color: var(--color-info);
+
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTÓN ACCENT
+   ========================================================= */
+
+.nueva-convocatoria .btn-accent {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0C746A;
+  --bs-btn-hover-border-color: #0C746A;
+
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #095F57;
+  --bs-btn-active-border-color: #095F57;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+  .convocatoria-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .convocatoria-actions {
+    width: 100%;
+  }
+
+  .convocatoria-actions .btn {
+    flex: 1;
+  }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+  .nueva-convocatoria {
+    padding: 0;
+  }
+
+  .convocatoria-card {
+    padding: 13px;
+  }
+
+  .convocatoria-header h1 {
+    font-size: 22px;
+  }
+
+  .convocatoria-card .form-control,
+  .convocatoria-card .form-select {
+    font-size: 13px;
+  }
+
+}

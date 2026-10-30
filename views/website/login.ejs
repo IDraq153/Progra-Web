@@ -16,47 +16,47 @@
     >
   </div>
 
-  <div class="alert d-none" role="alert" id="alertMessage">
-    A simple danger alert—check it out!
+  <div class="alert <% if (!mensaje) { %> d-none <% } %> alert-danger" role="alert" id="alertMessage">
+    <%= mensaje %>
   </div>
+  <form action="/login" method="POST">
+    <!-- Usuario -->
+    <div class="mb-3">
+      <label for="txtUser" class="form-label">
+        Usuario
+      </label>
 
-  <!-- Usuario -->
-  <div class="mb-3">
-    <label for="txtUser" class="form-label">
-      Usuario
-    </label>
+      <input
+        class="form-control"
+        type="text"
+        name="username"
+        id="txtUser"
+        placeholder="Ingrese su usuario"
+      >
+    </div>
 
-    <input
-      class="form-control"
-      type="text"
-      name="username"
-      id="txtUser"
-      placeholder="Ingrese su usuario"
-    >
-  </div>
+    <!-- Contraseña -->
+    <div class="mb-3">
+      <label for="txtPassword" class="form-label">
+        Contraseña
+      </label>
 
-  <!-- Contraseña -->
-  <div class="mb-3">
-    <label for="txtPassword" class="form-label">
-      Contraseña
-    </label>
+      <input
+        class="form-control"
+        type="password"
+        name="password"
+        id="txtPassword"
+        placeholder="Ingrese su contraseña"
+      >
+    </div>
 
-    <input
-      class="form-control"
-      type="password"
-      name="password"
-      id="txtPassword"
-      placeholder="Ingrese su contraseña"
-    >
-  </div>
-
-  <!-- Botón -->
-  <div class="d-grid mb-3">
-    <button type="button" class="btn btn-dark" onclick="ingresar()" id="btnIngresar">
-      Iniciar Sesión
-    </button>
-  </div>
-
+    <!-- Botón -->
+    <div class="d-grid mb-3">
+      <button type="submit" class="btn btn-dark" id="btnIngresar">
+        Iniciar Sesión
+      </button>
+    </div>
+  </form>
   <!-- Recuperar contraseña -->
   <div class="text-center mb-4">
     <a href="/reset-password">
