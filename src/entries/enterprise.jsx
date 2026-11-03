@@ -16,6 +16,7 @@ import PanelEmpresa from '../pages/enterprise/PanelEmpresa'
 import MisConvocatorias from '../pages/enterprise/MisConvocatorias'
 import NuevaConvocatoria from '../pages/enterprise/NuevaConvocatoria'
 import CarreraListado from '../pages/enterprise/CarreraListado'
+import CarreraNueva from '../pages/enterprise/CarreraNueva'
 
 import './enterprise.css'
 
@@ -94,8 +95,9 @@ function App() {
         {/* Empresa */} 
         <Route path="perfil" element={<PerfilEmpresa />} />
         <Route path="resenas" element={<Resenas />} />
-        {/* Carreras */} 
+        {/* Carreras */}
         <Route path="carrers" element={<CarreraListado />} />
+        <Route path="carrers/new" element={<CarreraNueva />} />
         {/* Cuenta */} 
         <Route path="cambiar-contrasena" element={<CambiarContrasena />} />
         <Route path="configuracion" element={<Configuracion />} />

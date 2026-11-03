@@ -174,6 +174,30 @@ export async function createCarrer(req, res) {
     });
   }
 }
+export async function carreraNueva(req, res) {
+  try {
+    console.log('0 ++++++++++++++++++++');
+    console.log(req.body);
+    const newCarrer = await carrerService.create(req.body);
+    console.log('1 ++++++++++++++++++++');
+    console.log(newCarrer);
+    console.log('2 ++++++++++++++++++++');
+    return res.status(201).json({
+      success: true,
+      message: 'Carrera creada con éxito',
+      data: null, //newCarrer,
+      error: null
+    });
+  } catch (error) {
+    console.error(error.stack);
+    return res.status(500).json({
+      success: false,
+      message: 'Error al crear la carrera',
+      data: null,
+      error: error.message
+    });
+  }
+}
 
 /**
  * Actualizar una carrera existente (PUT)
