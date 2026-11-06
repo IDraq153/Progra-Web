@@ -2,11 +2,13 @@
 // src/pages/enterprise/CarreraListado.jsx
 
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './CarreraListado.css';
 import axios from 'axios';
 
 export default function CarreraListado() {
+  const navigate = useNavigate();
+
   const [carrers, setCarrers] = useState([]);
   const [message, setMessage] = useState("");
   const [statusMessage, setStatusMessage] = useState(false);
@@ -30,6 +32,12 @@ export default function CarreraListado() {
     }
   };
   const _eliminar = async (e, id) => {
+    const confirmar = window.confirm(
+      '¿Estás seguro de que deseas eliminar esta carrera? Esta acción no se puede deshacer.'
+    );
+
+    if (!confirmar) return;
+
     try {
       const response = await axios.delete('/api/v1/carrers/' + id);
       _cargarCarreras();
@@ -40,6 +48,9 @@ export default function CarreraListado() {
       console.error(error);
     }
   };
+  const _editar = async(e, id) => {
+    navigate('/enterprise/carrers/' + id + '/edit');
+  }
 
   return (
     <>
@@ -70,7 +81,7 @@ export default function CarreraListado() {
               <td>{carrer.id}</td>
               <td>{carrer.name}</td>
               <td>
-                <button>Editar</button>
+                <button onClick={(e) => _editar(e, carrer.id)}>Editar</button>
                 <button onClick={(e) => _eliminar(e,carrer.id)}>Eliminar</button>
               </td>
             </tr>
