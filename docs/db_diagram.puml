@@ -1,4 +1,4 @@
-@startuml
+@startuml activate
 !define table(x) entity x << (T,#FFAAAA) >>
 !define primary_key(x) <b><color:red>x</color></b>
 !define foreign_key(x) <color:blue>x</color>
@@ -156,6 +156,7 @@ entity "logs" as logs {
 
 entity "profiles" as profiles {
   * id : INT
+  name : VARCHAR(30)
   --
   created : DATETIME
   updated : DATETIME

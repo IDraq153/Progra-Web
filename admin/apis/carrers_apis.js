@@ -1,4 +1,4 @@
-// admin/controllers/carrers_controller.js
+//admin\apis\carrers_apis.js
 import * as carrerService from '../services/carrers_services.js';
 
 export function test(req, res) {
