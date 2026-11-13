@@ -68,3 +68,15 @@ Instalar dependencias:
 npm install -g vercel
 vercel login
 vercel --prod
+
+# ===== BASE DE DATOS (local) =====
+DB="postgres://postgres:123@localhost:5433/bolsa?sslmode=disable"
+DB_SSL=false
+
+# Respaldo: solo se usan si borras la línea DB de arriba
+DB_HOST=localhost
+DB_PORT=5433
+DB_NAME=bolsa
+DB_USER=postgres
+DB_PASS=123
+
