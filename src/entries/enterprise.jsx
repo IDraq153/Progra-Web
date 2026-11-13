@@ -17,6 +17,7 @@ import MisConvocatorias from '../pages/enterprise/MisConvocatorias'
 import NuevaConvocatoria from '../pages/enterprise/NuevaConvocatoria'
 import CarreraListado from '../pages/enterprise/CarreraListado'
 import CarreraDetalle from '../pages/enterprise/CarreraDetalle'
+import EstudianteListado from '../pages/enterprise/EstudianteListado'
 
 import './enterprise.css'
 
@@ -102,6 +103,8 @@ function App() {
         {/* Cuenta */} 
         <Route path="cambiar-contrasena" element={<CambiarContrasena />} />
         <Route path="configuracion" element={<Configuracion />} />
+        {/* Estudiantes */}
+        <Route path="students" element={<EstudianteListado />} />
       </Route>
     </Routes>
   )

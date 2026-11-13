@@ -1,25 +1,50 @@
+import { Student, User, Profile, Semester } from '../models/index.js';
 
-import Student from '../models/student.js';
+/**
+ * Incluye el usuario del estudiante con su perfil (en lugar de solo profile_id).
+ * No se expone password ni reset_token.
+ */
+const withProfile = {
+  model: User,
+  as: 'user',
+  attributes: ['id'],
+  include: [
+    {
+      model: Profile,
+      as: 'profile',
+      attributes: ['id', 'name']
+    }
+  ]
+};
+
+/**
+ * Incluye el semestre del estudiante (id y nombre).
+ */
+const withSemester = {
+  model: Semester,
+  as: 'semester',
+  attributes: ['id', 'name']
+};
 
 /**
  * Obtener todos los estudiantes
  */
 const findAll = async () => {
-  return await Student.findAll();
+  return await Student.findAll({ include: [withProfile, withSemester] });
 };
 
 /**
  * Obtener todos los estudiantes con opciones de ordenamiento
  */
 const findAllSimple = async (options = {}) => {
-  return await Student.findAll(options);
+  return await Student.findAll({ ...options, include: [withProfile, withSemester] });
 };
 
 /**
  * Obtener estudiantes paginados
  */
 const findAllPaginated = async (options = {}) => {
-  return await Student.findAll(options);
+  return await Student.findAll({ ...options, include: [withProfile, withSemester] });
 };
 
 /**
@@ -33,7 +58,7 @@ const count = async (where = {}) => {
  * Obtener estudiante por ID
  */
 const findById = async (id) => {
-  return await Student.findByPk(id);
+  return await Student.findByPk(id, { include: [withProfile, withSemester] });
 };
 
 /**

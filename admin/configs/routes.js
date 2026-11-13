@@ -64,5 +64,6 @@ router.get('/enterprise/perfil', enterprises.home);
 router.get('/enterprise/resenas', enterprises.home);
 router.get('/enterprise/cambiar-contrasena', enterprises.home);
 router.get('/enterprise/carrers/:id/edit', enterprises.home);
+router.get('/enterprise/students', enterprises.home);
 
 export default router;
