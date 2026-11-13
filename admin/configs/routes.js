@@ -7,6 +7,7 @@ import * as enterprises from '../controllers/enterprise_controllers.js';
 import * as nationApis from '../apis/nations_apis.js';
 import * as carrerApis from '../apis/carrers_apis.js';
 import * as studentApis from '../apis/students_apis.js';
+import * as semesterApis from '../apis/semesters_apis.js';
 
 import {
   redirectIfAuthenticated,
@@ -40,6 +41,9 @@ router.delete('/api/v1/carrers/:id', carrerApis.deleteCarrer);
 router.get('/api/v1/carrers/:id', carrerApis.getCarrerById);
 router.put('/api/v1/carrers/:id', carrerApis.updateCarrer);
 
+// api semesters
+router.get('/api/v1/semesters', semesterApis.listSemestersSimple);
+
 // api students
 router.get('/api/v1/students', studentApis.listStudentsSimple);
 router.post('/api/v1/students', studentApis.createStudent);
@@ -64,5 +68,6 @@ router.get('/enterprise/perfil', enterprises.home);
 router.get('/enterprise/resenas', enterprises.home);
 router.get('/enterprise/cambiar-contrasena', enterprises.home);
 router.get('/enterprise/carrers/:id/edit', enterprises.home);
+router.get('/enterprise/students', enterprises.home);
 
 export default router;

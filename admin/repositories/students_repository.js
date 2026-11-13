@@ -1,5 +1,5 @@
 
-import { Student, User, Profile } from '../models/index.js';
+import { Student, User, Profile, Semester } from '../models/index.js';
 
 /**
  * Incluye el usuario del estudiante con su perfil (en lugar de solo profile_id).
@@ -19,24 +19,33 @@ const withProfile = {
 };
 
 /**
+ * Incluye el semestre del estudiante (id y nombre).
+ */
+const withSemester = {
+  model: Semester,
+  as: 'semester',
+  attributes: ['id', 'name']
+};
+
+/**
  * Obtener todos los estudiantes
  */
 const findAll = async () => {
-  return await Student.findAll({ include: [withProfile] });
+  return await Student.findAll({ include: [withProfile, withSemester] });
 };
 
 /**
  * Obtener todos los estudiantes con opciones de ordenamiento
  */
 const findAllSimple = async (options = {}) => {
-  return await Student.findAll({ ...options, include: [withProfile] });
+  return await Student.findAll({ ...options, include: [withProfile, withSemester] });
 };
 
 /**
  * Obtener estudiantes paginados
  */
 const findAllPaginated = async (options = {}) => {
-  return await Student.findAll({ ...options, include: [withProfile] });
+  return await Student.findAll({ ...options, include: [withProfile, withSemester] });
 };
 
 /**
@@ -50,7 +59,7 @@ const count = async (where = {}) => {
  * Obtener estudiante por ID
  */
 const findById = async (id) => {
-  return await Student.findByPk(id, { include: [withProfile] });
+  return await Student.findByPk(id, { include: [withProfile, withSemester] });
 };
 
 /**
