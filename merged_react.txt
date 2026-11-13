@@ -1,0 +1,6471 @@
+
+==================================================
+ARCHIVO: src\entries\admin.css
+==================================================
+
+
+
+
+==================================================
+ARCHIVO: src\entries\admin.jsx
+==================================================
+
+// src/entries/admin.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+
+// Estilos globales
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './admin.css';
+
+// Componentes parciales
+import Sidebar from '../partials/Sidebar';
+import Navbar from '../partials/Navbar';
+
+// Páginas del sistema (CRUDs)
+import DashboardPage from '../pages/DashboardPage';
+import NationsPage from '../pages/NationsPage';
+import LeaguesPage from '../pages/LeaguesPage';
+import TeamsPage from '../pages/TeamsPage';
+import PlayersPage from '../pages/PlayersPage';
+import CatalogsPage from '../pages/CatalogsPage';
+
+// Layout Principal (Dashboard + Sidebar + Navbar)
+function AdminDashboardLayout() {
+  return (
+    <div className="d-flex" style={{ minHeight: '100vh' }}>
+      <Sidebar />
+      <div className="flex-grow-1 d-flex flex-column bg-light">
+        <Navbar />
+        <main className="p-4 flex-grow-1">
+          {/* El contenido de la ruta activa se renderiza aquí */}
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
+}
+
+// Configuración de Rutas
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin" element={<AdminDashboardLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="nations" element={<NationsPage />} />
+          <Route path="leagues" element={<LeaguesPage />} />
+          <Route path="teams" element={<TeamsPage />} />
+          <Route path="players" element={<PlayersPage />} />
+          <Route path="catalogs" element={<CatalogsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// Montaje en el DOM
+const container = document.getElementById('root');
+if (container) {
+  ReactDOM.createRoot(container).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\entries\enterprise.css
+==================================================
+
+/* =========================================================
+   PALETA DE COLORES
+   ========================================================= */
+
+:root {
+  --color-primary: #123A5F;
+  --color-primary-dark: #0C2A46;
+  --color-primary-soft: #E6EEF5;
+
+  --color-accent: #0F8B7E;
+
+  --color-bg: #F7F9FB;
+  --color-surface: #FFFFFF;
+  --color-border: #DCE3EA;
+
+  --color-text: #16212B;
+  --color-text-muted: #67757F;
+
+  --color-success: #1E7F4D;
+  --color-warning: #B7791F;
+  --color-danger: #B4322B;
+  --color-info: #3B6FA8;
+
+  /* Bootstrap */
+  --bs-primary: #123A5F;
+  --bs-primary-rgb: 18, 58, 95;
+
+  --bs-success: #1E7F4D;
+  --bs-success-rgb: 30, 127, 77;
+
+  --bs-warning: #B7791F;
+  --bs-warning-rgb: 183, 121, 31;
+
+  --bs-danger: #B4322B;
+  --bs-danger-rgb: 180, 50, 43;
+
+  --bs-info: #3B6FA8;
+  --bs-info-rgb: 59, 111, 168;
+
+  --bs-body-bg: #F7F9FB;
+  --bs-body-color: #16212B;
+
+  --bs-border-color: #DCE3EA;
+}
+
+
+/* =========================================================
+   ESTRUCTURA GENERAL
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+
+/*
+ * #root ocupa como mínimo toda la pantalla.
+ *
+ * Esto permite que:
+ * Cabecera
+ *      ↓
+ * contenido
+ *      ↓
+ * Footer
+ *
+ * se distribuyan correctamente en vertical.
+ */
+#root {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   LAYOUT ENTERPRISE
+   ========================================================= */
+
+/*
+ * Área que contiene:
+ *
+ * ┌──────────────┬─────────────────────┐
+ * │              │                     │
+ * │   SIDEBAR    │      CONTENT        │
+ * │              │                     │
+ * └──────────────┴─────────────────────┘
+ */
+.enterprise-layout {
+  width: 100%;
+
+  flex: 1;
+
+  display: flex;
+
+  min-width: 0;
+}
+
+
+/*
+ * Contenido principal.
+ *
+ * El flex: 1 hace que ocupe todo el espacio
+ * disponible que deja el sidebar.
+ */
+.enterprise-content {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 30px;
+
+  background-color: var(--color-bg);
+}
+
+
+/* =========================================================
+   COMPONENTES GENERALES
+   ========================================================= */
+
+.card {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+
+/* =========================================================
+   UTILIDADES PERSONALIZADAS
+   ========================================================= */
+
+.bg-primary-soft {
+  background-color: var(--color-primary-soft) !important;
+}
+
+.bg-surface {
+  background-color: var(--color-surface) !important;
+}
+
+.text-primary-custom {
+  color: var(--color-primary) !important;
+}
+
+.text-muted-custom {
+  color: var(--color-text-muted) !important;
+}
+
+.border-custom {
+  border-color: var(--color-border) !important;
+}
+
+
+/* =========================================================
+   BOTÓN ACCENT
+   ========================================================= */
+
+.btn-accent {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0F8B7E;
+  --bs-btn-border-color: #0F8B7E;
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0C746A;
+  --bs-btn-hover-border-color: #0C746A;
+
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #095F57;
+  --bs-btn-active-border-color: #095F57;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+
+  .enterprise-content {
+    padding: 20px;
+  }
+
+}
+
+
+
+==================================================
+ARCHIVO: src\entries\enterprise.jsx
+==================================================
+
+// src\entries\enterprise.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+} from 'react-router-dom'
+
+import CabeceraEnterprise from '../partials/CabeceraEnterprise'
+import SideBarEnterprise from '../partials/SideBarEnterprise'
+import FooterEnterprise from '../partials/FooterEnterprise'
+// paginas
+import PanelEmpresa from '../pages/enterprise/PanelEmpresa'
+import MisConvocatorias from '../pages/enterprise/MisConvocatorias'
+import NuevaConvocatoria from '../pages/enterprise/NuevaConvocatoria'
+import CarreraListado from '../pages/enterprise/CarreraListado'
+import CarreraDetalle from '../pages/enterprise/CarreraDetalle'
+
+import './enterprise.css'
+
+function EnterpriseLayout() {
+  return (
+    <>
+      <CabeceraEnterprise />
+      <div className="enterprise-layout">
+        <SideBarEnterprise />
+        <main className="enterprise-content">
+          <Outlet />
+        </main>
+      </div>
+      <FooterEnterprise />
+    </>
+  )
+}
+
+function Postulantes() {
+  return (
+    <>
+      <h1>Bandeja de postulantes</h1>
+      <p>Aquí se mostrarán los postulantes.</p>
+    </>
+  )
+}
+
+function PerfilEmpresa() {
+  return (
+    <>
+      <h1>Perfil de la empresa</h1>
+      <p>Información de la empresa.</p>
+    </>
+  )
+}
+
+function Resenas() {
+  return (
+    <>
+      <h1>Reseñas recibidas</h1>
+      <p>Aquí se mostrarán las reseñas.</p>
+    </>
+  )
+}
+
+function CambiarContrasena() {
+  return (
+    <>
+      <h1>Cambiar contraseña</h1>
+      <p>Formulario para cambiar la contraseña.</p>
+    </>
+  )
+}
+
+function Configuracion() {
+  return (
+    <>
+      <h1>Configuración</h1>
+      <p>Configuración de la cuenta empresarial.</p>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      {/* Layout general de empresa */}
+      <Route path="/enterprise" element={<EnterpriseLayout />}>
+        {/* /enterprise */}
+        <Route index element={<PanelEmpresa />} />
+        {/* Convocatorias */}
+        <Route path="convocatorias" element={<MisConvocatorias />} />
+        <Route path="convocatorias/nueva" element={<NuevaConvocatoria />} />
+        {/* Postulantes */}
+        <Route path="postulantes" element={<Postulantes />} />
+        {/* Empresa */} 
+        <Route path="perfil" element={<PerfilEmpresa />} />
+        <Route path="resenas" element={<Resenas />} />
+        {/* Carreras */}
+        <Route path="carrers" element={<CarreraListado />} />
+        <Route path="carrers/new" element={<CarreraDetalle />} />
+        <Route path="carrers/:id/edit" element={<CarreraDetalle />} />
+        {/* Cuenta */} 
+        <Route path="cambiar-contrasena" element={<CambiarContrasena />} />
+        <Route path="configuracion" element={<Configuracion />} />
+      </Route>
+    </Routes>
+  )
+}
+
+const container = document.getElementById('root')
+
+if (container) {
+  ReactDOM.createRoot(container).render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\entries\owner.jsx
+==================================================
+
+// src/entries/owner.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import Cabecera from '../partials/Cabecera'
+
+function HolaMundo() {
+  return (
+    <>
+      <p>Hola mundo</p>
+      <p>Estamos entendiendo algo por alli</p>
+    </>
+  )
+}
+
+// 3. Montaje en el DOM
+const container = document.getElementById('root')
+
+if (container) {
+  ReactDOM.createRoot(container).render(
+    <React.StrictMode>
+      <Cabecera />
+      <HolaMundo />
+    </React.StrictMode>
+  )
+}
+
+
+==================================================
+ARCHIVO: src\entries\web.css
+==================================================
+
+/* src/entries/web.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+/* Variables CSS personalizadas para reemplazar la regla @theme de Tailwind */
+:root {
+  --font-sans: "Inter", sans-serif;
+  --color-primary: #ff501c;
+  --color-secondary: #222222;
+  
+  /* Sobrescribir variables nativas de Bootstrap si deseas reemplazar su color primario */
+  --bs-primary: #ff501c;
+  --bs-primary-rgb: 255, 80, 28;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+
+==================================================
+ARCHIVO: src\entries\web.jsx
+==================================================
+
+// src/entries/web.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './web.css' 
+
+// 1. Recibimos los props mediante desestructuración ({ titulo, descripcion, color })
+function MiTarjeta({ titulo, descripcion, color }) {
+  return (
+    <div style={{ padding: '1rem', border: '1px solid #e5e7eb', borderRadius: '8px', maxWidth: '400px', margin: '1rem auto', background: '#f9fafb' }}>
+      {/* Usamos el prop 'color' y 'titulo' */}
+      <h3 style={{ color: color || '#10b981', margin: '0 0 0.5rem 0' }}>{titulo}</h3>
+      {/* Usamos el prop 'descripcion' */}
+      <p style={{ margin: 0, color: '#4b5563' }}>{descripcion}</p>
+    </div>
+  )
+}
+
+// 2. Pasamos los valores (props) desde el componente principal
+function HolaMundo() {
+  return (
+    <div style={{ fontFamily: 'sans-serif', textAlign: 'center', marginTop: '2rem' }}>
+      <h1 style={{ color: '#4f46e5' }}>¡Hola Mundo desde React! 🚀</h1>
+      <p>Esta es mi sub-aplicación desplegada desde <code>src/entries/web.jsx</code>.</p>
+      
+      {/* Llamamos al componente enviándole diferentes props */}
+      <MiTarjeta 
+        titulo="Primer Componente con Props 🧩🧩🧩🧩🧩" 
+        descripcion="Este texto viene desde un prop dinámico." 
+        color="#4f46e5"
+      />
+
+      <MiTarjeta 
+        titulo="¡Segundo Componente reutilizable! ✨" 
+        descripcion="Puedes usar el mismo componente con distinta información." 
+        color="#e11d48"
+      />
+
+      <MiTarjeta 
+        titulo="¡Segundo Componente reutilizable! ✨" 
+        descripcion="Puedes usar el mismo componente con distinta información." 
+        color="#4b5563"
+      />
+
+      <div className="p-4 flex gap-3 items-center">
+        <FontAwesomeIcon icon={faGlobe} className="text-blue-500 text-2xl" />
+        <button className="bg-blue-600 text-white px-3 py-1.5 rounded flex items-center gap-2">
+          <FontAwesomeIcon icon={faPlus} />
+          Crear Nación
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// 3. Montaje en el DOM
+const container = document.getElementById('root')
+
+if (container) {
+  ReactDOM.createRoot(container).render(
+    <React.StrictMode>
+      <HolaMundo />
+    </React.StrictMode>
+  )
+}
+
+
+==================================================
+ARCHIVO: src\helpers\datetime.js
+==================================================
+
+// src/helpers/datetime.js
+export const toDatetimeLocalWithSeconds = (dateStr) => {
+  const date = new Date(dateStr);
+  const offset = date.getTimezoneOffset();
+  date.setMinutes(date.getMinutes() - offset); // Convertir a hora local
+  return date.toISOString().slice(0, 19); // YYYY-MM-DDTHH:MM:SS
+};
+
+export default toDatetimeLocalWithSeconds;
+
+
+==================================================
+ARCHIVO: src\helpers\random.js
+==================================================
+
+// src/helpers/random.js
+const random = (length) => {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+export default random;
+
+
+==================================================
+ARCHIVO: src\pages\CatalogsPage.jsx
+==================================================
+
+// src/pages/CatalogsPage.jsx
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTags, faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+export default function CatalogsPage() {
+  const [activeTab, setActiveTab] = useState('play_styles');
+
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h4 className="fw-bold m-0">
+          <FontAwesomeIcon icon={faTags} className="me-2 text-primary" /> 
+          Catálogos Auxiliares
+        </h4>
+        <button className="btn btn-primary btn-sm d-flex align-items-center gap-2">
+          <FontAwesomeIcon icon={faPlus} /> Agregar Registro
+        </button>
+      </div>
+
+      {/* Navegación por Pestañas */}
+      <ul className="nav nav-tabs mb-4">
+        <li className="nav-item">
+          <button 
+            className={`nav-link ${activeTab === 'play_styles' ? 'active fw-bold' : ''}`}
+            onClick={() => setActiveTab('play_styles')}
+          >
+            Estilos (`play_styles`)
+          </button>
+        </li>
+        <li className="nav-item">
+          <button 
+            className={`nav-link ${activeTab === 'positions' ? 'active fw-bold' : ''}`}
+            onClick={() => setActiveTab('positions')}
+          >
+            Posiciones (`positions`)
+          </button>
+        </li>
+        <li className="nav-item">
+          <button 
+            className={`nav-link ${activeTab === 'foots' ? 'active fw-bold' : ''}`}
+            onClick={() => setActiveTab('foots')}
+          >
+            Pies (`foots`)
+          </button>
+        </li>
+        <li className="nav-item">
+          <button 
+            className={`nav-link ${activeTab === 'sexs' ? 'active fw-bold' : ''}`}
+            onClick={() => setActiveTab('sexs')}
+          >
+            Sexo (`sexs`)
+          </button>
+        </li>
+      </ul>
+
+      {/* Contenido según la pestaña seleccionada */}
+      <table className="table table-hover align-middle border">
+        <thead className="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre / Descripción (`name`)</th>
+            <th className="text-end">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {activeTab === 'play_styles' && (
+            <>
+              <tr><td>1</td><td>Tiki-Taka</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+              <tr><td>2</td><td>Counter-Attack</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+            </>
+          )}
+
+          {activeTab === 'positions' && (
+            <>
+              <tr><td>1</td><td>ST (Delantero)</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+              <tr><td>2</td><td>GK (Portero)</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+            </>
+          )}
+
+          {activeTab === 'foots' && (
+            <>
+              <tr><td>1</td><td>Left (Zurdo)</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+              <tr><td>2</td><td>Right (Diestro)</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+            </>
+          )}
+
+          {activeTab === 'sexs' && (
+            <>
+              <tr><td>1</td><td>Male</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+              <tr><td>2</td><td>Female</td><td className="text-end"><button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button><button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button></td></tr>
+            </>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\pages\DashboardPage.jsx
+==================================================
+
+// src/pages/DashboardPage.jsx
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faTrophy, faShieldHalved, faUserNinja } from '@fortawesome/free-solid-svg-icons';
+
+export default function DashboardPage() {
+  return (
+    <div>
+      <h2 className="fw-bold mb-3">Panel Principal</h2>
+      <p className="text-muted">Resumen general de las entidades registradas en el sistema.</p>
+
+      <div className="row g-3 mt-2">
+        <div className="col-md-3">
+          <div className="card border-0 shadow-sm p-3 border-start border-primary border-4">
+            <div className="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 className="text-muted text-uppercase fw-bold m-0">Naciones</h6>
+                <h2 className="fw-bold m-0 mt-2">211</h2>
+              </div>
+              <FontAwesomeIcon icon={faGlobe} className="text-primary fs-1 opacity-25" />
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card border-0 shadow-sm p-3 border-start border-success border-4">
+            <div className="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 className="text-muted text-uppercase fw-bold m-0">Ligas</h6>
+                <h2 className="fw-bold m-0 mt-2">45</h2>
+              </div>
+              <FontAwesomeIcon icon={faTrophy} className="text-success fs-1 opacity-25" />
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card border-0 shadow-sm p-3 border-start border-warning border-4">
+            <div className="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 className="text-muted text-uppercase fw-bold m-0">Equipos</h6>
+                <h2 className="fw-bold m-0 mt-2">720</h2>
+              </div>
+              <FontAwesomeIcon icon={faShieldHalved} className="text-warning fs-1 opacity-25" />
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card border-0 shadow-sm p-3 border-start border-danger border-4">
+            <div className="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 className="text-muted text-uppercase fw-bold m-0">Jugadores</h6>
+                <h2 className="fw-bold m-0 mt-2">18,500</h2>
+              </div>
+              <FontAwesomeIcon icon={faUserNinja} className="text-danger fs-1 opacity-25" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\CarreraDetalle.css
+==================================================
+
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\CarreraDetalle.jsx
+==================================================
+
+
+import { useState, useEffect } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import './CarreraDetalle.css';
+import axios from 'axios';
+
+export default function CarreraDetalle() {
+  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState(false);
+  const [name, setName] = useState("");
+
+  const { id } = useParams();
+
+  // Obtener carrera para editar
+  const _obtenerCarrera = async () => {
+    if (id !== undefined) {
+      try {
+        const response = await axios.get('/api/v1/carrers/' + id);
+
+        console.log(response.data);
+        setName(response.data.data.name);
+
+      } catch (error) {
+        console.error(error);
+        setMessage(
+          error.response?.data?.message || "Error al obtener la carrera"
+        );
+        setStatusMessage(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    _obtenerCarrera();
+  }, [id]);
+
+  // Registrar o actualizar carrera
+  const _guardarCarrera = async (e) => {
+    e.preventDefault();
+
+    try {
+      let response;
+
+      if (id === undefined) {
+        // Registrar nueva carrera
+        response = await axios.post('/api/v1/carrers', {
+          name: name
+        });
+        if (response.data.success) {
+          setName("");
+        }
+      } else {
+        // Actualizar carrera
+        response = await axios.put(`/api/v1/carrers/` + id, {
+          name: name
+        });
+      }
+
+      setMessage(response.data.message);
+      setStatusMessage(response.data.success);
+
+
+    } catch (error) {
+      console.error(error);
+
+      setMessage(
+        error.response?.data?.message || "Error al registrar la carrera"
+      );
+
+      setStatusMessage(false);
+    }
+  };
+
+  // Renderizar componente
+  return (
+    <>
+      <h1>{id === undefined ? "Carrera Nueva" : "Editar Carrera"}</h1>
+
+      {message !== "" && (
+        <div
+          className={`alert ${statusMessage ? 'alert-success' : 'alert-danger'}`}
+          role="alert"
+          id="alertMessage"
+        >
+          {message}
+        </div>
+      )}
+
+      <NavLink to="/enterprise/carrers" className="btn btn-secondary mb-3">
+        Retroceder
+      </NavLink>
+
+      <form onSubmit={_guardarCarrera}>
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">
+            Nombre de la carrera
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            className="form-control"
+            placeholder="Ingrese el nombre de la carrera"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={30}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary">
+          Guardar Carrera
+        </button>
+      </form>
+    </>
+  );
+}
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\CarreraListado.css
+==================================================
+
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\CarreraListado.jsx
+==================================================
+
+
+// src/pages/enterprise/CarreraListado.jsx
+
+import { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import './CarreraListado.css';
+import axios from 'axios';
+
+export default function CarreraListado() {
+  const navigate = useNavigate();
+
+  const [carrers, setCarrers] = useState([]);
+  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState(false);
+
+  // const _eliminar = async (e, id) => {
+  //   alert(id);
+  // }
+
+  useEffect(() => {
+    _cargarCarreras();
+  }, []);
+
+  const _cargarCarreras = async () => {
+    try {
+      const response = await axios.get('/api/v1/carrers');
+      setCarrers(response.data.data);
+      setMessage(response.data.message);
+      setStatusMessage(response.data.success);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const _eliminar = async (e, id) => {
+    const confirmar = window.confirm(
+      '¿Estás seguro de que deseas eliminar esta carrera? Esta acción no se puede deshacer.'
+    );
+
+    if (!confirmar) return;
+
+    try {
+      const response = await axios.delete('/api/v1/carrers/' + id);
+      _cargarCarreras();
+
+      setMessage(response.data.message);
+      setStatusMessage(response.data.success);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const _editar = async(e, id) => {
+    navigate('/enterprise/carrers/' + id + '/edit');
+  }
+
+  return (
+    <>
+      <h1>Carrera Listado</h1>
+      <p>Bienvenido al panel de empresa.</p>
+
+      {message !== "" && (
+        <div className={`alert ${statusMessage ? 'alert-success' : 'alert-danger'}`} role="alert" id="alertMessage">
+          {message}
+        </div>
+      )}
+
+      <NavLink to="/enterprise/carrers/new" className="btn btn-secondary">
+        Agregar Carrera
+      </NavLink>
+
+      <table className="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Operaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(carrers) && carrers.map((carrer) => (
+            <tr key={carrer.id}>
+              <td>{carrer.id}</td>
+              <td>{carrer.name}</td>
+              <td>
+                <button onClick={(e) => _editar(e, carrer.id)}>Editar</button>
+                <button onClick={(e) => _eliminar(e,carrer.id)}>Eliminar</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+}
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\MisConvocatorias.css
+==================================================
+
+/* =========================================================
+   MIS CONVOCATORIAS
+   ========================================================= */
+
+.mis-convocatorias {
+  width: 100%;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.mis-convocatorias-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 16px;
+}
+
+.mis-convocatorias .breadcrumb-custom {
+  margin-bottom: 4px;
+
+  color: var(--color-text-muted);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.mis-convocatorias .breadcrumb-custom span {
+  margin: 0 4px;
+
+  color: var(--color-border);
+}
+
+.mis-convocatorias-header h1 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTÓN NUEVA CONVOCATORIA
+   ========================================================= */
+
+.nueva-convocatoria-btn {
+  min-height: 34px;
+
+  padding: 7px 13px;
+
+  color: #fff;
+
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+
+  border-radius: 5px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.nueva-convocatoria-btn:hover {
+  color: #fff;
+
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.convocatorias-toolbar {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+
+.search-wrapper {
+  position: relative;
+
+  width: 280px;
+  flex: 0 0 280px;
+}
+
+.search-wrapper .form-control {
+  height: 36px;
+
+  padding: 7px 10px 7px 30px;
+
+  color: var(--color-text);
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 5px;
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  box-shadow: none;
+}
+
+.search-wrapper .form-control:focus {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 2px rgba(18, 58, 95, 0.08);
+}
+
+.search-wrapper .form-control::placeholder {
+  color: #9AA6AF;
+}
+
+.search-icon {
+  position: absolute;
+
+  top: 50%;
+  left: 10px;
+
+  z-index: 2;
+
+  transform: translateY(-50%);
+
+  color: var(--color-text-muted);
+
+  font-size: 14px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   FILTROS DE ESTADO
+   ========================================================= */
+
+.status-filters {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.status-filter {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  min-height: 34px;
+
+  padding: 6px 10px;
+
+  color: var(--color-text);
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 5px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.status-filter span {
+  font-size: 10px;
+
+  color: var(--color-text-muted);
+}
+
+.status-filter:hover {
+  color: var(--color-primary);
+
+  border-color: var(--color-primary);
+}
+
+.status-filter.active {
+  color: #fff;
+
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.status-filter.active span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* =========================================================
+   INFORMACIÓN DE RESULTADOS
+   ========================================================= */
+
+.results-info {
+  margin-left: auto;
+
+  color: var(--color-text-muted);
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
+
+.convocatorias-table-wrapper {
+  overflow-x: auto;
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+.convocatorias-table {
+  width: 100%;
+
+  margin: 0;
+
+  color: var(--color-text);
+
+  table-layout: fixed;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   CABECERA DE TABLA
+   ========================================================= */
+
+.convocatorias-table thead th {
+  height: 40px;
+
+  padding: 8px 12px;
+
+  color: var(--color-text-muted);
+
+  background-color: #F7F9FB;
+
+  border-bottom: 1px solid var(--color-border);
+
+  font-size: 10px;
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  vertical-align: middle;
+}
+
+
+/* Anchos */
+
+.convocatorias-table th:nth-child(1) {
+  width: 28%;
+}
+
+.convocatorias-table th:nth-child(2) {
+  width: 19%;
+}
+
+.convocatorias-table th:nth-child(3) {
+  width: 11%;
+}
+
+.convocatorias-table th:nth-child(4) {
+  width: 11%;
+}
+
+.convocatorias-table th:nth-child(5) {
+  width: 9%;
+}
+
+.convocatorias-table th:nth-child(6) {
+  width: 13%;
+}
+
+.convocatorias-table th:nth-child(7) {
+  width: 9%;
+}
+
+
+/* =========================================================
+   FILAS
+   ========================================================= */
+
+.convocatorias-table tbody tr {
+  height: 46px;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.convocatorias-table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.convocatorias-table tbody tr:hover {
+  background-color: #FAFCFE;
+}
+
+.convocatorias-table tbody td {
+  padding: 9px 12px;
+
+  color: var(--color-text);
+
+  border-bottom: 1px solid var(--color-border);
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   PUESTO
+   ========================================================= */
+
+.position-cell {
+  color: var(--color-text) !important;
+
+  font-size: 13px !important;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   CARRERAS
+   ========================================================= */
+
+.careers-cell {
+  color: var(--color-text-muted) !important;
+
+  font-size: 12px !important;
+}
+
+
+/* =========================================================
+   POSTULANTES
+   ========================================================= */
+
+.applicants-cell {
+  text-align: center;
+
+  font-size: 12px !important;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   ESTADOS
+   ========================================================= */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 22px;
+
+  padding: 4px 8px;
+
+  border-radius: 4px;
+
+  font-size: 10px;
+  line-height: 1;
+
+  font-weight: 600;
+}
+
+
+/* Vigente */
+
+.status-vigente {
+  color: var(--color-success);
+
+  background-color: rgba(30, 127, 77, 0.10);
+}
+
+
+/* Cerrada */
+
+.status-cerrada {
+  color: var(--color-text-muted);
+
+  background-color: #EEF1F3;
+}
+
+
+/* Borrador */
+
+.status-borrador {
+  color: var(--color-text-muted);
+
+  background-color: #F0F3F5;
+
+  border: 1px solid var(--color-border);
+}
+
+
+/* =========================================================
+   ACCIONES
+   ========================================================= */
+
+.actions-column {
+  text-align: center;
+}
+
+.action-button {
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  color: var(--color-text-muted);
+
+  background: transparent;
+
+  border: 0;
+
+  border-radius: 4px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.action-button:hover {
+  color: var(--color-primary);
+
+  background-color: var(--color-primary-soft);
+}
+
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
+
+.empty-state {
+  height: 120px;
+
+  color: var(--color-text-muted) !important;
+
+  text-align: center;
+
+  vertical-align: middle !important;
+
+  font-size: 13px !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 12px;
+}
+
+.table-summary {
+  color: var(--color-text-muted);
+
+  font-size: 11px;
+}
+
+.pagination-custom {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.pagination-button {
+  min-width: 36px;
+  height: 32px;
+
+  padding: 6px 9px;
+
+  color: var(--color-text-muted);
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 4px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.pagination-button:hover:not(:disabled) {
+  color: var(--color-primary);
+
+  border-color: var(--color-primary);
+}
+
+.pagination-button.active {
+  color: #fff;
+
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.pagination-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .convocatorias-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .results-info {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+}
+
+
+@media (max-width: 767.98px) {
+
+  .mis-convocatorias-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .nueva-convocatoria-btn {
+    width: 100%;
+  }
+
+  .search-wrapper {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .status-filters {
+    width: 100%;
+
+    overflow-x: auto;
+  }
+
+  .status-filter {
+    flex: 0 0 auto;
+  }
+
+  .convocatorias-table-wrapper {
+    margin-right: -1px;
+    margin-left: -1px;
+  }
+
+  .convocatorias-table {
+    min-width: 950px;
+  }
+
+}
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\MisConvocatorias.jsx
+==================================================
+
+import { useMemo, useState } from 'react'
+import './MisConvocatorias.css'
+
+const convocatorias = [
+  {
+    id: 1,
+    title: 'Practicante de Soporte TI',
+    careers: ['Ing. de Sistemas'],
+    published: '02/08/2026',
+    closed: '18/09/2026',
+    applicants: 31,
+    status: 'Vigente',
+    is_draft: false,
+  },
+  {
+    id: 2,
+    title: 'Practicante de Gestión Humana',
+    careers: ['Psicología', 'Administración'],
+    published: '05/08/2026',
+    closed: '20/09/2026',
+    applicants: 14,
+    status: 'Vigente',
+    is_draft: false,
+  },
+  {
+    id: 3,
+    title: 'Practicante de Mejora de Procesos',
+    careers: ['Ing. Industrial'],
+    published: '12/08/2026',
+    closed: '26/09/2026',
+    applicants: 22,
+    status: 'Vigente',
+    is_draft: false,
+  },
+  {
+    id: 4,
+    title: 'Practicante de Desarrollo de Software',
+    careers: ['Ing. de Sistemas'],
+    published: '18/08/2026',
+    closed: '30/09/2026',
+    applicants: 23,
+    status: 'Vigente',
+    is_draft: false,
+  },
+  {
+    id: 5,
+    title: 'Practicante de Finanzas',
+    careers: ['Contabilidad', 'Administración'],
+    published: '02/07/2026',
+    closed: '31/07/2026',
+    applicants: 18,
+    status: 'Cerrada',
+    is_draft: false,
+  },
+  {
+    id: 6,
+    title: 'Practicante de Comercio Exterior',
+    careers: ['Administración'],
+    published: '15/06/2026',
+    closed: '14/07/2026',
+    applicants: 9,
+    status: 'Cerrada',
+    is_draft: false,
+  },
+  {
+    id: 7,
+    title: 'Practicante de Data Analytics',
+    careers: ['Ing. de Sistemas', 'Ing. Industrial'],
+    published: '01/06/2026',
+    closed: '30/06/2026',
+    applicants: 27,
+    status: 'Cerrada',
+    is_draft: false,
+  },
+  {
+    id: 8,
+    title: 'Practicante de Marketing Digital',
+    careers: ['Marketing', 'Comunicación'],
+    published: '—',
+    closed: '—',
+    applicants: 0,
+    status: 'Borrador',
+    is_draft: true,
+  },
+  {
+    id: 9,
+    title: 'Practicante de Arquitectura de Datos',
+    careers: ['Ing. de Sistemas'],
+    published: '—',
+    closed: '—',
+    applicants: 0,
+    status: 'Borrador',
+    is_draft: true,
+  },
+]
+
+const filtros = [
+  {
+    id: 'todas',
+    label: 'Todas',
+  },
+  {
+    id: 'vigentes',
+    label: 'Vigentes',
+  },
+  {
+    id: 'cerradas',
+    label: 'Cerradas',
+  },
+  {
+    id: 'borradores',
+    label: 'Borradores',
+  },
+]
+
+function filtrarConvocatorias(data, filtro) {
+  switch (filtro) {
+    case 'vigentes':
+      return data.filter((item) => item.status === 'Vigente')
+
+    case 'cerradas':
+      return data.filter((item) => item.status === 'Cerrada')
+
+    case 'borradores':
+      return data.filter((item) => item.is_draft)
+
+    default:
+      return data
+  }
+}
+
+export default function MisConvocatorias() {
+  const [filtro, setFiltro] = useState('todas')
+  const [search, setSearch] = useState('')
+
+  const cantidades = useMemo(() => ({
+    todas: convocatorias.length,
+    vigentes: convocatorias.filter(
+      (item) => item.status === 'Vigente'
+    ).length,
+    cerradas: convocatorias.filter(
+      (item) => item.status === 'Cerrada'
+    ).length,
+    borradores: convocatorias.filter(
+      (item) => item.is_draft
+    ).length,
+  }), [])
+
+  const convocatoriasFiltradas = useMemo(() => {
+    const resultado = filtrarConvocatorias(convocatorias, filtro)
+
+    const texto = search.trim().toLowerCase()
+
+    if (!texto) {
+      return resultado
+    }
+
+    return resultado.filter((item) => {
+      const titulo = item.title.toLowerCase()
+
+      const carreras = item.careers
+        .join(' ')
+        .toLowerCase()
+
+      return (
+        titulo.includes(texto) ||
+        carreras.includes(texto)
+      )
+    })
+  }, [filtro, search])
+
+  return (
+    <div className="mis-convocatorias">
+
+      {/* =====================================================
+          HEADER
+          ===================================================== */}
+      <div className="mis-convocatorias-header">
+
+        <div>
+          <div className="breadcrumb-custom">
+            Convocatorias <span>•</span> Mis convocatorias
+          </div>
+
+          <h1>Mis convocatorias</h1>
+        </div>
+
+        <button
+          type="button"
+          className="btn btn-primary nueva-convocatoria-btn"
+        >
+          + Nueva convocatoria
+        </button>
+
+      </div>
+
+
+      {/* =====================================================
+          FILTROS
+          ===================================================== */}
+      <div className="convocatorias-toolbar">
+
+        <div className="search-wrapper">
+          <span className="search-icon">
+            ○
+          </span>
+
+          <input
+            id="search"
+            name="search"
+            type="search"
+            className="form-control"
+            placeholder="Buscar por puesto o carrera"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+        </div>
+
+
+        <div className="status-filters">
+
+          {filtros.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`status-filter ${
+                filtro === item.id ? 'active' : ''
+              }`}
+              onClick={() => setFiltro(item.id)}
+            >
+              {item.label}
+
+              <span>
+                {cantidades[item.id]}
+              </span>
+            </button>
+          ))}
+
+        </div>
+
+
+        <div className="results-info">
+          {convocatoriasFiltradas.length} convocatoria
+          {convocatoriasFiltradas.length !== 1 ? 's' : ''}
+          {' '}· ordenadas por cierre
+        </div>
+
+      </div>
+
+
+      {/* =====================================================
+          TABLA
+          ===================================================== */}
+      <div className="convocatorias-table-wrapper">
+
+        <table className="table convocatorias-table">
+
+          <thead>
+            <tr>
+              <th scope="col">PUESTO</th>
+              <th scope="col">CARRERAS</th>
+              <th scope="col">PUBLICACIÓN</th>
+              <th scope="col">CIERRE</th>
+              <th scope="col">POSTULANTES</th>
+              <th scope="col">ESTADO</th>
+              <th scope="col" className="actions-column">
+                ACCIONES
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {convocatoriasFiltradas.map((convocatoria) => (
+              <tr key={convocatoria.id}>
+
+                {/* title */}
+                <td className="position-cell">
+                  {convocatoria.title}
+                </td>
+
+
+                {/* applications_carrers */}
+                <td className="careers-cell">
+                  {convocatoria.careers.join(', ')}
+                </td>
+
+
+                {/* published */}
+                <td>
+                  {convocatoria.published}
+                </td>
+
+
+                {/* closed */}
+                <td>
+                  {convocatoria.closed}
+                </td>
+
+
+                {/* applications_students */}
+                <td className="applicants-cell">
+                  {convocatoria.applicants}
+                </td>
+
+
+                {/* is_draft / estado */}
+                <td>
+                  <span
+                    className={`status-badge status-${convocatoria.status.toLowerCase()}`}
+                  >
+                    {convocatoria.status}
+                  </span>
+                </td>
+
+
+                {/* acciones */}
+                <td className="actions-column">
+
+                  <button
+                    type="button"
+                    className="action-button"
+                    aria-label={`Acciones para ${convocatoria.title}`}
+                  >
+                    ...
+                  </button>
+
+                </td>
+
+              </tr>
+            ))}
+
+
+            {convocatoriasFiltradas.length === 0 && (
+              <tr>
+                <td
+                  colSpan="7"
+                  className="empty-state"
+                >
+                  No se encontraron convocatorias.
+                </td>
+              </tr>
+            )}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      {/* =====================================================
+          FOOTER TABLA
+          ===================================================== */}
+      <div className="table-footer">
+
+        <div className="table-summary">
+          Mostrando 1–{convocatoriasFiltradas.length} de{' '}
+          {convocatoriasFiltradas.length} convocatorias
+        </div>
+
+        <div className="pagination-custom">
+
+          <button
+            type="button"
+            disabled
+            className="pagination-button"
+          >
+            Anterior
+          </button>
+
+          <button
+            type="button"
+            className="pagination-button active"
+          >
+            1
+          </button>
+
+          <button
+            type="button"
+            className="pagination-button"
+          >
+            Siguiente
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\NuevaConvocatoria.css
+==================================================
+
+/* =========================================================
+   NUEVA CONVOCATORIA
+   ========================================================= */
+
+.nueva-convocatoria {
+  width: 100%;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.convocatoria-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 16px;
+}
+
+.breadcrumb-custom {
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--color-text-muted);
+}
+
+.breadcrumb-custom span {
+  margin: 0 4px;
+  color: var(--color-border);
+}
+
+.convocatoria-header h1 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.convocatoria-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.convocatoria-actions .btn {
+  min-height: 34px;
+
+  padding: 7px 13px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  border-radius: 5px;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+.convocatoria-form {
+  --bs-gutter-y: 10px;
+}
+
+
+/* =========================================================
+   CARDS / SECCIONES
+   ========================================================= */
+
+.convocatoria-card {
+  padding: 16px;
+
+  margin-bottom: 10px;
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+
+/* =========================================================
+   TÍTULO DE SECCIÓN
+   ========================================================= */
+
+.section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 14px;
+
+  color: var(--color-text);
+
+  font-size: 11px;
+  line-height: 1;
+
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.section-title span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  color: #fff;
+  background-color: var(--color-primary);
+
+  border-radius: 50%;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+.convocatoria-card .form-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--color-text);
+
+  font-size: 10px;
+  line-height: 1.25;
+
+  font-weight: 700;
+  letter-spacing: 0.45px;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.convocatoria-card .form-control,
+.convocatoria-card .form-select {
+  min-height: 34px;
+
+  padding: 7px 10px;
+
+  color: var(--color-text);
+
+  background-color: #fff;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 5px;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  box-shadow: none;
+}
+
+.convocatoria-card textarea.form-control {
+  min-height: 76px;
+
+  line-height: 1.5;
+
+  resize: vertical;
+}
+
+.convocatoria-card .form-control::placeholder {
+  color: #9AA6AF;
+}
+
+.convocatoria-card .form-control:focus,
+.convocatoria-card .form-select:focus {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 2px rgba(18, 58, 95, 0.08);
+}
+
+.convocatoria-card .form-select {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+   ========================================================= */
+
+.convocatoria-card .input-group-text {
+  min-height: 34px;
+
+  padding: 7px 10px;
+
+  color: var(--color-text-muted);
+
+  background-color: #fff;
+
+  border-color: var(--color-border);
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   AYUDA
+   ========================================================= */
+
+.form-help {
+  margin-top: 4px;
+
+  color: var(--color-text-muted);
+
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   TAGS / MULTISELECT
+   ========================================================= */
+
+.tag-input {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 5px;
+
+  padding: 5px 7px;
+
+  background-color: #fff;
+
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+.selection-tag {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 5px 7px;
+
+  color: var(--color-primary);
+
+  background-color: var(--color-primary-soft);
+
+  border-radius: 4px;
+
+  font-size: 11px;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.selection-tag button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: var(--color-primary);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 13px;
+  line-height: 10px;
+
+  cursor: pointer;
+}
+
+.selection-tag button:hover {
+  color: var(--color-danger);
+}
+
+.add-tag {
+  padding: 3px;
+
+  color: var(--color-text-muted);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.add-tag:hover {
+  color: var(--color-primary);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.notification-check {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 6px;
+}
+
+.notification-check .form-check-input {
+  width: 14px;
+  height: 14px;
+
+  margin: 0;
+
+  border-color: var(--color-border);
+
+  border-radius: 3px;
+
+  cursor: pointer;
+}
+
+.notification-check .form-check-input:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.notification-check .form-check-label {
+  color: var(--color-text);
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   AVISO DE PUBLICACIÓN
+   ========================================================= */
+
+.publication-notice {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  min-height: 72px;
+
+  padding: 12px;
+
+  color: var(--color-primary);
+
+  background-color: var(--color-primary-soft);
+
+  border-radius: 5px;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.notice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 17px;
+  height: 17px;
+
+  color: #fff;
+
+  background-color: var(--color-info);
+
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTÓN ACCENT
+   ========================================================= */
+
+.nueva-convocatoria .btn-accent {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0C746A;
+  --bs-btn-hover-border-color: #0C746A;
+
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #095F57;
+  --bs-btn-active-border-color: #095F57;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+  .convocatoria-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .convocatoria-actions {
+    width: 100%;
+  }
+
+  .convocatoria-actions .btn {
+    flex: 1;
+  }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+  .nueva-convocatoria {
+    padding: 0;
+  }
+
+  .convocatoria-card {
+    padding: 13px;
+  }
+
+  .convocatoria-header h1 {
+    font-size: 22px;
+  }
+
+  .convocatoria-card .form-control,
+  .convocatoria-card .form-select {
+    font-size: 13px;
+  }
+
+}
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\NuevaConvocatoria.jsx
+==================================================
+
+// src/pages/enterprise/NuevaConvocatoria.jsx
+import './NuevaConvocatoria.css'
+
+export default function NuevaConvocatoria() {
+  return (
+    <div className="nueva-convocatoria">
+
+      {/* =====================================================
+          HEADER
+          ===================================================== */}
+      <div className="convocatoria-header">
+        <div>
+          <div className="breadcrumb-custom">
+            Convocatorias <span>•</span> Nueva convocatoria
+          </div>
+
+          <h1>Nueva convocatoria</h1>
+        </div>
+
+        <div className="convocatoria-actions">
+          <button
+            type="button"
+            className="btn btn-light btn-sm"
+          >
+            Guardar como borrador
+          </button>
+
+          <button
+            type="submit"
+            form="form-nueva-convocatoria"
+            className="btn btn-accent btn-sm"
+          >
+            Publicar convocatoria
+          </button>
+        </div>
+      </div>
+
+
+      {/* =====================================================
+          FORMULARIO
+          ===================================================== */}
+      <form
+        id="form-nueva-convocatoria"
+        className="row g-2 convocatoria-form"
+      >
+
+        {/* ===================================================
+            COLUMNA IZQUIERDA
+            =================================================== */}
+        <div className="col-lg-6">
+
+          {/* =================================================
+              1. PUESTO
+              ================================================= */}
+          <section className="convocatoria-card">
+
+            <div className="section-title">
+              <span>1</span>
+              PUESTO
+            </div>
+
+
+            {/* title */}
+            <div className="mb-2">
+              <label htmlFor="title" className="form-label">
+                TÍTULO DEL PUESTO
+              </label>
+
+              <input
+                id="title"
+                name="title"
+                type="text"
+                className="form-control"
+                maxLength={40}
+                placeholder="Ej. Practicante de Desarrollo de Software"
+              />
+            </div>
+
+
+            {/* description */}
+            <div className="mb-2">
+              <label htmlFor="description" className="form-label">
+                DESCRIPCIÓN DE LA PRÁCTICA
+              </label>
+
+              <textarea
+                id="description"
+                name="description"
+                className="form-control"
+                rows="4"
+                placeholder="Describe la práctica y el objetivo de la posición..."
+              />
+            </div>
+
+
+            {/* functions */}
+            <div>
+              <label htmlFor="functions" className="form-label">
+                FUNCIONES PRINCIPALES
+              </label>
+
+              <textarea
+                id="functions"
+                name="functions"
+                className="form-control"
+                rows="3"
+                placeholder="Describe las principales funciones..."
+              />
+            </div>
+
+          </section>
+
+
+          {/* =================================================
+              2. PERFIL BUSCADO
+              ================================================= */}
+          <section className="convocatoria-card">
+
+            <div className="section-title">
+              <span>2</span>
+              PERFIL BUSCADO
+            </div>
+
+
+            {/* carrer_id */}
+            <div className="mb-2">
+              <label htmlFor="carrer_id" className="form-label">
+                CARRERAS
+              </label>
+
+              <div
+                id="carrer_id"
+                className="tag-input"
+              >
+                <span className="selection-tag">
+                  Ingeniería de Sistemas
+                  <button type="button">×</button>
+                </span>
+
+                <span className="selection-tag">
+                  Ingeniería Industrial
+                  <button type="button">×</button>
+                </span>
+
+                <button
+                  type="button"
+                  className="add-tag"
+                >
+                  + agregar
+                </button>
+              </div>
+            </div>
+
+
+            <div className="row g-2">
+
+              {/* sementer_id */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="sementer_id"
+                  className="form-label"
+                >
+                  CICLO MÍNIMO
+                </label>
+
+                <select
+                  id="sementer_id"
+                  name="sementer_id"
+                  className="form-select"
+                >
+                  <option value="">
+                    Seleccionar
+                  </option>
+
+                  <option value="1">Primero</option>
+                  <option value="2">Segundo</option>
+                  <option value="3">Tercero</option>
+                  <option value="4">Cuarto</option>
+                  <option value="5">Quinto</option>
+                  <option value="6">Sexto</option>
+                  <option value="7">Séptimo</option>
+                  <option value="8">Octavo</option>
+                  <option value="9">Noveno</option>
+                  <option value="10">Décimo</option>
+                </select>
+              </div>
+
+
+              {/* skill_id */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="skill_id"
+                  className="form-label"
+                >
+                  HABILIDADES DESEADAS
+                </label>
+
+                <div
+                  id="skill_id"
+                  className="tag-input skills-input"
+                >
+                  <span className="selection-tag">
+                    React
+                    <button type="button">×</button>
+                  </span>
+
+                  <span className="selection-tag">
+                    SQL
+                    <button type="button">×</button>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+
+        {/* ===================================================
+            COLUMNA DERECHA
+            =================================================== */}
+        <div className="col-lg-6">
+
+          {/* =================================================
+              3. CONDICIONES
+              ================================================= */}
+          <section className="convocatoria-card">
+
+            <div className="section-title">
+              <span>3</span>
+              CONDICIONES
+            </div>
+
+
+            <div className="row g-2">
+
+              {/* modality_id */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="modality_id"
+                  className="form-label"
+                >
+                  MODALIDAD
+                </label>
+
+                <select
+                  id="modality_id"
+                  name="modality_id"
+                  className="form-select"
+                >
+                  <option value="">
+                    Seleccionar
+                  </option>
+
+                  <option value="1">
+                    Presencial
+                  </option>
+
+                  <option value="2">
+                    Híbrido
+                  </option>
+
+                  <option value="3">
+                    Remoto
+                  </option>
+                </select>
+              </div>
+
+
+              {/* workday_id */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="workday_id"
+                  className="form-label"
+                >
+                  JORNADA
+                </label>
+
+                <select
+                  id="workday_id"
+                  name="workday_id"
+                  className="form-select"
+                >
+                  <option value="">
+                    Seleccionar
+                  </option>
+
+                  <option value="1">
+                    Tiempo completo
+                  </option>
+
+                  <option value="2">
+                    Medio tiempo
+                  </option>
+
+                  <option value="3">
+                    Part time
+                  </option>
+                </select>
+              </div>
+
+
+              {/* district_id */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="district_id"
+                  className="form-label"
+                >
+                  DISTRITO
+                </label>
+
+                <select
+                  id="district_id"
+                  name="district_id"
+                  className="form-select"
+                >
+                  <option value="">
+                    Seleccionar
+                  </option>
+
+                  <option value="1">
+                    Miraflores
+                  </option>
+
+                  <option value="2">
+                    San Isidro
+                  </option>
+
+                  <option value="3">
+                    San Borja
+                  </option>
+
+                  <option value="4">
+                    Santiago de Surco
+                  </option>
+                </select>
+              </div>
+
+
+              {/* salarry */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="salarry"
+                  className="form-label"
+                >
+                  SUBVENCIÓN MENSUAL
+                </label>
+
+                <div className="input-group">
+
+                  <span className="input-group-text">
+                    S/
+                  </span>
+
+                  <input
+                    id="salarry"
+                    name="salarry"
+                    type="number"
+                    className="form-control"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                  />
+
+                </div>
+
+                <div className="form-help">
+                  Entre S/ 1,025.00 y S/ 2,500.00
+                </div>
+              </div>
+
+
+              {/* benefits */}
+              <div className="col-12">
+                <label
+                  htmlFor="benefits"
+                  className="form-label"
+                >
+                  BENEFICIOS
+                </label>
+
+                <textarea
+                  id="benefits"
+                  name="benefits"
+                  className="form-control"
+                  rows="3"
+                  placeholder="Describe los beneficios ofrecidos..."
+                />
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* =================================================
+              4. PUBLICACIÓN
+              ================================================= */}
+          <section className="convocatoria-card">
+
+            <div className="section-title">
+              <span>4</span>
+              PUBLICACIÓN
+            </div>
+
+
+            <div className="row g-2">
+
+              {/* published */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="published"
+                  className="form-label"
+                >
+                  FECHA DE PUBLICACIÓN
+                </label>
+
+                <input
+                  id="published"
+                  name="published"
+                  type="datetime-local"
+                  className="form-control"
+                />
+              </div>
+
+
+              {/* closed */}
+              <div className="col-md-6">
+                <label
+                  htmlFor="closed"
+                  className="form-label"
+                >
+                  FECHA DE CIERRE
+                </label>
+
+                <input
+                  id="closed"
+                  name="closed"
+                  type="datetime-local"
+                  className="form-control"
+                />
+              </div>
+
+
+              {/* vacancies */}
+              <div className="col-md-4">
+                <label
+                  htmlFor="vacancies"
+                  className="form-label"
+                >
+                  VACANTES
+                </label>
+
+                <input
+                  id="vacancies"
+                  name="vacancies"
+                  type="number"
+                  min="1"
+                  className="form-control"
+                  placeholder="2"
+                />
+              </div>
+
+
+              {/* email_notification */}
+              <div className="col-12">
+
+                <div className="form-check notification-check">
+
+                  <input
+                    id="email_notification"
+                    name="email_notification"
+                    className="form-check-input"
+                    type="checkbox"
+                    value="1"
+                  />
+
+                  <label
+                    className="form-check-label"
+                    htmlFor="email_notification"
+                  >
+                    Avisarme por correo cada vez que llegue una
+                    postulación
+                  </label>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* =================================================
+              AVISO
+              ================================================= */}
+          <div className="publication-notice">
+
+            <div className="notice-icon">
+              i
+            </div>
+
+            <div>
+              Al publicar, la convocatoria queda visible para
+              todos los estudiantes cuya carrera coincida.
+              Puedes editarla o cerrarla en cualquier momento
+              desde «Mis convocatorias».
+            </div>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\PanelEmpresa.css
+==================================================
+
+
+
+
+==================================================
+ARCHIVO: src\pages\enterprise\PanelEmpresa.jsx
+==================================================
+
+// src/pages/enterprise/PanelEmpresa.jsx
+import './PanelEmpresa.css'
+
+export default function PanelEmpresa() {
+  return (
+    <>
+      <h1>Panel de empresa en carpeta pages</h1>
+      <p>Bienvenido al panel de empresa.</p>
+    </>
+  )
+}
+
+
+==================================================
+ARCHIVO: src\pages\LeaguesPage.jsx
+==================================================
+
+// src/pages/LeaguesPage.jsx
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrophy, faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+export default function LeaguesPage() {
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h4 className="fw-bold m-0">
+          <FontAwesomeIcon icon={faTrophy} className="me-2 text-primary" /> 
+          Mantenimiento de Ligas (`leagues`)
+        </h4>
+        <button className="btn btn-primary d-flex align-items-center gap-2">
+          <FontAwesomeIcon icon={faPlus} /> Nueva Liga
+        </button>
+      </div>
+
+      <table className="table table-hover align-middle border">
+        <thead className="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre Liga (`name`)</th>
+            <th>Nación (`nation_id`)</th>
+            <th className="text-end">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>LaLiga</td>
+            <td>España</td>
+            <td className="text-end">
+              <button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button>
+              <button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Premier League</td>
+            <td>Inglaterra</td>
+            <td className="text-end">
+              <button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button>
+              <button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\pages\NationsPage.jsx
+==================================================
+
+// src/pages/NationsPage.jsx
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faPlus, 
+  faGlobe, 
+  faPencil, 
+  faTrash,
+  faEye,
+  faCopy
+} from '@fortawesome/free-solid-svg-icons';
+import DataTable from '../widgets/DataTable.jsx';
+//import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
+
+export default function NationsPage() {
+  const { token } = "useAuth()";
+  //const [refreshKey, setRefreshKey] = useState(0);
+
+  // Configuración de columnas
+  const columnKeys = ['id', 'name'];
+  const columnNames = ['ID', 'Nombre'];
+  const columnTypes = ['td', 'input[text]'];
+  const columnClasses = ['text-center', ''];
+  const columnStyles = [{ width: '80px' }, {}];
+  const tdStyles = [{}, {}];
+
+  // Botones de acción personalizados con FontAwesome
+  const actionButtons = [
+    {
+      label: 'Editar',
+      class: 'btn-warning btn-sm',
+      icon: faPencil, // Usar el icono directamente desde FontAwesome
+      style: { minWidth: '70px' },
+      action: (record) => {
+        console.log('Editar nación:', record);
+        toast.info(`Editando: ${record.name}`);
+      }
+    },
+    {
+      label: 'Ver',
+      class: 'btn-info btn-sm',
+      icon: faEye,
+      style: { minWidth: '70px' },
+      action: (record) => {
+        console.log('Ver nación:', record);
+        toast.info(`Viendo: ${record.name}`);
+      }
+    },
+    {
+      label: 'Duplicar',
+      class: 'btn-secondary btn-sm',
+      icon: faCopy,
+      style: { minWidth: '80px' },
+      action: (record) => {
+        console.log('Duplicar nación:', record);
+        toast.info(`Duplicando: ${record.name}`);
+      }
+    },
+    {
+      label: 'Eliminar',
+      class: 'btn-danger btn-sm',
+      icon: faTrash,
+      style: { minWidth: '70px' },
+      action: (record) => {
+        console.log('Eliminar nación:', record);
+        toast.warning(`¿Eliminar ${record.name}?`);
+      }
+    }
+  ];
+
+  // Configuración de paginación
+  const pagination = {
+    display: true,
+    step: 10,
+    totalPages: 0,
+    actualPage: 1
+  };
+
+  // Parámetros de consulta para filtros
+  const [queryParams, setQueryParams] = useState({
+    page: 1,
+    limit: 10,
+    name: ''
+  });
+
+  // Manejador para el botón "Agregar"
+  const handleAdd = () => {
+    toast.info('Abrir modal para crear nueva nación');
+  };
+
+  // Manejador para guardar cambios
+  const handleSave = () => {
+    toast.success('Cambios guardados correctamente');
+    setRefreshKey(prev => prev + 1);
+  };
+
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+          <FontAwesomeIcon icon={faGlobe} className="me-2" />
+          Mantenimiento de Naciones
+        </h2>
+        
+        {/* Filtro por nombre */}
+        <div className="d-flex gap-2 align-items-center">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Buscar por nombre..."
+            value={queryParams.name}
+            onChange={(e) => {
+              setQueryParams(prev => ({
+                ...prev,
+                name: e.target.value,
+                page: 1
+              }));
+            }}
+            style={{ width: '250px' }}
+          />
+          <button 
+            className="btn btn-primary d-flex align-items-center gap-2"
+            onClick={handleAdd}
+          >
+            <FontAwesomeIcon icon={faPlus} /> Crear Nación
+          </button>
+        </div>
+      </div>
+
+      {/* DataTable con configuración completa */}
+      <DataTable
+        //key={refreshKey}
+        recordId="id"
+        fetchURL="/api/v1/nations"
+        saveURL="/api/v1/nations/save"
+        deleteURL="/api/v1/nations"
+        columnKeys={columnKeys}
+        columnTypes={columnTypes}
+        columnNames={columnNames}
+        columnClasses={columnClasses}
+        columnStyles={columnStyles}
+        tdStyles={tdStyles}
+        actionButtons={actionButtons}
+        pagination={pagination}
+        queryParams={queryParams}
+        jwtToken={token}
+        addButton={{
+          display: true,
+          disabled: false,
+          action: handleAdd
+        }}
+        saveButton={{
+          display: true,
+          disabled: false,
+          action: handleSave
+        }}
+        // Configuración personalizada de la columna de acciones
+        actionsColumnClass="text-center" // Clase para el encabezado de acciones
+        actionsColumnStyle={{ minWidth: '320px', backgroundColor: '#f8f9fa' }}
+        actionsCellClass="text-center" // Clase para cada celda de acciones
+        actionsCellStyle={{ padding: '6px 4px' }}
+        messages={{
+          success: 'Naciones actualizadas correctamente',
+          errorNetwork: 'No hay conexión con el servidor',
+          notFound: 'No se encontraron naciones',
+          serverError: 'Error interno del servidor',
+          requestError: 'No se recibió respuesta del servidor',
+          otherError: 'Ocurrió un error al obtener los datos'
+        }}
+        onAlert={(message) => {
+          if (message.status === 'success') {
+            toast.success(message.text);
+          } else if (message.status === 'warning') {
+            toast.warning(message.text);
+          } else if (message.status === 'danger') {
+            toast.error(message.text);
+          } else {
+            toast.info(message.text);
+          }
+        }}
+      />
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\pages\PlayersPage.jsx
+==================================================
+
+// src/pages/PlayersPage.jsx
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserNinja, faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+export default function PlayersPage() {
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h4 className="fw-bold m-0">
+          <FontAwesomeIcon icon={faUserNinja} className="me-2 text-primary" /> 
+          Mantenimiento de Jugadores (`players`)
+        </h4>
+        <button className="btn btn-primary d-flex align-items-center gap-2">
+          <FontAwesomeIcon icon={faPlus} /> Nuevo Jugador
+        </button>
+      </div>
+
+      <div className="table-responsive">
+        <table className="table table-hover align-middle border">
+          <thead className="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Ranking</th>
+              <th>Edad / Altura / Peso</th>
+              <th>Pie / Sexo</th>
+              <th>Equipo</th>
+              <th>Nación</th>
+              <th className="text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <div className="fw-bold">Lionel Messi</div>
+                <small className="text-muted">/players/messi.jpg</small>
+              </td>
+              <td><span className="badge bg-success">90</span></td>
+              <td>36 yrs | 169 cm | 67 kg</td>
+              <td>Izquierdo / Masc</td>
+              <td>Inter Miami</td>
+              <td>Argentina</td>
+              <td className="text-end">
+                <button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button>
+                <button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\pages\TeamsPage.jsx
+==================================================
+
+// src/pages/TeamsPage.jsx
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShieldHalved, faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+export default function TeamsPage() {
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h4 className="fw-bold m-0">
+          <FontAwesomeIcon icon={faShieldHalved} className="me-2 text-primary" /> 
+          Mantenimiento de Equipos (`teams`)
+        </h4>
+        <button className="btn btn-primary d-flex align-items-center gap-2">
+          <FontAwesomeIcon icon={faPlus} /> Nuevo Equipo
+        </button>
+      </div>
+
+      <table className="table table-hover align-middle border">
+        <thead className="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre Equipo (`name`)</th>
+            <th>Liga (`league_id`)</th>
+            <th className="text-end">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Real Madrid CF</td>
+            <td>LaLiga</td>
+            <td className="text-end">
+              <button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button>
+              <button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Manchester City</td>
+            <td>Premier League</td>
+            <td className="text-end">
+              <button className="btn btn-sm btn-outline-warning me-2"><FontAwesomeIcon icon={faEdit} /></button>
+              <button className="btn btn-sm btn-outline-danger"><FontAwesomeIcon icon={faTrash} /></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\partials\Cabecera.css
+==================================================
+
+.rojito{
+  color: red;
+}
+
+
+==================================================
+ARCHIVO: src\partials\Cabecera.jsx
+==================================================
+
+// src/partials/Cabecera.jsx
+import './Cabecera.css'
+
+export default function Cabecera() {
+  return (
+    <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div className="container">
+
+        {/* Logo */}
+        <a className="navbar-brand" href="/">
+          MiApp
+        </a>
+
+        {/* Botón responsive */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menuNavegacion"
+          aria-controls="menuNavegacion"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Menú */}
+        <div className="collapse navbar-collapse" id="menuNavegacion">
+
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" href="/">
+                Home
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a className="nav-link" href="/nosotros">
+                Nosotros
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a className="nav-link" href="/servicios">
+                Servicios
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a className="nav-link" href="/contacto">
+                Contacto
+              </a>
+            </li>
+          </ul>
+
+          {/* Login a la derecha */}
+          <a href="/login" className="btn btn-primary">
+            Login
+          </a>
+
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\partials\CabeceraEnterprise.css
+==================================================
+
+/* src/partials/CabeceraEnterprise.css */
+
+.enterprise-navbar {
+  width: 100%;
+  min-height: 72px;
+
+  background-color: #123A5F;
+  border-bottom: 1px solid #0C2A46;
+
+  padding: 0;
+}
+
+/* Contenedor a todo el ancho */
+.enterprise-navbar-content {
+  width: 100%;
+
+  min-height: 72px;
+
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* =========================================================
+   IZQUIERDA
+   ========================================================= */
+
+.enterprise-navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Nombre de aplicación */
+.enterprise-brand {
+  color: #FFFFFF;
+  text-decoration: none;
+
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+
+  white-space: nowrap;
+}
+
+.enterprise-brand:hover {
+  color: #E6EEF5;
+}
+
+/* Panel de empresa */
+.enterprise-nav-link {
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+
+  color: #E6EEF5;
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  border-bottom: 3px solid transparent;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.enterprise-nav-link:hover {
+  color: #FFFFFF;
+  border-bottom-color: #0F8B7E;
+}
+
+/* =========================================================
+   DERECHA
+   ========================================================= */
+
+.enterprise-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+
+.enterprise-search {
+  width: 300px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+
+  background-color: #FFFFFF;
+
+  border: 1px solid #DCE3EA;
+  border-radius: 6px;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.enterprise-search:focus-within {
+  border-color: #0F8B7E;
+
+  box-shadow: 0 0 0 3px rgba(15, 139, 126, 0.15);
+}
+
+.enterprise-search-icon {
+  padding-left: 13px;
+
+  color: #67757F;
+
+  display: flex;
+  align-items: center;
+}
+
+.enterprise-search-input {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 12px 0 9px;
+
+  border: 0;
+  outline: 0;
+
+  color: #16212B;
+  background-color: transparent;
+
+  font-size: 14px;
+}
+
+.enterprise-search-input::placeholder {
+  color: #67757F;
+}
+
+.enterprise-search-input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+/* =========================================================
+   EMPRESA
+   ========================================================= */
+
+.enterprise-company-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 4px 4px 4px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #FFFFFF;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.enterprise-company-button::after {
+  margin-left: 4px;
+
+  color: #E6EEF5;
+}
+
+.enterprise-company-button:hover,
+.enterprise-company-button:focus {
+  color: #FFFFFF;
+  background: transparent;
+}
+
+/* Círculo con iniciales */
+.enterprise-avatar {
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #0F8B7E;
+  color: #FFFFFF;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Información de empresa */
+.enterprise-company-info {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.2;
+
+  min-width: 140px;
+}
+
+.enterprise-company-info strong {
+  color: #FFFFFF;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.enterprise-company-info small {
+  margin-top: 3px;
+
+  color: #E6EEF5;
+
+  font-size: 11px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   DROPDOWN
+   ========================================================= */
+
+.enterprise-dropdown {
+  min-width: 220px;
+
+  margin-top: 10px;
+
+  padding: 8px;
+
+  border: 1px solid #DCE3EA;
+  border-radius: 7px;
+
+  box-shadow: 0 8px 24px rgba(22, 33, 43, 0.12);
+}
+
+.enterprise-dropdown .dropdown-item {
+  padding: 9px 10px;
+
+  border-radius: 5px;
+
+  color: #16212B;
+
+  font-size: 14px;
+}
+
+.enterprise-dropdown .dropdown-item:hover {
+  background-color: #E6EEF5;
+  color: #123A5F;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+  .enterprise-navbar-content {
+    padding: 0 18px;
+  }
+
+  .enterprise-search {
+    width: 240px;
+  }
+
+  .enterprise-company-info {
+    min-width: 110px;
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  .enterprise-navbar {
+    min-height: auto;
+  }
+
+  .enterprise-navbar-content {
+    min-height: 64px;
+
+    padding: 12px 16px;
+
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .enterprise-navbar-left {
+    gap: 18px;
+  }
+
+  .enterprise-nav-link {
+    height: auto;
+  }
+
+  .enterprise-navbar-right {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .enterprise-search {
+    flex: 1;
+    width: auto;
+  }
+
+  .enterprise-company-info {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .enterprise-brand {
+    font-size: 18px;
+  }
+
+  .enterprise-nav-link {
+    font-size: 11px;
+  }
+
+  .enterprise-navbar-right {
+    width: 100%;
+  }
+
+  .enterprise-company-button {
+    flex-shrink: 0;
+  }
+}
+
+
+
+==================================================
+ARCHIVO: src\partials\CabeceraEnterprise.jsx
+==================================================
+
+// src/partials/CabeceraEnterprise.jsx
+import { Link } from 'react-router-dom'
+import './CabeceraEnterprise.css'
+
+export default function CabeceraEnterprise() {
+  return (
+    <nav className="navbar enterprise-navbar">
+      <div className="enterprise-navbar-content">
+
+        {/* Izquierda */}
+        <div className="enterprise-navbar-left">
+
+          {/* Nombre de la aplicación */}
+          <Link
+            className="enterprise-brand"
+            to="/enterprise"
+          >
+            PrácticaLima
+          </Link>
+
+          {/* Navegación */}
+          <Link
+            className="enterprise-nav-link"
+            to="/enterprise"
+          >
+            PANEL DE EMPRESA
+          </Link>
+
+        </div>
+
+        {/* Derecha */}
+        <div className="enterprise-navbar-right">
+
+          {/* Buscador */}
+          <div className="enterprise-search">
+            <span className="enterprise-search-icon">
+              <i className="bi bi-search"></i>
+            </span>
+
+            <input
+              type="search"
+              className="enterprise-search-input"
+              placeholder="Buscar postulante"
+              aria-label="Buscar postulante"
+            />
+          </div>
+
+          {/* Dropdown empresa */}
+          <div className="dropdown">
+
+            <button
+              className="enterprise-company-button dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {/* Iniciales */}
+              <span className="enterprise-avatar">
+                PL
+              </span>
+
+              {/* Información */}
+              <span className="enterprise-company-info">
+                <strong>PrácticaLima</strong>
+                <small>Empresa - cuenta verificada</small>
+              </span>
+            </button>
+
+            <ul className="dropdown-menu dropdown-menu-end enterprise-dropdown">
+
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/enterprise/perfil"
+                >
+                  Mi perfil
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/enterprise/configuracion"
+                >
+                  Configuración
+                </Link>
+              </li>
+
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+
+              <li>
+                <a
+                  className="dropdown-item text-danger"
+                  href="/logout"
+                >
+                  Cerrar sesión
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\partials\FooterEnterprise.css
+==================================================
+
+/* src/partials/FooterEnterprise.css */
+
+.enterprise-footer {
+  width: 100%;
+
+  background-color: #123A5F;
+  color: #E6EEF5;
+
+  border-top: 1px solid #0C2A46;
+}
+
+.enterprise-footer-content {
+  width: 100%;
+
+  min-height: 40px;
+
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 13px;
+}
+
+/* Izquierda */
+.enterprise-footer-left {
+  font-weight: 600;
+}
+
+/* Derecha */
+.enterprise-footer-right {
+  color: #E6EEF5;
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+
+  .enterprise-footer-content {
+    min-height: auto;
+
+    padding: 16px;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 6px;
+  }
+
+  .enterprise-footer-right {
+    font-size: 12px;
+  }
+}
+
+
+
+==================================================
+ARCHIVO: src\partials\FooterEnterprise.jsx
+==================================================
+
+// src\partials\FooterEnterprise.jsx
+import './FooterEnterprise.css'
+
+export default function FooterEnterprise() {
+  return (
+    <footer className="enterprise-footer">
+      <div className="enterprise-footer-content">
+
+        <div className="enterprise-footer-left">
+          PrácticaLima | Panel de Empresa
+        </div>
+
+        <div className="enterprise-footer-right">
+          Soporte: empresas@ulima.edu.pe - (01)4376767
+        </div>
+
+      </div>
+    </footer>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\partials\Navbar.jsx
+==================================================
+
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
+export default function Navbar({ user = { name: "Usuario Admin" } }) {
+  return (
+    <nav className="navbar navbar-expand navbar-light bg-white border-bottom px-4 py-2">
+      <div className="ms-auto d-flex align-items-center gap-3">
+        <div className="d-flex align-items-center gap-2 text-secondary">
+          <FontAwesomeIcon icon={faUser} />
+          <span className="fw-medium">{user.name}</span>
+        </div>
+        <a href="/sign-out" className="btn btn-outline-danger btn-sm d-flex align-items-center gap-2">
+          <FontAwesomeIcon icon={faSignOutAlt} />
+          Cerrar Sesión
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\partials\Sidebar.jsx
+==================================================
+
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faTrophy, faUsers, faRunning, faTags, faChartPie } from '@fortawesome/free-solid-svg-icons';
+
+export default function Sidebar() {
+  const linkClass = ({ isActive }) => 
+    `nav-link d-flex align-items-center gap-2 ${isActive ? 'active bg-primary text-white' : 'text-dark'}`;
+
+  return (
+    <div className="d-flex flex-column p-3 bg-light border-end" style={{ width: '250px', minHeight: '100vh' }}>
+      <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none px-2">
+        <span className="fs-4 fw-bold">Futbol App</span>
+      </a>
+      <hr />
+      <ul className="nav nav-pills flex-column mb-auto gap-1">
+        <li className="nav-item">
+          <NavLink to="/admin" end className={linkClass}>
+            <FontAwesomeIcon icon={faChartPie} /> Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/players" className={linkClass}>
+            <FontAwesomeIcon icon={faRunning} /> Jugadores
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/teams" className={linkClass}>
+            <FontAwesomeIcon icon={faUsers} /> Equipos
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/leagues" className={linkClass}>
+            <FontAwesomeIcon icon={faTrophy} /> Ligas
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/nations" className={linkClass}>
+            <FontAwesomeIcon icon={faGlobe} /> Naciones
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/catalogs" className={linkClass}>
+            <FontAwesomeIcon icon={faTags} /> Catálogos Auxiliares
+          </NavLink>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+
+==================================================
+ARCHIVO: src\partials\SideBarEnterprise.css
+==================================================
+
+/* src/partials/SideBarEnterprise.css */
+
+.enterprise-sidebar {
+  width: 250px;
+  min-width: 250px;
+
+  min-height: 100%;
+
+  background-color: #FFFFFF;
+
+  border-right: 1px solid #DCE3EA;
+}
+
+/* Secciones */
+.enterprise-sidebar-section {
+  padding: 18px 12px 4px;
+}
+
+/* Títulos */
+.enterprise-sidebar-title {
+  margin: 0 0 8px 6px;
+
+  color: #67757F;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+/* Lista */
+.enterprise-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+/* Enlaces */
+.enterprise-sidebar-link {
+  min-height: 30px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 10px;
+
+  border-radius: 5px;
+
+  color: #16212B;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* Cuadradito/bullet */
+.enterprise-sidebar-bullet {
+  width: 5px;
+  height: 5px;
+
+  margin-right: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 1px;
+
+  background-color: #C5D3DF;
+}
+
+/* Hover */
+.enterprise-sidebar-link:hover {
+  background-color: #F7F9FB;
+
+  color: #123A5F;
+}
+
+.enterprise-sidebar-link:hover .enterprise-sidebar-bullet {
+  background-color: #0F8B7E;
+}
+
+/* Elemento activo */
+.enterprise-sidebar-link.active {
+  background-color: #E6EEF5;
+
+  color: #123A5F;
+
+  font-weight: 600;
+}
+
+.enterprise-sidebar-link.active .enterprise-sidebar-bullet {
+  background-color: #123A5F;
+}
+
+
+
+==================================================
+ARCHIVO: src\partials\SideBarEnterprise.jsx
+==================================================
+
+// src\partials\SideBarEnterprise.jsx
+import { NavLink } from 'react-router-dom'
+import './SideBarEnterprise.css'
+
+export default function SideBarEnterprise() {
+  return (
+    <aside className="enterprise-sidebar">
+
+      {/* Convocatorias */}
+      <div className="enterprise-sidebar-section">
+
+        <h6 className="enterprise-sidebar-title">
+          CONVOCATORIAS
+        </h6>
+
+        <nav className="enterprise-sidebar-nav">
+
+          <NavLink
+            to="/enterprise/convocatorias"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Mis convocatorias
+          </NavLink>
+
+          <NavLink
+            to="/enterprise/carrers"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Listado de Carreras
+          </NavLink>
+
+          <NavLink
+            to="/enterprise/convocatorias/nueva"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Nueva convocatoria
+          </NavLink>
+
+          <NavLink
+            to="/enterprise/postulantes"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Bandeja de postulantes
+          </NavLink>
+
+        </nav>
+      </div>
+
+      {/* Empresa */}
+      <div className="enterprise-sidebar-section">
+
+        <h6 className="enterprise-sidebar-title">
+          EMPRESA
+        </h6>
+
+        <nav className="enterprise-sidebar-nav">
+
+          <NavLink
+            to="/enterprise/perfil"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Perfil de la empresa
+          </NavLink>
+
+          <NavLink
+            to="/enterprise/resenas"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Reseñas recibidas
+          </NavLink>
+
+        </nav>
+      </div>
+
+      {/* Cuenta */}
+      <div className="enterprise-sidebar-section">
+
+        <h6 className="enterprise-sidebar-title">
+          CUENTA
+        </h6>
+
+        <nav className="enterprise-sidebar-nav">
+
+          <NavLink
+            to="/enterprise/cambiar-contrasena"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Cambiar contraseña
+          </NavLink>
+
+          <a
+            href="/logout"
+            className="enterprise-sidebar-link"
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Cerrar sesión
+          </a>
+
+        </nav>
+      </div>
+
+    </aside>
+  )
+}
+
+
+
+==================================================
+ARCHIVO: src\widgets\Autocomplete.css
+==================================================
+
+/* autocomplete.css */
+.autocomplete-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-group-wrapper {
+  position: relative;
+}
+
+.form-control {
+  padding-right: 38px;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+
+.clear-btn:hover {
+  color: #333;
+}
+
+.results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.result-item:hover {
+  background-color: #f5f5f5;
+}
+
+.result-item.selected {
+  background-color: #e3f2fd;
+}
+
+.result-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.no-results {
+  padding: 12px;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.loading-text {
+  padding: 12px;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+
+==================================================
+ARCHIVO: src\widgets\Autocomplete.jsx
+==================================================
+
+// src/components/Autocomplete.jsx
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import axios from 'axios';
+import './Autocomplete.css';
+
+const Autocomplete = ({
+  searchUrl = '',
+  jwtKey = 'jwtToken',
+  placeholder = 'Buscar...',
+  minChars = 2,
+  debounceMs = 300,
+  onSelect = null,
+  idKey = 'id',
+  labelKey = 'name',
+  value: initialValue = '',
+  onSelected,
+}) => {
+  // Estado
+  const [searchTerm, setSearchTerm] = useState(initialValue || '');
+  const [results, setResults] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedLabel, setSelectedLabel] = useState('');
+  const [showResults, setShowResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [value, setValue] = useState(initialValue || '');
+
+  // Refs
+  const debounceTimerRef = useRef(null);
+  const inputRef = useRef(null);
+  const isMountedRef = useRef(true);
+
+  // Efecto para sincronizar value externo
+  useEffect(() => {
+    if (initialValue !== searchTerm) {
+      setSearchTerm(initialValue || '');
+      setValue(initialValue || '');
+    }
+  }, [initialValue]);
+
+  // Limpiar al desmontar
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
+
+  // Función de búsqueda
+  const search = useCallback(async (term) => {
+    setError('');
+    setResults([]);
+    setShowResults(false);
+
+    if (!term || term.length < minChars) {
+      return;
+    }
+
+    if (!searchUrl) {
+      setError('searchUrl no configurada');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const jwt = typeof localStorage !== 'undefined' ? localStorage.getItem(jwtKey) : null;
+      const config = {
+        headers: jwt ? { Authorization: `Bearer ${jwt}` } : {},
+      };
+
+      const url = `${searchUrl}?name=${encodeURIComponent(term)}`;
+      const response = await axios.get(url, config);
+
+      if (!isMountedRef.current) return;
+
+      if (response.data && response.data.success && response.data.data && Array.isArray(response.data.data.list)) {
+        setResults(response.data.data.list);
+        setShowResults(response.data.data.list.length > 0);
+      } else if (Array.isArray(response.data)) {
+        setResults(response.data);
+        setShowResults(response.data.length > 0);
+      } else {
+        setError(response.data?.message || 'Error en la búsqueda');
+        setShowResults(false);
+      }
+    } catch (err) {
+      if (!isMountedRef.current) return;
+      setError(err.response?.data?.message || err.message || 'Error en la búsqueda');
+      setShowResults(false);
+    } finally {
+      if (isMountedRef.current) {
+        setIsLoading(false);
+      }
+    }
+  }, [searchUrl, jwtKey, minChars]);
+
+  // Manejador de cambio de input
+  const handleInputChange = useCallback((e) => {
+    const newValue = e.target.value;
+    setSearchTerm(newValue);
+    setValue(newValue);
+    
+    // Si estamos escribiendo, resetear selección
+    if (selectedId) {
+      setSelectedId(null);
+      setSelectedLabel('');
+    }
+    
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    if (!newValue) {
+      setResults([]);
+      setShowResults(false);
+      return;
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
+      search(newValue);
+    }, debounceMs);
+  }, [selectedId, search, debounceMs]);
+
+  // Seleccionar un resultado
+  const selectResult = useCallback((item) => {
+    const newValue = item[labelKey];
+    
+    setSelectedId(item[idKey]);
+    setSelectedLabel(newValue);
+    setSearchTerm(newValue);
+    setValue(newValue);
+    setShowResults(false);
+    setResults([]);
+
+    const selectionData = { id: item[idKey], label: newValue };
+    
+    if (onSelected) {
+      onSelected(selectionData);
+    }
+    
+    if (typeof onSelect === 'function') {
+      onSelect(selectionData);
+    }
+  }, [idKey, labelKey, onSelect, onSelected]);
+
+  // Limpiar
+  const clear = useCallback(() => {
+    setSearchTerm('');
+    setValue('');
+    setSelectedId(null);
+    setSelectedLabel('');
+    setResults([]);
+    setShowResults(false);
+    setError('');
+    
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
+  // Manejar blur
+  const handleBlur = useCallback(() => {
+    setTimeout(() => {
+      setShowResults(false);
+    }, 200);
+  }, []);
+
+  // Manejar focus
+  const handleFocus = useCallback(() => {
+    if (results.length > 0) {
+      setShowResults(true);
+    }
+  }, [results]);
+
+  return (
+    <div className="autocomplete-container">
+      <div className="input-group-wrapper">
+        <input
+          ref={inputRef}
+          type="text"
+          className="form-control"
+          placeholder={placeholder}
+          value={value}
+          onChange={handleInputChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          autoComplete="off"
+        />
+        {(selectedId || searchTerm) && (
+          <button 
+            type="button" 
+            className="clear-btn" 
+            onClick={clear} 
+            title="Limpiar"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
+      {error && (
+        <div className="error-text">{error}</div>
+      )}
+
+      {showResults && (
+        <div className="results-dropdown">
+          {isLoading ? (
+            <div className="loading-text">Buscando...</div>
+          ) : results.length > 0 ? (
+            results.map((item) => (
+              <div 
+                key={item[idKey]}
+                className="result-item"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  selectResult(item);
+                }}
+              >
+                <div className="result-label">{item[labelKey]}</div>
+              </div>
+            ))
+          ) : (
+            <div className="no-results">Sin resultados</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Autocomplete;
+
+
+==================================================
+ARCHIVO: src\widgets\DataTable.css
+==================================================
+
+/* DataTable.css */
+
+/* Controles de la tabla */
+.table-controls > .btn {
+  margin-left: 10px;
+}
+
+/* Estilos de paginación */
+.page-link {
+  border-radius: 0px !important;
+}
+
+.page-item {
+  margin-left: 0px;
+}
+
+/* Botones alineados a la derecha */
+.text-end > .btn {
+  margin-left: 5px;
+}
+
+/* Estilos para inputs dentro de la tabla */
+.data-td > input[type="text"] {
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Estilos para checkboxes en el encabezado */
+th > .form-check-input {
+  margin-left: 10px;
+}
+
+/* Selector de filas por página */
+#rows-per-page {
+  border-radius: 0px;
+}
+
+/* Enlaces con íconos */
+a > i {
+  margin-right: 5px !important;
+}
+
+/* Estilos para autocomplete dentro de la tabla */
+.data-td > .autocomplete-container > .input-group-wrapper > .form-control {
+  border: 0px;
+  background: transparent;
+}
+
+/* Estilos adicionales para mejorar la tabla */
+.table {
+  margin-bottom: 0;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.table thead th {
+  vertical-align: middle;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+.table tbody td {
+  vertical-align: middle;
+  padding: 0.5rem;
+}
+
+/* Estilos para los inputs dentro de celdas */
+.data-td input[type="text"],
+.data-td input[type="number"],
+.data-td input[type="date"],
+.data-td input[type="datetime-local"] {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.data-td input[type="text"]:hover,
+.data-td input[type="number"]:hover,
+.data-td input[type="date"]:hover,
+.data-td input[type="datetime-local"]:hover {
+  border-color: #ced4da;
+  background-color: #fff;
+}
+
+.data-td input[type="text"]:focus,
+.data-td input[type="number"]:focus,
+.data-td input[type="date"]:focus,
+.data-td input[type="datetime-local"]:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  background-color: #fff;
+}
+
+/* Checkboxes en celdas */
+.data-td .form-check-input {
+  margin-top: 0;
+  cursor: pointer;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Checkbox en encabezado */
+.form-check-input-all {
+  margin-left: 10px;
+  cursor: pointer;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Botones de acción en la tabla */
+.data-td .btn,
+.text-end .btn {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+.data-td .btn i,
+.text-end .btn i {
+  margin-right: 4px;
+}
+
+/* Estilos para el autocomplete dentro de la tabla */
+.data-td .autocomplete-container {
+  position: relative;
+  width: 100%;
+}
+
+.data-td .autocomplete-container .input-group-wrapper {
+  position: relative;
+}
+
+.data-td .autocomplete-container .form-control {
+  padding-right: 30px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.data-td .autocomplete-container .form-control:hover {
+  border-color: #ced4da;
+  background-color: #fff;
+}
+
+.data-td .autocomplete-container .form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  background-color: #fff;
+}
+
+.data-td .autocomplete-container .clear-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #999;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-td .autocomplete-container .clear-btn:hover {
+  color: #333;
+}
+
+.data-td .autocomplete-container .results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el footer de la tabla */
+.table tfoot td {
+  background-color: #f8f9fa;
+  padding: 0.75rem;
+  border-top: 2px solid #dee2e6;
+}
+
+/* Mensaje cuando no hay datos */
+.text-center {
+  padding: 2rem;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+/* Responsive - tabla con scroll horizontal en móviles */
+@media (max-width: 768px) {
+  .table-responsive-custom {
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .table {
+    min-width: 650px;
+  }
+  
+  .data-td input[type="text"],
+  .data-td input[type="number"],
+  .data-td input[type="date"],
+  .data-td input[type="datetime-local"] {
+    font-size: 0.875rem;
+    padding: 2px 4px;
+  }
+  
+  .data-td .btn,
+  .text-end .btn {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .data-td .btn i,
+  .text-end .btn i {
+    margin-right: 2px;
+  }
+}
+
+/* Estilos para el contenedor de controles superiores */
+.d-flex.justify-content-between.align-items-center {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.d-flex.justify-content-between.align-items-center > div {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Estilos para el select de filas por página */
+#rows-per-page.form-select {
+  width: auto;
+  min-width: 80px;
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+}
+
+/* Estilos para los botones de paginación */
+.pagination .page-link {
+  cursor: pointer;
+  user-select: none;
+}
+
+.pagination .page-link.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pagination .page-link i {
+  font-size: 0.9rem;
+}
+
+/* Animación para mensajes de alerta */
+.alert {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilo para celdas con fecha/hora */
+.data-td.datetime-cell {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Estilo para celdas con números */
+.data-td.number-cell {
+  text-align: right;
+  font-family: 'Courier New', monospace;
+}
+
+/* Tooltip para celdas con contenido largo */
+.data-td .cell-content {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Estilos para el modal de confirmación */
+.modal-content {
+  border-radius: 0.3rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.modal-body .alert {
+  margin-bottom: 1rem;
+}
+
+/* Estilos para el contenedor principal */
+.data-table-container {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Scrollbar personalizada para dropdowns */
+.results-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.results-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.results-dropdown::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.results-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+
+==================================================
+ARCHIVO: src\widgets\DataTable.jsx
+==================================================
+
+// DataTable.jsx - Versión completa y corregida
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faPlus, 
+  faCheck, 
+  faTimes, 
+  faTrash, 
+  faPen,
+  faAngleDoubleLeft, 
+  faAngleLeft, 
+  faAngleRight, 
+  faAngleDoubleRight,
+  faFolderOpen,
+  faUpload,
+  faEye,
+  faGlobe,
+  faTrophy,
+  faUsers,
+  faRunning,
+  faTags,
+  faChartPie,
+  faEdit,
+  faCopy,
+  faSave
+} from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { Modal } from 'bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Autocomplete from './Autocomplete.jsx';
+import random from '../helpers/random.js';
+
+// Mapa de iconos
+const ICON_MAP = {
+  'fa-plus': faPlus,
+  'fa-check': faCheck,
+  'fa-times': faTimes,
+  'fa-trash': faTrash,
+  'fa-pencil': faPen,
+  'fa-pen': faPen,
+  'fa-edit': faEdit,
+  'fa-angle-double-left': faAngleDoubleLeft,
+  'fa-angle-left': faAngleLeft,
+  'fa-angle-right': faAngleRight,
+  'fa-angle-double-right': faAngleDoubleRight,
+  'fa-folder-open': faFolderOpen,
+  'fa-upload': faUpload,
+  'fa-picture-o': faEye,
+  'fa-eye': faEye,
+  'fa-globe': faGlobe,
+  'fa-trophy': faTrophy,
+  'fa-users': faUsers,
+  'fa-running': faRunning,
+  'fa-tags': faTags,
+  'fa-chart-pie': faChartPie,
+  'fa-copy': faCopy,
+  'fa-save': faSave,
+};
+
+const DataTable = ({
+  recordId = 'id',
+  observer: initialObserver = { new: [], edit: [], delete: [] },
+  fetchURL = null,
+  saveURL = null,
+  deleteURL = null,
+  data: initialData = [],
+  columnKeys = [],
+  columnTypes = [],
+  columnNames = [],
+  columnClasses = [],
+  columnStyles = [],
+  tdStyles = [],
+  addButton: initialAddButton = {
+    display: false,
+    disabled: false,
+    action: () => {},
+  },
+  saveButton: initialSaveButton = {
+    display: false,
+    disabled: false,
+    action: () => {},
+  },
+  extraData = {},
+  extraReplace = [],
+  actionButtons = [],
+  pagination: initialPagination = {
+    display: false,
+    step: 10,
+    totalPages: 0,
+    actualPage: 1,
+    offset: 0,
+    total: 0,
+    limit: 0,
+  },
+  queryParams: initialQueryParams = {},
+  messages = {
+    success: 'Datos actualizados',
+    errorNetwork: 'No hay conexión con el servidor',
+    notFound: 'Recurso no encontrado',
+    serverError: 'Error interno del servidor',
+    requestError: 'No se recibió respuesta del servidor',
+    otherError: 'Ocurrió un error no esperado al traer los datos del servidor',
+  },
+  jwtToken = null,
+  onAlert,
+  onSuggestionSelected,
+  actionsColumnClass = 'text-end',
+  actionsColumnStyle = { minWidth: '150px' },
+  actionsCellClass = 'text-end',
+  actionsCellStyle = {},
+}) => {
+  const navigate = useNavigate();
+
+  // ESTADOS - Todas las variables están definidas aquí
+  const [data, setData] = useState(initialData);
+  const [observer, setObserver] = useState(initialObserver);
+  const [pagination, setPagination] = useState(initialPagination);
+  const [queryParams, setQueryParams] = useState(initialQueryParams);
+  const [addButton] = useState(initialAddButton);
+  const [saveButton] = useState(initialSaveButton);
+  const [messageConfirmationModal, setMessageConfirmationModal] = useState({
+    text: '',
+    status: ''
+  });
+  const [idForDeleting, setIdForDeleting] = useState(null);
+  const [btnDisabledDeleteConfirmation, setBtnDisabledDeleteConfirmation] = useState(false);
+
+  // REFS
+  const deleteConfirmationModalRef = useRef(null);
+  const deleteConfirmationInstance = useRef(null);
+
+  // EFECTOS
+  useEffect(() => {
+    if (deleteConfirmationModalRef.current) {
+      deleteConfirmationInstance.current = new Modal(deleteConfirmationModalRef.current);
+    }
+  }, []);
+
+  // Llamar list cuando cambian los parámetros de paginación
+  useEffect(() => {
+    if (pagination.display && fetchURL) {
+      list();
+    }
+  }, [pagination.actualPage, pagination.step, fetchURL, pagination.display]);
+
+  // FUNCIONES DE UTILIDAD
+  const getNestedValue = (obj, path) => {
+    if (!obj || !path) return '';
+    return path.split('.').reduce((current, key) => {
+      return current && current[key] !== undefined ? current[key] : '';
+    }, obj);
+  };
+
+  const setNestedValue = (obj, path, value) => {
+    if (!obj || !path) return;
+    const keys = path.split('.');
+    const lastKey = keys.pop();
+    let target = obj;
+    for (const key of keys) {
+      if (!target[key]) target[key] = {};
+      target = target[key];
+    }
+    target[lastKey] = value;
+  };
+
+  const dataSearch = (key, idSearched) => {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i][key] === idSearched) {
+        return data[i];
+      }
+    }
+    return null;
+  };
+
+  const parseAutocompleteOptions = (spec) => {
+    const result = {};
+    const m = String(spec).match(/^autocomplete\((.*)\)$/);
+    if (!m) return result;
+    const inner = m[1];
+    const parts = inner.split(',').map(p => p.trim()).filter(Boolean);
+    parts.forEach(part => {
+      const [k, ...rest] = part.split('=');
+      if (!k) return;
+      const key = k.trim();
+      let val = rest.join('=').trim();
+      if ((val.startsWith("'") && val.endsWith("'")) || (val.startsWith('"') && val.endsWith('"'))) {
+        val = val.slice(1, -1);
+      }
+      if (val === 'true') val = true;
+      else if (val === 'false') val = false;
+      else if (!isNaN(val) && val !== '') val = Number(val);
+      result[key] = val;
+    });
+    return result;
+  };
+
+  const getIcon = (iconName) => {
+    if (!iconName) return null;
+    if (iconName && typeof iconName === 'object' && iconName.icon) {
+      return iconName;
+    }
+    const icon = ICON_MAP[iconName];
+    if (icon) return icon;
+    const cleanName = iconName.replace(/^fa-/, '');
+    return ICON_MAP[`fa-${cleanName}`] || null;
+  };
+
+  const cleanMessage = () => {
+    setTimeout(() => {
+      setMessageConfirmationModal({ text: '', status: '' });
+      setBtnDisabledDeleteConfirmation(false);
+      if (deleteConfirmationInstance.current) {
+        deleteConfirmationInstance.current.hide();
+      }
+    }, 4300);
+  };
+
+  // FUNCIONES DE DATOS
+  const list = useCallback(() => {
+    if (!fetchURL) {
+      console.error('No hay URL para traer datos');
+      return;
+    }
+
+    const params = { ...queryParams };
+    if (pagination.display) {
+      params.step = pagination.step;
+      params.page = pagination.actualPage;
+    }
+
+    axios.get(fetchURL, {
+      params: Object.keys(params).length > 0 ? params : undefined,
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`
+      }
+    })
+      .then(response => {
+        if (pagination.display) {
+          const genericResponse = response.data.data;
+          setData(genericResponse.list || []);
+          setPagination(prev => ({
+            ...prev,
+            totalPages: genericResponse.pages || 0,
+            offset: genericResponse.offset + 1 || 0,
+            total: genericResponse.total || 0,
+            limit: (genericResponse.offset + prev.step) > (genericResponse.total || 0)
+              ? (genericResponse.total || 0)
+              : (genericResponse.offset + prev.step)
+          }));
+        } else {
+          const genericResponse = response.data.data;
+          setData(genericResponse.list || []);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        if (onAlert) {
+          if (error.code === 'ERR_NETWORK') {
+            onAlert({ text: messages.errorNetwork, status: 'danger' });
+          } else if (error.response) {
+            const status = error.response.status;
+            switch (status) {
+              case 404:
+                onAlert({ text: messages.notFound, status: 'warning' });
+                break;
+              case 500:
+                onAlert({ text: messages.serverError, status: 'danger' });
+                break;
+              default:
+                onAlert({ text: `Error HTTP: ${status}`, status: 'danger' });
+                break;
+            }
+          } else if (error.request) {
+            onAlert({ text: messages.requestError, status: 'danger' });
+          } else {
+            onAlert({ text: messages.otherError, status: 'danger' });
+          }
+        }
+      });
+  }, [fetchURL, queryParams, pagination.display, pagination.step, pagination.actualPage, jwtToken, messages, onAlert]);
+
+  const addRow = () => {
+    const tmp = {};
+    for (const key of columnKeys) {
+      if (key === 'id' || key === '_id') {
+        tmp[key] = `tmp_${random(10)}`;
+      } else {
+        tmp[key] = '';
+      }
+    }
+    setData([...data, tmp]);
+  };
+
+  const deleteRow = (record, keyId) => {
+    const idToRemove = record[keyId];
+    const isTmp = idToRemove.toString().includes('tmp');
+
+    setObserver(prev => {
+      const newObserver = { ...prev };
+      newObserver.new = prev.new.filter(u => u !== idToRemove);
+      newObserver.edit = prev.edit.filter(u => u !== idToRemove);
+      if (!prev.delete.includes(idToRemove) && !isTmp) {
+        newObserver.delete = [...prev.delete, idToRemove];
+      }
+      return newObserver;
+    });
+
+    setData(data.filter(item => item[keyId] !== idToRemove));
+  };
+
+  const askToDeleteRow = (record, key) => {
+    setIdForDeleting(record[key]);
+    if (deleteConfirmationInstance.current) {
+      deleteConfirmationInstance.current.show();
+    }
+  };
+
+  const deleteRowFromDB = () => {
+    setBtnDisabledDeleteConfirmation(true);
+    if (deleteURL && idForDeleting) {
+      axios.delete(`${deleteURL}/${idForDeleting}`, {
+        headers: {
+          'Authorization': `Bearer ${jwtToken}`
+        }
+      })
+        .then(response => {
+          console.log(response);
+          setData(data.filter(item => item.id !== idForDeleting));
+          setMessageConfirmationModal({
+            text: response.data.message || 'Registro borrado correctamente',
+            status: 'success'
+          });
+          cleanMessage();
+        })
+        .catch(error => {
+          setMessageConfirmationModal({
+            text: error.message || 'Error al eliminar',
+            status: 'danger'
+          });
+          console.error(error);
+          cleanMessage();
+        });
+    } else {
+      console.error('No hay URL para eliminar datos o id a eliminar');
+    }
+  };
+
+  const saveChanges = () => {
+    console.log(observer);
+    console.log(data);
+
+    const dataToSend = { new: [], edit: [], delete: [] };
+
+    observer.new.forEach(id => {
+      const record = data.find(r => r[recordId] === id);
+      if (record) dataToSend.new.push(record);
+    });
+
+    observer.edit.forEach(id => {
+      const record = data.find(r => r[recordId] === id);
+      if (record) dataToSend.edit.push(record);
+    });
+
+    observer.delete.forEach(id => {
+      dataToSend.delete.push(id);
+    });
+
+    if (dataToSend.new.length === 0 && dataToSend.edit.length === 0 && dataToSend.delete.length === 0) {
+      if (onAlert) {
+        onAlert({
+          text: 'No se han registrados cambios',
+          status: 'warning'
+        });
+      }
+      return;
+    }
+
+    if (!saveURL) {
+      console.error('No hay URL para guardar');
+      return;
+    }
+
+    axios.post(saveURL, {
+      news: dataToSend.new,
+      edits: dataToSend.edit,
+      deletes: dataToSend.delete,
+      extra: extraData,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwtToken}`
+      }
+    })
+      .then(response => {
+        const genericResponse = response.data;
+        const newData = [...data];
+
+        if (genericResponse.data && Array.isArray(genericResponse.data)) {
+          genericResponse.data.forEach(created => {
+            const found = newData.find(r => r[recordId] === created.tmp);
+            if (found) {
+              const newId = created[recordId];
+              const parsedValue = /^\d+$/.test(newId) ? parseInt(newId, 10) : newId;
+              found[recordId] = parsedValue;
+            }
+          });
+        }
+
+        setData(newData);
+        setObserver({ new: [], edit: [], delete: [] });
+
+        if (onAlert) {
+          onAlert({
+            text: messages.success,
+            status: 'success'
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        if (error.response && onAlert) {
+          onAlert({
+            text: error.response.data?.message || 'Error al guardar',
+            status: 'danger'
+          });
+        }
+      });
+  };
+
+  // MANEJADORES DE EVENTOS
+  const handleTextInput = (record, key, event) => {
+    setNestedValue(record, key, event.target.value);
+    const rowKey = record[recordId];
+    if (String(rowKey).includes('tmp')) {
+      if (!observer.new.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, new: [...prev.new, rowKey] }));
+      }
+    } else {
+      if (!observer.edit.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, edit: [...prev.edit, rowKey] }));
+      }
+    }
+    setData([...data]);
+  };
+
+  const handleRadioClick = (record, key, newValue, event) => {
+    record[key] = newValue;
+    const rowKey = record[recordId];
+    if (String(rowKey).includes('tmp')) {
+      if (!observer.new.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, new: [...prev.new, rowKey] }));
+      }
+    } else {
+      if (!observer.edit.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, edit: [...prev.edit, rowKey] }));
+      }
+    }
+    setData([...data]);
+  };
+
+  const handleRadioThClick = (key, event) => {
+    const isChecked = event.target.checked;
+    const newData = data.map(record => {
+      record[key] = isChecked;
+      const rowKey = record[recordId];
+      if (!observer.edit.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, edit: [...prev.edit, rowKey] }));
+      }
+      return record;
+    });
+    setData(newData);
+  };
+
+  const handleSuggestionClicked = (record, event) => {
+    const rowKey = record[recordId];
+    if (String(rowKey).includes('tmp_')) {
+      if (!observer.new.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, new: [...prev.new, rowKey] }));
+      }
+    } else {
+      if (!observer.edit.includes(rowKey)) {
+        setObserver(prev => ({ ...prev, edit: [...prev.edit, rowKey] }));
+      }
+    }
+    setData([...data]);
+    if (onSuggestionSelected && event?.detail) {
+      onSuggestionSelected({
+        record,
+        suggestion: event.detail,
+        rowKey,
+        isNew: String(rowKey).includes('tmp_')
+      });
+    }
+  };
+
+  // FUNCIONES DE PAGINACIÓN
+  const firstPage = () => {
+    setPagination(prev => ({ ...prev, actualPage: 1 }));
+  };
+
+  const previousPage = () => {
+    setPagination(prev => ({ ...prev, actualPage: Math.max(1, prev.actualPage - 1) }));
+  };
+
+  const nextPage = () => {
+    setPagination(prev => ({ ...prev, actualPage: Math.min(prev.totalPages, prev.actualPage + 1) }));
+  };
+
+  const lastPage = () => {
+    setPagination(prev => ({ ...prev, actualPage: prev.totalPages || 1 }));
+  };
+
+  const handleStepChange = (event) => {
+    setPagination(prev => ({
+      ...prev,
+      step: +event.target.value,
+      actualPage: 1,
+      offset: 0
+    }));
+  };
+
+  // NAVEGACIÓN
+  const goToLink = (href) => {
+    navigate(href);
+  };
+
+  const goToHref = (href) => {
+    window.location.href = href;
+  };
+
+  const openTab = (href) => {
+    window.open(href, '_blank');
+  };
+
+  // RENDER
+  return (
+    <>
+      {/* Modal de confirmación */}
+      <div ref={deleteConfirmationModalRef} className="modal fade" tabIndex="-1">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Confirmación de Eliminación</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div className="modal-body">
+              {messageConfirmationModal.text && (
+                <div className={`alert alert-${messageConfirmationModal.status}`} role="alert">
+                  {messageConfirmationModal.text}
+                </div>
+              )}
+              ¿Seguro que quiere borrar el registro?
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+                disabled={btnDisabledDeleteConfirmation}
+              >
+                <FontAwesomeIcon icon={faTimes} className="me-1" /> Cancelar
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                disabled={btnDisabledDeleteConfirmation}
+                onClick={deleteRowFromDB}
+              >
+                <FontAwesomeIcon icon={faTrash} className="me-1" /> Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Controles de la tabla */}
+      <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <div className="d-flex align-items-center">
+          {pagination.display && data.length > 0 && (
+            <>
+              <label htmlFor="rows-per-page" className="form-label mb-0 me-2">Filas por página:</label>
+              <select
+                className="form-select"
+                id="rows-per-page"
+                style={{ width: '120px' }}
+                value={pagination.step}
+                onChange={handleStepChange}
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+              </select>
+            </>
+          )}
+        </div>
+        <div className="d-flex gap-2 flex-wrap">
+          {addButton.display && (
+            <button
+              className="btn btn-primary d-flex align-items-center gap-2"
+              disabled={addButton.disabled}
+              onClick={() => {
+                if (typeof addButton.action === 'function') {
+                  addButton.action();
+                } else {
+                  addRow();
+                }
+              }}
+            >
+              <FontAwesomeIcon icon={faPlus} /> Agregar Registro
+            </button>
+          )}
+          <button 
+            className="btn btn-success d-flex align-items-center gap-2" 
+            onClick={saveChanges}
+          >
+            <FontAwesomeIcon icon={faCheck} /> Guardar Cambios
+          </button>
+        </div>
+      </div>
+
+      {/* Tabla */}
+      {data.length > 0 ? (
+        <div className="table-responsive">
+          <table className="table table-striped table-hover">
+            <thead>
+              <tr>
+                {columnNames.map((name, i) => (
+                  columnTypes[i] === 'radiobuttonAll' ? (
+                    <th key={i} className={columnClasses[i] || ''} style={columnStyles[i] || {}} scope="col">
+                      {name}
+                      <input
+                        className="form-check-input form-check-input-all"
+                        type="checkbox"
+                        onChange={(event) => handleRadioThClick(columnKeys[i], event)}
+                      />
+                    </th>
+                  ) : (
+                    <th key={i} className={columnClasses[i] || ''} style={columnStyles[i] || {}} scope="col">
+                      {name}
+                    </th>
+                  )
+                ))}
+                {actionButtons.length > 0 && (
+                  <th 
+                    className={actionsColumnClass} 
+                    style={actionsColumnStyle}
+                    scope="col"
+                  >
+                    Acciones
+                  </th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((record, rowIndex) => (
+                <tr key={rowIndex}>
+                  {columnKeys.map((key, i) => (
+                    <td key={i} className={`data-td ${columnClasses[i] || ''}`} style={tdStyles[i] || {}}>
+                      {columnTypes[i] === 'input[text]' && (
+                        <input
+                          type="text"
+                          value={getNestedValue(record, key)}
+                          onChange={(e) => handleTextInput(record, key, e)}
+                          style={{ width: '100%' }}
+                        />
+                      )}
+                      {String(columnTypes[i]).startsWith('autocomplete') && (() => {
+                        const opts = parseAutocompleteOptions(columnTypes[i]);
+                        return (
+                          <Autocomplete
+                            searchUrl={opts.searchUrl}
+                            idKey={opts.idKey}
+                            labelKey={opts.labelKey}
+                            minChars={opts.minChars}
+                            debounceMs={opts.debounceMs}
+                            hideInput={opts.hideInput}
+                            showProgress={opts.showProgress}
+                            value={getNestedValue(record, key)}
+                            onSelected={(e) => {
+                              const opts2 = parseAutocompleteOptions(columnTypes[i]);
+                              setNestedValue(record, key, e.label || e);
+                              if (opts2.idTarget) {
+                                setNestedValue(record, opts2.idTarget, e.id);
+                              }
+                              handleSuggestionClicked(record, { detail: e });
+                            }}
+                          />
+                        );
+                      })()}
+                      {columnTypes[i] === 'td-datetime' && (
+                        <span>{getNestedValue(record, key)}</span>
+                      )}
+                      {(columnTypes[i] === 'radiobutton' || columnTypes[i] === 'radiobuttonAll') && (
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          checked={getNestedValue(record, key)}
+                          onChange={(event) => {
+                            const newValue = event.target.checked;
+                            setNestedValue(record, key, newValue);
+                            handleRadioClick(record, key, newValue, event);
+                          }}
+                        />
+                      )}
+                      {!['input[text]', 'autocomplete', 'td-datetime', 'radiobutton', 'radiobuttonAll'].some(t =>
+                        String(columnTypes[i]).startsWith(t) || columnTypes[i] === t
+                      ) && (
+                        <span>{getNestedValue(record, key) ?? ''}</span>
+                      )}
+                    </td>
+                  ))}
+                  {actionButtons.length > 0 && (
+                    <td 
+                      className={`actions-cell ${actionsCellClass}`} 
+                      style={actionsCellStyle}
+                    >
+                      <div className="d-flex gap-1 flex-wrap justify-content-end">
+                        {actionButtons.map((button, btnIndex) => {
+                          const icon = getIcon(button.icon);
+                          return (
+                            <button
+                              key={btnIndex}
+                              className={`btn ${button.class || 'btn-secondary'}`}
+                              style={button.style || { minWidth: '60px' }}
+                              onClick={() => {
+                                if (typeof button.action === 'function') {
+                                  button.action(record);
+                                }
+                              }}
+                              title={button.label}
+                              disabled={button.disabled || false}
+                            >
+                              {icon && <FontAwesomeIcon icon={icon} className="me-1" />}
+                              {button.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+            {pagination.display && data.length > 0 && (
+              <tfoot>
+                <tr>
+                  <td colSpan={columnKeys.length + (actionButtons.length > 0 ? 1 : 0)}>
+                    <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                      <div>
+                        <span>
+                          Página {pagination.actualPage || 1} de {pagination.totalPages || 1} -
+                          Mostrando filas {pagination.offset || 0}-{pagination.limit || data.length} de {pagination.total || data.length}
+                        </span>
+                      </div>
+                      <nav aria-label="Page navigation">
+                        <ul className="pagination mb-0">
+                          <li className="page-item">
+                            <button
+                              className={`page-link ${pagination.actualPage === 1 ? 'disabled' : ''}`}
+                              type="button"
+                              onClick={firstPage}
+                              disabled={pagination.actualPage === 1}
+                            >
+                              <FontAwesomeIcon icon={faAngleDoubleLeft} className="me-1" /> Primero
+                            </button>
+                          </li>
+                          <li className="page-item">
+                            <button
+                              className={`page-link ${pagination.actualPage === 1 ? 'disabled' : ''}`}
+                              type="button"
+                              onClick={previousPage}
+                              disabled={pagination.actualPage === 1}
+                            >
+                              <FontAwesomeIcon icon={faAngleLeft} className="me-1" /> Anterior
+                            </button>
+                          </li>
+                          <li className="page-item">
+                            <button
+                              className={`page-link ${pagination.actualPage === pagination.totalPages ? 'disabled' : ''}`}
+                              type="button"
+                              onClick={nextPage}
+                              disabled={pagination.actualPage === pagination.totalPages}
+                            >
+                              Siguiente <FontAwesomeIcon icon={faAngleRight} className="ms-1" />
+                            </button>
+                          </li>
+                          <li className="page-item">
+                            <button
+                              className={`page-link ${pagination.actualPage === pagination.totalPages ? 'disabled' : ''}`}
+                              type="button"
+                              onClick={lastPage}
+                              disabled={pagination.actualPage === pagination.totalPages}
+                            >
+                              Último <FontAwesomeIcon icon={faAngleDoubleRight} className="ms-1" />
+                            </button>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            )}
+          </table>
+        </div>
+      ) : (
+        <p className="text-center text-muted py-4">No hay registros para mostrar.</p>
+      )}
+    </>
+  );
+};
+
+export default DataTable;
+
+
+==================================================
+ARCHIVO: src\widgets\UploadFile.css
+==================================================
+
+/* src/components/widgets/UploadFile.css */
+.upload-box { 
+  border: 1px dashed #ccc; 
+  padding: 12px; 
+  border-radius: 6px; 
+}
+
+.file-row { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 12px; 
+  padding: 6px 0; 
+}
+
+.small-muted { 
+  font-size: 0.85rem; 
+  color: #666; 
+}
+
+progress { 
+  width: 180px; 
+}
+
+.btn-link { 
+  background: none; 
+  border: none; 
+  color: #007bff; 
+  text-decoration: underline; 
+  cursor: pointer; 
+  padding: 0; 
+  font: inherit; 
+}
+
+.btn-link:hover { 
+  color: #0056b3; 
+}
+
+.status-label { 
+  font-size: 0.8rem; 
+  padding: 2px 6px; 
+  border-radius: 3px; 
+  display: inline-block; 
+  margin-right: 4px; 
+}
+
+.status-label.success { 
+  background-color: #d4edda; 
+  color: #155724; 
+}
+
+.status-label.error { 
+  background-color: #f8d7da; 
+  color: #721c24; 
+}
+
+.status-label.pending { 
+  background-color: #fff3cd; 
+  color: #856404; 
+}
+
+.status-label.info { 
+  background-color: #d1ecf1; 
+  color: #0c5460; 
+}
+
+.message-container { 
+  margin-bottom: 8px; 
+}
+
+
+==================================================
+ARCHIVO: src\widgets\UploadFile.jsx
+==================================================
+
+// src/components/widgets/UploadFile.jsx
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import axios from 'axios';
+import './UploadFile.css'
+
+const UploadFile = ({
+  postUrl = '',
+  jwtKey = 'jwtToken',
+  extraParams = {},
+  responseFormat = 'standard',
+  baseURL = '/',
+  allowedExtensions = [],
+  maxFileSizeMB = 5,
+  multiple = false,
+  maxFiles = 1,
+  fieldName = 'file',
+  headers = {},
+  hideInput = false,
+  showProgress = true,
+  showCleanButton = true,
+  fileUrlPrefix = '',
+  fileUrl: initialFileUrl = '',
+  messageDuration = 5000,
+  onUploaded,
+  onError,
+  onProgress,
+  onClear,
+}) => {
+  // Estado
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [upload, setUpload] = useState({
+    file: null,
+    progress: 0,
+    status: 'pending', // pending | uploading | done | error
+    response: null,
+    error: null,
+    fileUrl: null
+  });
+  const [errors, setErrors] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [fileUrl, setFileUrl] = useState(initialFileUrl);
+  
+  // Ref para el input file
+  const inputRef = useRef(null);
+  
+  // Ref para timeouts
+  const errorTimeoutsRef = useRef([]);
+  const successTimeoutRef = useRef(null);
+
+  // Guardar valor inicial para reset
+  const initialFileUrlRef = useRef(initialFileUrl);
+
+  // Limpiar timeouts al desmontar
+  useEffect(() => {
+    return () => {
+      clearAllTimeouts();
+    };
+  }, []);
+
+  // Funciones de utilidad
+  const humanSize = (bytes) => {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const clearAllTimeouts = () => {
+    errorTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    errorTimeoutsRef.current = [];
+    
+    if (successTimeoutRef.current) {
+      clearTimeout(successTimeoutRef.current);
+      successTimeoutRef.current = null;
+    }
+  };
+
+  const addErrorWithTimeout = (errorMsg) => {
+    setErrors(prev => [...prev, errorMsg]);
+    
+    const timeout = setTimeout(() => {
+      setErrors(prev => prev.filter(e => e !== errorMsg));
+      errorTimeoutsRef.current = errorTimeoutsRef.current.filter(t => t !== timeout);
+    }, messageDuration);
+    
+    errorTimeoutsRef.current = [...errorTimeoutsRef.current, timeout];
+  };
+
+  const setSuccessWithTimeout = (message) => {
+    setSuccessMessage(message);
+    
+    if (successTimeoutRef.current) {
+      clearTimeout(successTimeoutRef.current);
+    }
+    
+    successTimeoutRef.current = setTimeout(() => {
+      setSuccessMessage('');
+      successTimeoutRef.current = null;
+    }, messageDuration);
+  };
+
+  const validateFile = (file) => {
+    // Validar extensión
+    if (allowedExtensions && allowedExtensions.length > 0) {
+      const name = file.name || '';
+      const ext = name.split('.').pop().toLowerCase();
+      if (!allowedExtensions.map(x => x.toLowerCase()).includes(ext)) {
+        return `Extensión no permitida (.${ext})`;
+      }
+    }
+
+    // Validar tamaño
+    if (maxFileSizeMB && maxFileSizeMB > 0) {
+      const maxBytes = Number(maxFileSizeMB) * 1024 * 1024;
+      if (file.size > maxBytes) {
+        return `Archivo mayor a ${maxFileSizeMB} MB (${humanSize(file.size)})`;
+      }
+    }
+
+    return null;
+  };
+
+  // Función para resetear al estado inicial
+  const resetToInitial = useCallback(() => {
+    setSelectedFile(null);
+    setUpload({
+      file: null,
+      progress: 0,
+      status: 'pending',
+      response: null,
+      error: null,
+      fileUrl: null
+    });
+    setErrors([]);
+    setSuccessMessage('');
+    setFileUrl(initialFileUrlRef.current);
+    
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+    
+    clearAllTimeouts();
+    
+    if (onClear) {
+      onClear({ fileUrl: initialFileUrlRef.current });
+    }
+  }, [onClear]);
+
+  // Función pública clear
+  const clear = useCallback(() => {
+    resetToInitial();
+  }, [resetToInitial]);
+
+  // Exponer clear como método público (similar a export function clear)
+  useEffect(() => {
+    // Si necesitas exponer el método, puedes usar useImperativeHandle
+    // o simplemente pasar la función como prop
+  }, [clear]);
+
+  const triggerFileInput = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const onFileChange = (e) => {
+    handleFiles(e.target.files);
+  };
+
+  const handleFiles = (fileList) => {
+    setErrors([]);
+    setSuccessMessage('');
+    clearAllTimeouts();
+    
+    const arr = Array.from(fileList || []);
+
+    if (arr.length === 0) return;
+    
+    if (arr.length > 1) {
+      addErrorWithTimeout('Solo puede seleccionar un archivo');
+      return;
+    }
+
+    const file = arr[0];
+    const err = validateFile(file);
+    if (err) {
+      addErrorWithTimeout(`${file.name}: ${err}`);
+      return;
+    }
+
+    // Reemplazar archivo seleccionado
+    setSelectedFile(file);
+    setUpload({
+      file: file,
+      progress: 0,
+      status: 'pending',
+      response: null,
+      error: null,
+      fileUrl: null
+    });
+    
+    // Auto-subir si hideInput es true
+    if (!hideInput && postUrl) {
+      uploadFile(file);
+    }
+  };
+
+  const uploadFile = async (fileParam) => {
+    const fileToUpload = fileParam || selectedFile;
+    
+    if (!fileToUpload) {
+      addErrorWithTimeout('No hay archivo seleccionado');
+      return;
+    }
+
+    if (!postUrl) {
+      addErrorWithTimeout('No se ha configurado postUrl');
+      return;
+    }
+
+    if (upload.status === 'done' || upload.status === 'uploading') {
+      return;
+    }
+
+    setUpload(prev => ({ ...prev, status: 'uploading' }));
+    setErrors([]);
+    setSuccessMessage('');
+    clearAllTimeouts();
+
+    const form = new FormData();
+    form.append(fieldName, fileToUpload);
+    
+    for (const k in extraParams) {
+      if (Object.prototype.hasOwnProperty.call(extraParams, k)) {
+        form.append(k, extraParams[k]);
+      }
+    }
+
+    const jwt = typeof localStorage !== 'undefined' ? localStorage.getItem(jwtKey) : null;
+    const cfg = {
+      headers: {
+        ...headers,
+        ...(jwt ? { Authorization: `Bearer ${jwt}` } : {}),
+        'Content-Type': 'multipart/form-data'
+      },
+      onUploadProgress: (evt) => {
+        const percent = evt.total ? Math.round((evt.loaded * 100) / evt.total) : 0;
+        setUpload(prev => ({ ...prev, progress: percent }));
+        if (onProgress) {
+          onProgress({ file: fileToUpload, progress: percent });
+        }
+      }
+    };
+
+    try {
+      const res = await axios.post(postUrl, form, cfg);
+      
+      let newFileUrl = '';
+      let responseData = res.data;
+
+      setUpload(prev => ({ ...prev, response: responseData }));
+
+      // Extraer URL del archivo de la respuesta
+      if (responseData?.data?.url) {
+        newFileUrl = responseData.data.url;
+      } else if (responseData?.url) {
+        newFileUrl = responseData.url;
+      } else if (responseData?.data?.fileUrl) {
+        newFileUrl = responseData.data.fileUrl;
+      } else if (responseData?.fileUrl) {
+        newFileUrl = responseData.fileUrl;
+      } else if (fileUrlPrefix && responseData?.data) {
+        const d = responseData.data;
+        if (d.folder && d.filename) {
+          newFileUrl = `${fileUrlPrefix}${d.folder}/${d.filename}`;
+        } else if (d.filename) {
+          newFileUrl = fileUrlPrefix + d.filename;
+        }
+      }
+
+      if (newFileUrl) {
+        setFileUrl(newFileUrl);
+        setUpload(prev => ({ ...prev, fileUrl: newFileUrl }));
+      }
+
+      // Normalizar respuesta
+      if (responseFormat === 'standard') {
+        if (responseData?.success) {
+          setUpload(prev => ({ ...prev, status: 'done' }));
+          
+          if (responseData.data?.folder && responseData.data?.filename) {
+            const url = `${responseData.data.folder}/${responseData.data.filename}`;
+            setFileUrl(url);
+            setUpload(prev => ({ ...prev, fileUrl: url }));
+          }
+          
+          const msg = responseData.message || 'Archivo subido exitosamente';
+          setSuccessWithTimeout(msg);
+          console.log('File uploaded successfully. URL:', fileUrl);
+          
+          if (onUploaded) {
+            onUploaded({
+              file: fileToUpload,
+              data: responseData.data,
+              message: responseData.message,
+              fileUrl: newFileUrl || fileUrl
+            });
+          }
+        } else {
+          const errMsg = responseData?.message || responseData?.error || 'Error desconocido';
+          setUpload(prev => ({
+            ...prev,
+            status: 'error',
+            error: errMsg
+          }));
+          addErrorWithTimeout(errMsg);
+          
+          if (onError) {
+            onError({
+              file: fileToUpload,
+              error: errMsg,
+              message: responseData?.message,
+              response: responseData
+            });
+          }
+        }
+      } else {
+        // raw
+        setUpload(prev => ({ ...prev, status: 'done' }));
+        setSuccessWithTimeout('Archivo subido exitosamente');
+        
+        if (onUploaded) {
+          onUploaded({
+            file: fileToUpload,
+            data: responseData,
+            fileUrl: newFileUrl || fileUrl
+          });
+        }
+      }
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || err.message || 'Error al subir el archivo';
+      
+      setUpload(prev => ({
+        ...prev,
+        status: 'error',
+        error: err.response?.data || err.message || err
+      }));
+      
+      addErrorWithTimeout(errorMsg);
+      
+      if (onError) {
+        onError({
+          file: fileToUpload,
+          error: upload.error,
+          response: err.response?.data || null
+        });
+      }
+    }
+  };
+
+  const removeFile = () => {
+    resetToInitial();
+  };
+
+  const openFileInNewTab = () => {
+    console.log('Opening file URL:', fileUrl);
+    if (fileUrl) {
+      window.open(`${baseURL}/${fileUrl}`, '_blank');
+    }
+  };
+
+  // Calcular si el botón clear debe estar deshabilitado
+  const isClearDisabled = !selectedFile && fileUrl === initialFileUrlRef.current;
+
+  return (
+    <div className={!hideInput ? 'upload-box' : ''}>
+      <div className="mb-2">
+        {hideInput ? (
+          <>
+            <button 
+              type="button" 
+              className="btn btn-primary" 
+              onClick={triggerFileInput}
+            >
+              <i className="fa fa-folder-open" aria-hidden="true"></i>
+              Archivo
+            </button>
+
+            <input 
+              ref={inputRef}
+              type="file" 
+              onChange={onFileChange}
+              multiple={false}
+              style={{ display: 'none' }}
+            />
+
+            <button 
+              type="button"
+              className="btn btn-primary" 
+              onClick={() => uploadFile()}
+              disabled={!postUrl || !selectedFile || upload.status === 'uploading' || upload.status === 'done'}
+            >
+              <i className="fa fa-upload" aria-hidden="true"></i>
+              Subir
+            </button>
+
+            {fileUrl && (
+              <button   
+                type="button" 
+                className="btn btn-primary" 
+                onClick={openFileInNewTab}
+                title="Ver archivo"
+              >
+                <i className="fa fa-picture-o" aria-hidden="true"></i>
+                Ver
+              </button>
+            )}
+
+            {showCleanButton && (
+              <button 
+                className="btn btn-secondary" 
+                onClick={clear}
+                disabled={isClearDisabled}
+              >
+                <i className="fa fa-trash" aria-hidden="true"></i>
+                Limpiar
+              </button>
+            )}
+          </>
+        ) : (
+          <input 
+            ref={inputRef}
+            type="file" 
+            onChange={onFileChange}
+            multiple={false}
+          />
+        )}
+      </div>
+
+      {/* Contenedor de mensajes */}
+      <div className="message-container">
+        {errors.length > 0 && (
+          <div className="mb-2">
+            {errors.map((err, index) => (
+              <small key={index} className="status-label error">{err}</small>
+            ))}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="mb-2">
+            <small className="status-label success">{successMessage}</small>
+          </div>
+        )}
+      </div>
+      
+      {selectedFile && showProgress && (
+        <div className="mb-2">
+          <div className="file-row">
+            <div>
+              <strong>{selectedFile.name}</strong>
+              <div className="small-muted">{humanSize(selectedFile.size)}</div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {upload.status === 'uploading' && (
+                <>
+                  <progress value={upload.progress} max="100">{upload.progress}%</progress>
+                  <small className="status-label info">Subiendo...</small>
+                </>
+              )}
+              {upload.status === 'done' && (
+                <>
+                  <small className="status-label success">Subido</small>
+                  {fileUrl && (
+                    <button 
+                      type="button" 
+                      className="btn btn-sm btn-outline-info" 
+                      onClick={openFileInNewTab}
+                      title="Ver archivo"
+                    >
+                      Ver
+                    </button>
+                  )}
+                </>
+              )}
+              {upload.status === 'error' && (
+                <>
+                  <small className="status-label error">Error</small>
+                  {upload.error && (
+                    <span className="small-muted ms-2">
+                      {typeof upload.error === 'string' ? upload.error : JSON.stringify(upload.error)}
+                    </span>
+                  )}
+                </>
+              )}
+              {upload.status === 'pending' && (
+                <small className="status-label pending">Pendiente</small>
+              )}
+              <button 
+                type="button" 
+                className="btn btn-sm btn-outline-danger" 
+                onClick={removeFile}
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {!hideInput && (
+        <div className="d-flex gap-2">
+          <button 
+            className="btn btn-primary" 
+            onClick={() => uploadFile()}
+            disabled={!postUrl || !selectedFile || upload.status === 'uploading' || upload.status === 'done'}
+          >
+            Subir
+          </button>
+          <button 
+            className="btn btn-secondary" 
+            onClick={clear}
+            disabled={!selectedFile}
+          >
+            Limpiar
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default UploadFile;
+
