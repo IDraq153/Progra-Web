@@ -345,7 +345,7 @@ export default function EstudianteListado() {
           <thead>
             <tr>
               <th className="st-sortable" onClick={() => _ordenar('id')}>
-                # <span className="st-sort">{sortIcon('id')}</span>
+                N° <span className="st-sort">{sortIcon('id')}</span>
               </th>
               <th className="st-sortable" onClick={() => _ordenar('name')}>
                 Estudiante <span className="st-sort">{sortIcon('name')}</span>
@@ -368,9 +368,9 @@ export default function EstudianteListado() {
               </tr>
             )}
 
-            {!loading && paginated.map((student) => (
+            {!loading && paginated.map((student, index) => (
               <tr key={student.id}>
-                <td className="st-id">{student.id}</td>
+                <td className="st-id">{startIndex + index + 1}</td>
                 <td>
                   <div className="st-person">
                     <StudentAvatar
