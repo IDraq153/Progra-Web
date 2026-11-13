@@ -8,6 +8,7 @@ import * as nationApis from '../apis/nations_apis.js';
 import * as carrerApis from '../apis/carrers_apis.js';
 import * as studentApis from '../apis/students_apis.js';
 import * as semesterApis from '../apis/semesters_apis.js';
+import * as districtApis from '../apis/districts_apis.js';
 
 import {
   redirectIfAuthenticated,
@@ -44,6 +45,9 @@ router.put('/api/v1/carrers/:id', carrerApis.updateCarrer);
 // api semesters
 router.get('/api/v1/semesters', semesterApis.listSemestersSimple);
 
+// api districts
+router.get('/api/v1/districts', districtApis.listDistrictsSimple);
+
 // api students
 router.get('/api/v1/students', studentApis.listStudentsSimple);
 router.post('/api/v1/students', studentApis.createStudent);
@@ -69,5 +73,6 @@ router.get('/enterprise/resenas', enterprises.home);
 router.get('/enterprise/cambiar-contrasena', enterprises.home);
 router.get('/enterprise/carrers/:id/edit', enterprises.home);
 router.get('/enterprise/students', enterprises.home);
+router.get('/enterprise/students/new', enterprises.home);
 
 export default router;

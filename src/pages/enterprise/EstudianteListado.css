@@ -454,3 +454,15 @@
   .st-actions { grid-column: 1 / -1; }
   .st-table-card { overflow-x: auto; }
 }
+
+/* ---------- Acciones del encabezado / botones-enlace ---------- */
+.st-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.st-btn-link {
+  display: inline-block;
+  text-decoration: none;
+}

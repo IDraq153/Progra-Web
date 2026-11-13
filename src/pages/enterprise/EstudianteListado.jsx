@@ -1,6 +1,7 @@
 // src/pages/enterprise/EstudianteListado.jsx
 
 import { useState, useEffect, useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
 import './EstudianteListado.css';
 import axios from 'axios';
 
@@ -238,9 +239,14 @@ export default function EstudianteListado() {
             Encuentra talento por nombre, carrera o semestre. Elige tus filtros y pulsa <strong>Filtrar</strong>.
           </p>
         </div>
-        <div className="st-stat">
-          <span className="st-stat-number">{students.length}</span>
-          <span className="st-stat-label">estudiantes registrados</span>
+        <div className="st-header-actions">
+          <NavLink to="/enterprise/students/new" className="st-btn st-btn-primary st-btn-link">
+            + Agregar estudiante
+          </NavLink>
+          <div className="st-stat">
+            <span className="st-stat-number">{students.length}</span>
+            <span className="st-stat-label">estudiantes registrados</span>
+          </div>
         </div>
       </header>
 

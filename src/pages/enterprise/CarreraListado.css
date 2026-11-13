@@ -1,16 +1,5 @@
 /* Extras para el listado de carreras (el resto de estilos viene de EstudianteListado.css) */
 
-.st-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.st-btn-link {
-  display: inline-block;
-  text-decoration: none;
-}
-
 .st-filters-grid-simple {
   grid-template-columns: 1fr auto;
 }
