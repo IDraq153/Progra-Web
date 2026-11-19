@@ -6,6 +6,7 @@ import * as owners from '../controllers/owner_controllers.js';
 import * as enterprises from '../controllers/enterprise_controllers.js';
 import * as nationApis from '../apis/nations_apis.js';
 import * as carrerApis from '../apis/carrers_apis.js';
+import * as profileApis from '../apis/profiles_apis.js';
 import * as studentApis from '../apis/students_apis.js';
 import * as semesterApis from '../apis/semesters_apis.js';
 import * as districtApis from '../apis/districts_apis.js';
@@ -34,6 +35,13 @@ router.get('/api/v1/nations/:id', nationApis.getNationById);
 router.post('/api/v1/nations', nationApis.createNation);
 router.put('/api/v1/nations/:id', nationApis.updateNation);
 router.delete('/api/v1/nations/:id', nationApis.deleteNation);
+
+// api profiles
+router.get('/api/v1/profiles', profileApis.listProfilesSimple);
+router.post('/api/v1/profiles', profileApis.createProfile);
+router.delete('/api/v1/profiles/:id', profileApis.deleteProfile);
+router.get('/api/v1/profiles/:id', profileApis.getProfileById);
+router.put('/api/v1/profiles/:id', profileApis.updateProfile);
 
 // api carrers
 router.get('/api/v1/carrers', carrerApis.listCarrersSimple);
@@ -74,5 +82,11 @@ router.get('/enterprise/cambiar-contrasena', enterprises.home);
 router.get('/enterprise/carrers/:id/edit', enterprises.home);
 router.get('/enterprise/students', enterprises.home);
 router.get('/enterprise/students/new', enterprises.home);
+router.get('/enterprise/students/:id', enterprises.home);
+router.get('/enterprise/students/:id/edit', enterprises.home);
+router.get('/enterprise/profiles', enterprises.home);
+router.get('/enterprise/profiles/:id', enterprises.home);
+router.get('/enterprise/profiles/:id/edit', enterprises.home);
+router.get('/enterprise/profiles/new', enterprises.home);
 
 export default router;

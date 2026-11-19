@@ -46,6 +46,16 @@ export default function SideBarEnterprise() {
           </NavLink>
 
           <NavLink
+            to="/enterprise/profiles"
+            className={({ isActive }) =>
+              `enterprise-sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <span className="enterprise-sidebar-bullet"></span>
+            Listado de Perfiles
+          </NavLink>
+
+          <NavLink
             to="/enterprise/convocatorias/nueva"
             className={({ isActive }) =>
               `enterprise-sidebar-link ${isActive ? 'active' : ''}`
