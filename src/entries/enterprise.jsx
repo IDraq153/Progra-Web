@@ -21,6 +21,8 @@ import EstudianteListado from '../pages/enterprise/EstudianteListado'
 import EstudianteDetalle from '../pages/enterprise/EstudianteDetalle'
 import ProfileListado from '../pages/enterprise/ProfileListado'
 import ProfileDetalle from '../pages/enterprise/ProfileDetalle'
+import ModalidadListado from '../pages/enterprise/ModalityListado'
+import ModalidadDetalle from '../pages/enterprise/ModalityDetalle'
 
 import './enterprise.css'
 
@@ -110,6 +112,10 @@ function App() {
         <Route path="profiles" element={<ProfileListado />} />
         <Route path="profiles/new" element={<ProfileDetalle />} />
         <Route path="profiles/:id/edit" element={<ProfileDetalle />} />
+        {/* Modalidades */}
+        <Route path="modalities" element={<ModalidadListado />} />
+        <Route path="modalities/new" element={<ModalidadDetalle />} />
+        <Route path="modalities/:id/edit" element={<ModalidadDetalle />} />
         {/* Cuenta */} 
         <Route path="cambiar-contrasena" element={<CambiarContrasena />} />
         <Route path="configuracion" element={<Configuracion />} />

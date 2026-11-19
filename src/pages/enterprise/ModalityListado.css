@@ -1,0 +1,9 @@
+/* Extras para el listado de carreras (el resto de estilos viene de EstudianteListado.css) */
+
+.st-filters-grid-simple {
+  grid-template-columns: 1fr auto;
+}
+
+.st-avatar-square {
+  border-radius: 10px;
+}

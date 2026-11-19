@@ -8,6 +8,7 @@ import * as nationApis from '../apis/nations_apis.js';
 import * as carrerApis from '../apis/carrers_apis.js';
 import * as profileApis from '../apis/profiles_apis.js';
 import * as studentApis from '../apis/students_apis.js';
+import * as modalityApis from '../apis/modality_apis.js';
 import * as semesterApis from '../apis/semesters_apis.js';
 import * as districtApis from '../apis/districts_apis.js';
 
@@ -43,6 +44,13 @@ router.delete('/api/v1/profiles/:id', profileApis.deleteProfile);
 router.get('/api/v1/profiles/:id', profileApis.getProfileById);
 router.put('/api/v1/profiles/:id', profileApis.updateProfile);
 
+// api modality
+router.get('/api/v1/modalities', modalityApis.listModalitiesSimple);
+router.post('/api/v1/modalities', modalityApis.createModality);
+router.delete('/api/v1/modalities/:id', modalityApis.deleteModality);
+router.get('/api/v1/modalities/:id', modalityApis.getModalityById);
+router.put('/api/v1/modalities/:id', modalityApis.updateModality);
+
 // api carrers
 router.get('/api/v1/carrers', carrerApis.listCarrersSimple);
 router.post('/api/v1/carrers', carrerApis.carreraNueva);
@@ -68,7 +76,6 @@ router.get('/admin/carrers', carrers.home);
 
 // students
 // Agrega aquí la vista de administración de estudiantes cuando la tengas definida.
-
 router.get('/owner', soloLogueado, soloOwner, owners.home);
 router.get('/enterprise', enterprises.home);
 router.get('/enterprise/carrers', enterprises.home);
@@ -88,5 +95,9 @@ router.get('/enterprise/profiles', enterprises.home);
 router.get('/enterprise/profiles/:id', enterprises.home);
 router.get('/enterprise/profiles/:id/edit', enterprises.home);
 router.get('/enterprise/profiles/new', enterprises.home);
+router.get('/enterprise/modalities', enterprises.home);
+router.get('/enterprise/modalities/:id', enterprises.home);
+router.get('/enterprise/modalities/:id/edit', enterprises.home);
+router.get('/enterprise/modalities/new', enterprises.home);
 
 export default router;
