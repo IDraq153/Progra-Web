@@ -61,7 +61,7 @@ export default function Bandeja() {
         setError('');
         try {
             const actualizado = await cambiarEstadoPedido(id, nuevoEstado);
-            setPedidos((prev) => prev.map((p) => (p.id === id ? actualizado : p)));
+            setPedidos((prev) => (prev || []).map((p) => (p.id === id ? actualizado : p)));
         } catch (e) {
             setError(mensajeDeError(e, 'No se pudo cambiar el estado del pedido.'));
         } finally {
@@ -81,7 +81,7 @@ export default function Bandeja() {
     };
 
     // El tablero muestra los 4 estados; los rechazados no aparecen
-    const visibles = pedidos.filter((p) => p.status !== 'rechazado');
+    const visibles = (pedidos || []).filter((p) => p.status !== 'rechazado');
     const enCola = visibles.filter((p) => p.status !== 'entregado').length;
     const fechaManana = sumarDias(ahora.fecha, 1);
 
@@ -109,7 +109,7 @@ export default function Bandeja() {
         return p.pickup_date === fechaManana ? ' (mañana)' : ` (${fechaCorta(p.pickup_date)})`;
     };
 
-    const notasDe = (p) => p.items.filter((i) => i.notes).length;
+    const notasDe = (p) => (p.items || []).filter((i) => i.notes).length;
 
     const renderDetalle = (p) => {
         const precio = `S/ ${p.total.toFixed(2)}`;
