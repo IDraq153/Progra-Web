@@ -70,6 +70,39 @@ _%>
         .lc-review-more, .lc-reviews-more { color: #6b7280; font-size: .8rem; }
         .lc-review-reply { margin-top: .7rem; padding: .6rem .8rem; background: #FCEAE7; border-radius: 8px; font-size: .85rem; }
         .lc-reviews-more { text-align: center; margin: .25rem 0 0; }
+
+        /* ---------- Celular: vista limpia (en PC no cambia) ---------- */
+        @media (max-width: 767.98px) {
+            .local-kicker,
+            .lc-hero .lc-btn-ghost,
+            .status-note,
+            .lc-media-place,
+            .local-info-section > section:first-child,
+            .local-info-section .row > .col-lg-4,
+            .section-heading .eyebrow,
+            .lc-cta { display: none; }
+
+            .lc-hero { padding: 1rem 0 1.25rem; background: none; border-bottom: 0; }
+            .breadcrumb-custom { margin-bottom: 1rem; }
+            .breadcrumb-custom span { display: none; }
+            .lc-hero .row > .col-lg-6:last-child { order: -1; }
+            .lc-media { box-shadow: none; }
+            .lc-media::after { content: none; }
+            .local-intro { margin: .6rem 0 1rem; line-height: 1.6; }
+            .lc-hero .lc-btn { width: 100%; justify-content: center; }
+
+            .lc-facts { margin-top: 0; }
+            .lc-facts-card { box-shadow: none; }
+            .lc-fact { padding: .75rem 1rem; justify-content: space-between; }
+            .lc-fact-icon { display: none; }
+            .lc-fact > div:last-child { display: flex; flex: 1; justify-content: space-between; gap: 1rem; text-align: right; }
+            .lc-fact small { text-transform: none; letter-spacing: 0; font-size: .9rem; font-weight: 400; margin: 0; }
+
+            .local-info-section { padding: 1.75rem .75rem 2.5rem; }
+            .local-info-section > section { margin-bottom: 0 !important; }
+            .section-heading h2 { font-size: 1.25rem; }
+            .lc-ver-todas { align-self: stretch; justify-content: center; }
+        }
     </style>
 </head>
 <body class="escala-fluida lc-body">
