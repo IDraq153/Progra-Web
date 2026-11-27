@@ -110,3 +110,121 @@
   .owner-navbar,
   .owner-footer { padding-left: 18px; padding-right: 18px; }
 }
+
+
+/* ==========================================================================
+   CELULAR (max-width: 767.98px). La vista de PC no cambia.
+   El menú lateral pasa a ser una barra horizontal debajo de la cabecera.
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  .owner-app { height: 100dvh; }
+  .owner-app .owner-app-header { height: 56px; min-height: 56px; }
+  .owner-app .owner-app-body { flex-direction: column; }
+  .owner-app .owner-app-footer { display: none; }
+
+  /* ---------- Cabecera ---------- */
+  .owner-app .owner-navbar { gap: 10px; padding: 0 12px; }
+  .owner-app .owner-navbar__brand { font-size: 15px; }
+  .owner-app .owner-navbar__panel { display: none; }
+  .owner-app .owner-navbar__search { height: 36px; padding: 0 10px; }
+  /* Usuario: solo el círculo */
+  .owner-app .owner-navbar__user { width: 36px; height: 36px; padding: 0; justify-content: center; border: 0; }
+  .owner-app .owner-navbar__user > span:not(.owner-navbar__avatar) { display: none; }
+
+  /* ---------- Menú: barra deslizable ---------- */
+  .owner-app .owner-app-sidebar {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid #efe2dc;
+  }
+  .owner-app .sidebar-owner {
+    display: flex;
+    gap: 6px;
+    height: auto;
+    padding: 8px 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .owner-app .sidebar-owner::-webkit-scrollbar { display: none; }
+  .owner-app .sidebar-owner__title { display: none; }
+  .owner-app .sidebar-owner__section {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0 6px 0 0;
+    border-bottom: 0;
+    border-right: 1px solid #efe2dc;
+  }
+  .owner-app .sidebar-owner__section:last-child { padding-right: 0; border-right: 0; }
+  .owner-app .sidebar-owner__section nav { display: flex; gap: 6px; }
+  .owner-app .sidebar-owner__item { flex-shrink: 0; gap: 6px; height: 36px; margin: 0; padding: 0 12px; }
+
+  /* ---------- Contenido ---------- */
+  .owner-app .owner-app-content {
+    flex: 1 1 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 16px 14px 24px;
+    overflow-x: hidden;
+  }
+  .owner-app .solicitudes-page { padding: 0 0 1rem; }
+  .owner-app .owner-page__title,
+  .owner-app .ranking-title,
+  .owner-app .solicitudes-title { font-size: 1.4rem; }
+
+  /* Filtros y botones a todo el ancho */
+  .owner-app .owner-page__head > div,
+  .owner-app .owner-page__actions,
+  .owner-app .ranking-filtros,
+  .owner-app .solicitudes-filtros { width: 100%; margin-top: 0; }
+  .owner-app .owner-page__actions > *,
+  .owner-app .ranking-select,
+  .owner-app .solicitudes-select { flex: 1 1 140px; min-width: 0; }
+  .owner-app .owner-select select { width: 100%; }
+
+  /* Las grillas no desbordan */
+  .owner-app .tab-row,
+  .owner-app .vp-grid,
+  .owner-app .ranking-grid,
+  .owner-app .solicitudes-grid,
+  .owner-app .solicitudes-datos-grid { grid-template-columns: minmax(0, 1fr); }
+  .owner-app .owner-card,
+  .owner-app .ranking-card,
+  .owner-app .solicitudes-card { min-width: 0; padding: 1rem; }
+
+  /* ---------- Solicitudes ---------- */
+  .owner-app .solicitudes-detalle-header { flex-wrap: wrap; gap: 8px; }
+  .owner-app .solicitudes-dato-valor { overflow-wrap: anywhere; }
+  .owner-app .solicitudes-botones { flex-direction: column; width: 100%; }
+
+  /* ---------- Comensales y locales: la tabla pasa a tarjetas ---------- */
+  .owner-app .cm-buscador { flex-basis: 100%; min-width: 0; }
+  .owner-app .cm-tabla-wrap { background: transparent; border: 0; overflow: visible; }
+  .owner-app .cm-tabla,
+  .owner-app .cm-tabla tbody { display: block; min-width: 0; }
+  .owner-app .cm-tabla thead { display: none; }
+  .owner-app .cm-tabla tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1px solid #f0e2dc;
+    border-radius: 12px;
+  }
+  .owner-app .cm-tabla tr.is-negativo { background: #fde9e5; }
+  .owner-app .cm-tabla td { padding: 0; border: 0; min-width: 0; text-align: left; overflow-wrap: anywhere; }
+  .owner-app .cm-tabla td:nth-child(1) { grid-column: 1 / -1; font-weight: 700; }
+  .owner-app .cm-tabla td:nth-child(2) { grid-column: 1 / -1; }
+  .owner-app .cm-tabla td[data-label]::before {
+    content: attr(data-label) ': ';
+    font-size: 0.75rem;
+    color: #756b67;
+  }
+  .owner-app .cm-tabla td:last-child { justify-self: end; }
+  .owner-app .cm-accion { padding: 6px 0 6px 12px; }
+}

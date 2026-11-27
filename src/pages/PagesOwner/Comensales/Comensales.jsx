@@ -327,8 +327,8 @@ export default function Comensales({ tab = 'comensales' }) {
                 <tr key={it.id} className={negativo ? 'is-negativo' : ''} title={negativo ? `Motivo: ${it.motivo}` : undefined}>
                   <td>{it.nombre}</td>
                   <td className="cm-correo">{it.correo}</td>
-                  <td className="num">{it.pedidos}</td>
-                  <td className="num">{indicador}</td>
+                  <td className="num" data-label="Pedidos">{it.pedidos}</td>
+                  <td className="num" data-label={esComensales ? 'Entregados' : 'Rechazados'}>{indicador}</td>
                   <td>
                     <span className={`cm-estado ${negativo ? 'cm-estado--neg' : 'cm-estado--ok'}`}>{it.estado}</span>
                   </td>
