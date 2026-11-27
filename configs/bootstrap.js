@@ -8,6 +8,7 @@ import engine from 'ejs-mate';
 import dotenv from 'dotenv';
 import flash from 'connect-flash';
 import FileStore from 'session-file-store';
+import PgSessionStore from './pg_session_store.js';
 import fs from 'fs';
 import crypto from 'crypto';
 
@@ -79,19 +80,9 @@ export default function bootstrap(app) {
     }
   };
 
-  // En Vercel, usar store con path de /tmp
+  // En Vercel las sesiones van a PostgreSQL: /tmp no se comparte entre instancias y causaba 401
   if (isVercel) {
-    // Crear directorio temporal si no existe
-    if (!fs.existsSync('/tmp/sessions')) {
-      fs.mkdirSync('/tmp/sessions', { recursive: true });
-    }
-    
-    sessionConfig.store = new FileStoreSession({
-      path: '/tmp/sessions',
-      retries: 0,
-      ttl: 60 * 60 * 24,
-      reapInterval: 60 * 60 // Limpiar cada hora
-    });
+    sessionConfig.store = new PgSessionStore();
   } else {
     // En local, usar el path normal
     sessionConfig.store = new FileStoreSession({

@@ -29,7 +29,9 @@ function ComensalApp() {
   const [carrito, setCarrito] = useState(CARRITO_VACIO);
 
   useEffect(() => {
-    obtenerCarrito().then(setCarrito).catch(() => setCarrito(CARRITO_VACIO));
+    obtenerCarrito()
+      .then((c) => setCarrito(c || CARRITO_VACIO))
+      .catch(() => setCarrito(CARRITO_VACIO));
   }, []);
 
   return (
