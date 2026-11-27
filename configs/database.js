@@ -17,10 +17,10 @@ const sequelize = new Sequelize(
     dialectModule: pg, // <-- Asignar directamente el conector
     logging: process.env.NODE_ENV !== 'production' ? console.log : false,
     pool: {
-      max: 2, // Se reduce para entornos Serverless para no agotar el pool de Supabase
+      max: 1, // Una conexión por instancia serverless para no agotar el pooler de Supabase
       min: 0,
       acquire: 30000,
-      idle: 10000
+      idle: 3000
     },
     dialectOptions: isSSL ? {
       ssl: {

@@ -92,6 +92,17 @@ export default function bootstrap(app) {
     });
   }
 
+  // Archivos estáticos: van ANTES de la sesión para que CSS/JS/favicon no consulten la base de datos
+  const distPath = path.join(__dirname, '../public/dist');
+  if (fs.existsSync(distPath)) {
+    app.use('/dist', express.static(distPath));
+  }
+  
+  const publicPath = path.join(__dirname, '../public');
+  if (fs.existsSync(publicPath)) {
+    app.use(express.static(publicPath));
+  }
+
   app.use(session(sessionConfig));
   app.use(flash());
 
@@ -106,17 +117,6 @@ export default function bootstrap(app) {
   app.engine('ejs', engine);
   app.set('view engine', 'ejs');
   app.set('views', [viewsPath]);
-
-  // Archivos estáticos - Orden importante para Vercel
-  const distPath = path.join(__dirname, '../public/dist');
-  if (fs.existsSync(distPath)) {
-    app.use('/dist', express.static(distPath));
-  }
-  
-  const publicPath = path.join(__dirname, '../public');
-  if (fs.existsSync(publicPath)) {
-    app.use(express.static(publicPath));
-  }
 
   // Variables globales
   app.locals.siteTitle = process.env.SITE_TITLE || 'Mi sitio web';
