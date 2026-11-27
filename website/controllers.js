@@ -15,6 +15,11 @@ const IMAGEN_POR_ID = {
   4: '/assets/img/jugueria.png',
   5: '/assets/img/cafeteria-web.jpg'
 };
+// Respaldo por nombre: los IDs cambian según el orden en que se crearon los locales
+const IMAGEN_POR_NOMBRE = {
+  'Café de Biblioteca': '/assets/img/cafeBiblioteca.png',
+  'Local de prueba': '/assets/img/sangucheria.png'
+};
 const NOMBRE_DIA = { 1: 'lunes', 2: 'martes', 3: 'miércoles', 4: 'jueves', 5: 'viernes', 6: 'sábado', 7: 'domingo' };
 // Máximo de calificaciones que se cargan en la ventana flotante del detalle (las más recientes)
 const MAX_CALIFICACIONES_PUBLICAS = 30;
@@ -36,7 +41,7 @@ const textoHorario = (store) => {
 const localParaVista = (store) => ({
   id: store.id,
   nombre: store.commercial_name,
-  imagen: store.logo_url || IMAGEN_POR_ID[store.id] || IMAGEN_DEFECTO,
+  imagen: store.logo_url || IMAGEN_POR_NOMBRE[store.commercial_name] || IMAGEN_POR_ID[store.id] || IMAGEN_DEFECTO,
   abierto: Boolean(store.open_now),
   ubicacion: store.campus_location || store.campus,
   campus: store.campus,
