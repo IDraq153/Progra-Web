@@ -39,7 +39,7 @@ export default function Bandeja() {
             obtenerPedidosLocal()
                 .then((lista) => {
                     if (!activo) return;
-                    setPedidos(lista);
+                    setPedidos(Array.isArray(lista) ? lista : []);
                     setAhora(ahoraEnLima());
                     setError('');
                 })
