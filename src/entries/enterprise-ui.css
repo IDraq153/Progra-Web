@@ -183,3 +183,114 @@ textarea:focus-visible {
         padding: 16px 14px 24px !important;
     }
 }
+
+
+/* ==========================================================================
+   CELULAR (max-width: 767.98px). La vista de PC no cambia.
+   El menú lateral pasa a ser una barra horizontal debajo de la cabecera.
+   ========================================================================== */
+@media (max-width: 767.98px) {
+    .app { height: 100dvh; }
+    .app .app-body { flex-direction: column; }
+    .app .app-footer { display: none; }
+
+    /* ---------- Menú: barra deslizable ---------- */
+    .app .app-sidebar {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid #e5ddda;
+    }
+    .app .sidebar-enterprise {
+        display: flex;
+        gap: 6px;
+        height: auto;
+        padding: 8px 12px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    .app .sidebar-enterprise::-webkit-scrollbar { display: none; }
+    .app .sidebar-enterprise::after,
+    .app .sidebar-section-title { display: none; }
+    .app .sidebar-section {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0 6px 0 0;
+        border-bottom: 0;
+        border-right: 1px solid #eee5e2;
+    }
+    .app .sidebar-section:last-child { padding-right: 0; border-right: 0; }
+    .app .sidebar-section nav { display: flex; gap: 6px; }
+    .app .sidebar-item {
+        width: auto;
+        min-height: 36px;
+        padding: 7px 12px;
+        font-size: 13px;
+    }
+
+    /* ---------- Contenido: ocupa todo el ancho en cualquier página ---------- */
+    .app .app-body > :not(.app-sidebar) {
+        flex: 1 1 0;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* ---------- Cabecera: el estado del local sigue visible ---------- */
+    .app .enterprise-navbar { padding: 0 12px; gap: 8px; }
+    .app .enterprise-navbar__left { flex: 1; overflow: hidden; }
+    .app .enterprise-navbar__sede-name { display: block; margin-left: 10px; line-height: 28px; }
+    .app .enterprise-navbar__sede-name:empty { display: none; }
+    .app .enterprise-navbar__right { gap: 8px; }
+    .app .enterprise-navbar__status { display: flex; }
+
+    /* Usuario: solo el círculo, sin flecha ni recuadro */
+    .app .enterprise-navbar__user-name,
+    .app .enterprise-navbar__user-chevron { display: none; }
+    .app .enterprise-navbar__user {
+        width: 36px;
+        padding: 0;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+    }
+
+    /* ---------- Bandeja ---------- */
+    .bandeja-topbar { flex-direction: column; align-items: stretch; }
+    .app .bandeja-topbar h1 { font-size: 24px; }
+    .bandeja-actions { flex-wrap: wrap; }
+    .bandeja-actions .btn { flex: 1; text-align: center; }
+
+    /* ---------- Opciones y agregados ---------- */
+    .app .opciones-container { padding: 0; }
+    .productos-buscador { max-width: 100%; width: 100%; }
+    .opciones-topbar-actions { flex-wrap: wrap; }
+    .grupo-items li { gap: 12px; }
+
+    /* ---------- Horario: cada día en dos filas ---------- */
+    .horario-acciones { width: 100%; }
+    .horario-acciones button { flex: 1; }
+    .horario-panel { padding: 0.5rem 0.8rem; }
+    .horario-tabla,
+    .horario-tabla tbody { display: block; }
+    .horario-tabla thead { display: none; }
+    .horario-tabla tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid #ece3dd;
+    }
+    .horario-tabla tbody tr:last-child { border-bottom: 0; }
+    .horario-tabla tbody th,
+    .horario-tabla tbody td { display: block; width: auto; padding: 0; }
+    .horario-tabla tbody th { grid-area: 1 / 1; }
+    .horario-tabla tbody td:nth-of-type(1) { grid-area: 2 / 1; }
+    .horario-tabla tbody td:nth-of-type(2) { grid-area: 2 / 2; }
+    .horario-tabla tbody td:nth-of-type(3) { grid-area: 1 / 2; justify-self: end; }
+    .horario-select { width: 100%; min-width: 0; }
+}
