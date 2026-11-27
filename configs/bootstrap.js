@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 import flash from 'connect-flash';
 import FileStore from 'session-file-store';
 import PgSessionStore from './pg_session_store.js';
+import sequelize from './database.js';
 import fs from 'fs';
 import crypto from 'crypto';
 
@@ -91,6 +92,28 @@ export default function bootstrap(app) {
       ttl: 60 * 60 * 24
     });
   }
+
+  // Diagnóstico de la conexión a la base de datos (sin sesión; no muestra contraseñas)
+  app.get('/healthz', async (req, res) => {
+    const info = {
+      host: process.env.DB_HOST || null,
+      port: process.env.DB_PORT || '5432 (por defecto)',
+      user_empieza_con_postgres_punto: (process.env.DB_USER || '').startsWith('postgres.'),
+      ssl: process.env.DB_SSL === 'true',
+      session_secret_definido: Boolean(process.env.SESSION_SECRET)
+    };
+    const inicio = Date.now();
+    try {
+      await sequelize.query('SELECT 1');
+      const [[tablas]] = await sequelize.query(
+        "SELECT (SELECT COUNT(*) FROM stores) AS locales, (SELECT COUNT(*) FROM users) AS usuarios, " +
+        "(SELECT to_regclass('public.sessions') IS NOT NULL) AS tabla_sessions"
+      );
+      return res.json({ ok: true, ms: Date.now() - inicio, info, tablas });
+    } catch (error) {
+      return res.status(500).json({ ok: false, ms: Date.now() - inicio, info, error: error.name + ': ' + error.message });
+    }
+  });
 
   // Archivos estáticos: van ANTES de la sesión para que CSS/JS/favicon no consulten la base de datos
   const distPath = path.join(__dirname, '../public/dist');
