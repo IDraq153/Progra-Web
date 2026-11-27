@@ -100,10 +100,10 @@ router.get('/api/v1/store-requests', requireRole('owner'), storeRequestApis.list
 router.patch('/api/v1/store-requests/:id/status', requireRole('owner'), storeRequestApis.changeStoreRequestStatus);
 
 // api locales y carta (cualquier usuario con sesión)
-router.get('/api/v1/me', profileApis.getMe);
-router.get('/api/v1/stores', storeApis.listStores);
-router.get('/api/v1/stores/:id', storeApis.getStoreById);
-router.get('/api/v1/stores/:id/products', productApis.listStoreProducts);
+// router.get('/api/v1/me', profileApis.getMe);
+// router.get('/api/v1/stores', storeApis.listStores);
+// router.get('/api/v1/stores/:id', storeApis.getStoreById);
+// router.get('/api/v1/stores/:id/products', productApis.listStoreProducts);
 
 // api mi local: categorías y productos (solo enterprises, sobre SU local)
 router.get('/api/v1/my-store', requireRole('enterprises'), storeApis.loadMyStore, storeApis.getMyStore);
