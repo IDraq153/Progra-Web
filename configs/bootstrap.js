@@ -31,7 +31,8 @@ export default function bootstrap(app) {
   }
 
   // Body parsers
-  app.use(express.json());
+  // 5 MB: las fotos de productos y logos viajan como data URL (máx. 3 MB de imagen)
+  app.use(express.json({ limit: '5mb' }));
   app.use(express.urlencoded({ extended: true }));
 
   // CORS middleware - Configurar para Vercel

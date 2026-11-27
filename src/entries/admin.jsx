@@ -14,11 +14,6 @@ import Navbar from '../partials/Navbar';
 
 // Páginas del sistema (CRUDs)
 import DashboardPage from '../pages/DashboardPage';
-import NationsPage from '../pages/NationsPage';
-import LeaguesPage from '../pages/LeaguesPage';
-import TeamsPage from '../pages/TeamsPage';
-import PlayersPage from '../pages/PlayersPage';
-import CatalogsPage from '../pages/CatalogsPage';
 
 // Layout Principal (Dashboard + Sidebar + Navbar)
 function AdminDashboardLayout() {
@@ -43,11 +38,6 @@ function App() {
       <Routes>
         <Route path="/admin" element={<AdminDashboardLayout />}>
           <Route index element={<DashboardPage />} />
-          <Route path="nations" element={<NationsPage />} />
-          <Route path="leagues" element={<LeaguesPage />} />
-          <Route path="teams" element={<TeamsPage />} />
-          <Route path="players" element={<PlayersPage />} />
-          <Route path="catalogs" element={<CatalogsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

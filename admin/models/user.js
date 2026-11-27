@@ -1,5 +1,3 @@
-//admin\models\user.js
-
 import { DataTypes } from 'sequelize';
 import sequelize from '../../configs/database.js';
 
@@ -10,28 +8,42 @@ const User = sequelize.define('User', {
         autoIncrement: true,
     },
     email: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING(60),
         allowNull: false,
+        unique: true,
+    },
+    phone: {
+        type: DataTypes.STRING(15),
     },
     password: {
         type: DataTypes.STRING(100),
         allowNull: false,
     },
-    reset_token: {
-        type: DataTypes.STRING(100),
+    status: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        defaultValue: 'activo',
     },
-    created: {
-        type: DataTypes.DATE,
+    status_reason: {
+        type: DataTypes.STRING(300),
     },
-    updated: {
-        type: DataTypes.DATE,
-    },
-    profile_id: {
+    role_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
     },
 }, {
     tableName: 'users',
     timestamps: false,
+    // Por defecto la contraseña NUNCA se devuelve.
+    // Para el login se usa User.scope('withPassword').
+    defaultScope: {
+        attributes: { exclude: ['password'] },
+    },
+    scopes: {
+        withPassword: {
+            attributes: { include: ['password'] },
+        },
+    },
 });
 
 export default User;

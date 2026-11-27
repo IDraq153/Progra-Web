@@ -1,24 +1,28 @@
 // website/routes.js
 import { Router } from 'express';
-import * as api from './apis.js';
+
 import * as controller from './controllers.js';
-import { redirectIfAuthenticated, requireAuth, redireccionarSiLogueado } from '../configs/middlewares.js'; 
+import * as api from './apis.js';
+import { redirectIfAuthenticated, requireAuth, redirecionarSiLogueado} from '../configs/middlewares.js'; 
 
 const router = Router();
 
 router.get('/', controller.home);
-router.get('/convocatorias', controller.convocatorias);
-router.get('/login', redireccionarSiLogueado, controller.login);
+router.get('/registrarLocal', controller.registrarLocal);
+router.get('/comoFunciona', controller.comoFunciona);
+//router.post('/sign-in', redirectIfAuthenticated, controller.login);
+//router.get('/sign-out', requireAuth, controller.logout);
+//router.get('/api/v1/sessions', api.sessionInfo);
+router.get('/login', redirecionarSiLogueado, controller.login);
 router.post('/login', controller.ingresar);
-router.get('/register', controller.register);
-router.get('/reset-password', controller.resetPassword);
-router.get('/about', controller.about);
-router.get('/contact', controller.contact);
-router.get('/players', controller.players);
-router.get('/sign-in', controller.signIn);
-router.get('/logout', controller.logout);
+router.get('/register', redirecionarSiLogueado, controller.register);
+router.get('/locales', controller.locales);
+router.get('/locales/:id', controller.detalleLocal);
 router.post('/sign-in', redirectIfAuthenticated, controller.login);
 router.get('/sign-out', requireAuth, controller.logout);
+router.get('/RecuperarContrasena', redirectIfAuthenticated, controller.RecuperarContrasena);
+router.post('/logout', controller.Home_Cerrar_ses)
+
 router.get('/api/v1/sessions', api.sessionInfo);
 
 export default router;

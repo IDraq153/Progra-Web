@@ -1,137 +1,78 @@
-// src\entries\enterprise.jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-} from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import CabeceraEnterprise from '../partials/CabeceraEnterprise'
-import SideBarEnterprise from '../partials/SideBarEnterprise'
-import FooterEnterprise from '../partials/FooterEnterprise'
-// paginas
-import PanelEmpresa from '../pages/enterprise/PanelEmpresa'
-import MisConvocatorias from '../pages/enterprise/MisConvocatorias'
-import NuevaConvocatoria from '../pages/enterprise/NuevaConvocatoria'
-import CarreraListado from '../pages/enterprise/CarreraListado'
-import CarreraDetalle from '../pages/enterprise/CarreraDetalle'
-import EstudianteListado from '../pages/enterprise/EstudianteListado'
-import EstudianteDetalle from '../pages/enterprise/EstudianteDetalle'
-import ProfileListado from '../pages/enterprise/ProfileListado'
-import ProfileDetalle from '../pages/enterprise/ProfileDetalle'
-import ModalidadListado from '../pages/enterprise/ModalityListado'
-import ModalidadDetalle from '../pages/enterprise/ModalityDetalle'
+// 1. Estructura (Partials)
+import Cabecera from '../partials/ControlPanel/HeaderPanel/HeaderPanel';
+import Footer from '../partials/ControlPanel/FooterPanel/FooterPanel';
+import SideBar from '../partials/ControlPanel/SideBarPanel/SideBarPanel';
+//Partials no fue ordenado en su carpeta propia de ControlPanel/Enterprise/* por el momento
 
-import './enterprise.css'
+// 2. Vistas (Pages)
+import Bandeja from '../pages/PagesEnterprise/Bandeja/Bandeja';
+import ResumenDia from '../pages/PagesEnterprise/ResumenDia/ResumenDia';
+import Entrega from '../pages/PagesEnterprise/Entrega/Entrega';
+import OpcionesAgregados from '../pages/PagesEnterprise/OpcionesAgregados/OpcionesAgregados';
+import Agotados from '../pages/PagesEnterprise/Agotados/Agotados';
+import Perfil from '../pages/PagesEnterprise/Perfil/Perfil';
+import PerfilVistaPrevia from '../pages/PagesEnterprise/Perfil/PerfilVistaPrevia';
+import Horario from '../pages/PagesEnterprise/Horario/Horario';
+import Micarta from '../pages/PagesEnterprise/Micarta/Micarta';
+import NuevoProducto from '../pages/PagesEnterprise/Micarta/NuevoProducto';
+import Resenas from '../pages/PagesEnterprise/Resenas/Resenas';
+// import Agotados from '../pages/PagesEnterprise/Agotados';
 
-function EnterpriseLayout() {
+// 3. CSS base
+import './enterprise.css';
+import './enterprise-ui.css';
+
+function EnterpriseApp() {
   return (
-    <>
-      <CabeceraEnterprise />
-      <div className="enterprise-layout">
-        <SideBarEnterprise />
-        <main className="enterprise-content">
-          <Outlet />
-        </main>
+    <BrowserRouter>
+      <div className="app">
+
+        <header className="app-header">
+          <Cabecera />
+        </header>
+
+        <div className="app-body">
+
+          <aside className="app-sidebar">
+            <SideBar />
+          </aside>
+
+          <Routes>
+            <Route path="/enterprises" element={<Navigate to="/enterprises/bandeja" replace />} />
+            <Route path="/enterprises/bandeja" element={<Bandeja />} />
+            <Route path="/enterprises/resumenDia" element={<ResumenDia />} />
+            <Route path="/enterprises/entrega" element={<Entrega />} />
+            <Route path="/enterprises/opcionesAgregados" element={<OpcionesAgregados />} />
+            <Route path="/enterprises/agotados" element={<Agotados />} />
+            <Route path="/enterprises/perfil" element={<Perfil />} />
+            <Route path="/enterprises/PerfilVistaPrevia" element={<PerfilVistaPrevia />} />
+            <Route path="/enterprises/horario" element={<Horario />} />
+            <Route path="/enterprises/Micarta" element={<Micarta />} />
+            <Route path="/enterprises/NuevoProducto" element={<NuevoProducto />} />
+            <Route path="/enterprises/Resenas" element={<Resenas />} />
+            {/* <Route path="/enterprises/agotados" element={<Agotados />} /> */}
+          </Routes>
+
+        </div>
+
+        <footer className="app-footer">
+          <Footer />
+        </footer>
+
       </div>
-      <FooterEnterprise />
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-function Postulantes() {
-  return (
-    <>
-      <h1>Bandeja de postulantes</h1>
-      <p>Aquí se mostrarán los postulantes.</p>
-    </>
-  )
-}
-
-function PerfilEmpresa() {
-  return (
-    <>
-      <h1>Perfil de la empresa</h1>
-      <p>Información de la empresa.</p>
-    </>
-  )
-}
-
-function Resenas() {
-  return (
-    <>
-      <h1>Reseñas recibidas</h1>
-      <p>Aquí se mostrarán las reseñas.</p>
-    </>
-  )
-}
-
-function CambiarContrasena() {
-  return (
-    <>
-      <h1>Cambiar contraseña</h1>
-      <p>Formulario para cambiar la contraseña.</p>
-    </>
-  )
-}
-
-function Configuracion() {
-  return (
-    <>
-      <h1>Configuración</h1>
-      <p>Configuración de la cuenta empresarial.</p>
-    </>
-  )
-}
-
-function App() {
-  return (
-    <Routes>
-      {/* Layout general de empresa */}
-      <Route path="/enterprise" element={<EnterpriseLayout />}>
-        {/* /enterprise */}
-        <Route index element={<PanelEmpresa />} />
-        {/* Convocatorias */}
-        <Route path="convocatorias" element={<MisConvocatorias />} />
-        <Route path="convocatorias/nueva" element={<NuevaConvocatoria />} />
-        {/* Postulantes */}
-        <Route path="postulantes" element={<Postulantes />} />
-        {/* Empresa */} 
-        <Route path="perfil" element={<PerfilEmpresa />} />
-        <Route path="resenas" element={<Resenas />} />
-        {/* Carreras */}
-        <Route path="carrers" element={<CarreraListado />} />
-        <Route path="carrers/new" element={<CarreraDetalle />} />
-        <Route path="carrers/:id/edit" element={<CarreraDetalle />} />
-        {/* Estudiantes */}
-        <Route path="students" element={<EstudianteListado />} />
-        <Route path="students/new" element={<EstudianteDetalle />} />
-        {/* Perfiles */}
-        <Route path="profiles" element={<ProfileListado />} />
-        <Route path="profiles/new" element={<ProfileDetalle />} />
-        <Route path="profiles/:id/edit" element={<ProfileDetalle />} />
-        {/* Modalidades */}
-        <Route path="modalities" element={<ModalidadListado />} />
-        <Route path="modalities/new" element={<ModalidadDetalle />} />
-        <Route path="modalities/:id/edit" element={<ModalidadDetalle />} />
-        {/* Cuenta */} 
-        <Route path="cambiar-contrasena" element={<CambiarContrasena />} />
-        <Route path="configuracion" element={<Configuracion />} />
-      </Route>
-    </Routes>
-  )
-}
-
-const container = document.getElementById('root')
-
+const container = document.getElementById('root');
 if (container) {
   ReactDOM.createRoot(container).render(
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <EnterpriseApp />
     </React.StrictMode>
-  )
+  );
 }
