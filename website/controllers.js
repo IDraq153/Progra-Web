@@ -1,6 +1,7 @@
 // website/controllers.js
 import { authenticate } from '../admin/services/auth_services.js';
 import { fetchAllActive, fetchActiveById } from '../admin/services/stores_services.js';
+import { fetchByStore } from '../admin/services/products_services.js';
 import { fetchStoreReviews } from '../admin/services/reviews_services.js';
 import storeProfileRepository from '../admin/repositories/store_profile_repository.js';
 import { nowInLima, isoWeekday } from '../admin/services/lima_time.js';
@@ -89,7 +90,11 @@ export function comoFunciona(req, res) {
 export async function locales(req, res) {
   let lista = [];
   try {
-    lista = await cargarLocales();
+    // Los nombres de los productos permiten buscar un local por lo que vende
+    lista = await Promise.all((await cargarLocales()).map(async (local) => ({
+      ...local,
+      productos: (await fetchByStore(local.id)).map((p) => p.name).join(' ')
+    })));
   } catch (error) {
     console.error('Error al cargar los locales:', error);
   }

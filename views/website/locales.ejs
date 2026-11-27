@@ -42,11 +42,11 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form class="search-box ms-lg-auto" id="formBuscarLocal" onsubmit="return false;">
+                    <form class="search-box ms-lg-auto" id="formBuscarLocal">
                         <input
-                            type="text"
+                            type="search"
                             id="inputBuscarLocal"
-                            placeholder="Buscar por nombre o ubicación (ej. «Pabellón E», «Biblioteca»)..."
+                            placeholder="Buscar local o producto"
                         >
                         <button type="submit">Buscar</button>
                     </form>
@@ -59,7 +59,7 @@
     <main class="container main-content py-4">
 
         <!-- BARRA DE FILTROS -->
-        <div class="filters-bar mb-4">
+        <div class="filters-bar mb-4" id="resultados">
             <div class="filter-pills" id="filterPills">
                 <button class="filter-btn active" data-filter="todos">Todos los locales</button>
                 <button class="filter-btn" data-filter="abierto">Abiertos ahora</button>
@@ -74,7 +74,7 @@
         <div class="row g-4" id="gridLocales">
             <% locales.forEach(local => { %>
                 <div class="col-12 col-sm-6 col-lg-4 local-item" 
-                     data-nombre="<%= (local.nombre + ' ' + local.ubicacion + ' ' + local.descripcion).toLowerCase() %>"
+                     data-nombre="<%= (local.nombre + ' ' + local.ubicacion + ' ' + local.descripcion + ' ' + (local.productos || '')).toLowerCase() %>"
                      data-estado="<%= local.abierto ? 'abierto' : 'cerrado' %>">
                     
                     <a href="/locales/<%= local.id %>" class="local-card-link">
@@ -124,7 +124,7 @@
         <!-- MENSAJE SI NO HAY RESULTADOS EN BÚSQUEDA -->
         <div id="sinResultados" class="empty-state text-center d-none">
             <h4>No encontramos locales con ese criterio</h4>
-            <p>Prueba buscando otro pabellón o mostrando todos los locales.</p>
+            <p>Prueba con otro local o producto, o muestra todos los locales.</p>
             <button class="btn cta-button" id="btnResetFiltros">Ver todos los locales</button>
         </div>
 
@@ -148,12 +148,23 @@
 
             let filtroActual = 'todos';
 
+            // Ignora mayúsculas y tildes: «sandwich» encuentra «Sándwich»
+            const normalizar = (t) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+            // En celular los resultados quedan debajo: se cierra el teclado y se baja hasta ellos
+            function mostrarResultados() {
+                inputBuscar.blur();
+                const destino = document.getElementById('resultados');
+                const alto = document.querySelector('.navbar').offsetHeight;
+                window.scrollTo({ top: destino.getBoundingClientRect().top + window.scrollY - alto - 12, behavior: 'smooth' });
+            }
+
             function filtrarLocales() {
-                const texto = inputBuscar.value.toLowerCase().trim();
+                const texto = normalizar(inputBuscar.value);
                 let visibles = 0;
 
                 items.forEach(item => {
-                    const nombre = item.dataset.nombre;
+                    const nombre = normalizar(item.dataset.nombre);
                     const estado = item.dataset.estado;
 
                     const coincideTexto = nombre.includes(texto);
@@ -173,11 +184,18 @@
 
             inputBuscar.addEventListener('input', filtrarLocales);
 
+            document.getElementById('formBuscarLocal').addEventListener('submit', (e) => {
+                e.preventDefault();
+                filtrarLocales();
+                mostrarResultados();
+            });
+
             // Viene del buscador del home: /locales?q=texto
             const q = new URLSearchParams(window.location.search).get('q');
             if (q) {
                 inputBuscar.value = q;
                 filtrarLocales();
+                mostrarResultados();
             }
 
             filterBtns.forEach(btn => {
