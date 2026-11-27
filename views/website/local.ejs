@@ -37,7 +37,7 @@ _%>
         /* ---------- Cabecera ---------- */
         .lc-hero {
             position: relative;
-            padding: 2.25rem 0 5rem;
+            padding: 2.25rem 0;
             background:
                 radial-gradient(circle at 88% 0%, rgba(217, 56, 41, .13), transparent 55%),
                 linear-gradient(120deg, #fdf0ed 0%, #fff9f6 100%);
@@ -225,8 +225,14 @@ _%>
         }
         .lc-fact strong { display: block; font-size: .95rem; line-height: 1.35; }
 
+        /* ---------- Datos del local ---------- */
+        .lc-info { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1.5rem; margin: 0 0 1.5rem; }
+        .lc-info div { padding: .7rem 0; border-top: 1px solid #f0dcd6; }
+        .lc-info dt { color: var(--lc-muted); font-size: .85rem; font-weight: 400; }
+        .lc-info dd { margin: 0; font-weight: 700; }
+
         /* ---------- Secciones ---------- */
-        .local-info-section { padding: 3rem 0 3.5rem; }
+        .local-info-section { padding-top: 2.5rem; padding-bottom: 3rem; }
 
         .section-heading { margin-bottom: 1.25rem; }
         .section-heading .eyebrow {
@@ -405,37 +411,61 @@ _%>
         .lc-review-reply { margin-top: .7rem; padding: .6rem .8rem; background: #FCEAE7; border-radius: 8px; font-size: .85rem; }
         .lc-reviews-more { text-align: center; margin: .25rem 0 0; }
 
-        /* ---------- Celular: vista limpia (en PC no cambia) ---------- */
+        /* ---------- Celular ---------- */
         @media (max-width: 767.98px) {
-            .local-kicker,
-            .lc-hero .lc-btn-ghost,
-            .status-note,
-            .lc-media-place,
-            .local-info-section > section:first-child,
-            .local-info-section .row > .col-lg-4,
-            .section-heading .eyebrow,
-            .lc-cta { display: none; }
-
-            .lc-hero { padding: 1rem 0 1.25rem; background: none; border-bottom: 0; }
+            .local-info-section .row > .col-lg-4 { display: none; }
+            .lc-hero { padding: 1rem 0 0; background: none; border-bottom: 0; }
             .breadcrumb-custom { margin-bottom: 1rem; }
             .breadcrumb-custom span { display: none; }
             .lc-hero .row > .col-lg-6:last-child { order: -1; }
             .lc-media { box-shadow: none; }
             .lc-media::after { content: none; }
             .local-intro { margin: .6rem 0 1rem; line-height: 1.6; }
+            .lc-info { grid-template-columns: 1fr; }
+            .lc-info div { display: flex; justify-content: space-between; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--lc-border); }
+            .lc-info dd { text-align: right; }
             .lc-hero .lc-btn { width: 100%; justify-content: center; }
-
-            .lc-facts { margin-top: 0; }
-            .lc-facts-card { box-shadow: none; }
-            .lc-fact { padding: .75rem 1rem; justify-content: space-between; }
-            .lc-fact-icon { display: none; }
-            .lc-fact > div:last-child { display: flex; flex: 1; justify-content: space-between; gap: 1rem; text-align: right; }
-            .lc-fact small { text-transform: none; letter-spacing: 0; font-size: .9rem; font-weight: 400; margin: 0; }
-
             .local-info-section { padding: 1.75rem .75rem 2.5rem; }
             .local-info-section > section { margin-bottom: 0 !important; }
             .section-heading h2 { font-size: 1.25rem; }
             .lc-ver-todas { align-self: stretch; justify-content: center; }
+        }
+
+
+        /* ---------- PC: estilo visual (no afecta celular) ---------- */
+        @media (min-width: 768px) {
+            .lc-hero {
+                padding: 2.5rem 0 3rem;
+                background: #fdf0ed;
+            }
+
+            .lc-info { gap: .8rem; }
+            .lc-info div {
+                display: grid; grid-template-columns: auto 1fr; column-gap: .75rem; align-items: center;
+                padding: .85rem 1rem; border: 0; border-radius: .9rem;
+                background: #fff; color: var(--lc-ink);
+                box-shadow: 0 .5rem 1.25rem rgba(120, 60, 40, .1);
+            }
+            .lc-info div::before {
+                content: ''; grid-row: span 2; width: 2.5rem; height: 2.5rem; border-radius: .7rem;
+                background: var(--icono) center / 1.35rem no-repeat, var(--fondo);
+            }
+            .lc-info div:nth-child(1) { --fondo: #fde3df; --icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E"); }
+            .lc-info div:nth-child(2) { --fondo: #e3edff; --icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 21V5l8-2v18M12 9l8 2v10M2 21h20M8 8v.01M8 12v.01M8 16v.01'/%3E%3C/svg%3E"); }
+            .lc-info div:nth-child(3) { --fondo: #e2f5dc; --icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E"); }
+            .lc-info div:nth-child(4) { --fondo: #fff0c9; --icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9z'/%3E%3C/svg%3E"); }
+
+            .lc-hero .lc-btn-primary { transition: transform .2s ease; }
+            .lc-hero .lc-btn-primary:hover { transform: translateY(-2px); }
+
+            .lc-media { border: 0; box-shadow: none; }
+            .lc-media::after { content: none; }
+            .lc-media img { height: 26rem; }
+
+            .section-heading h2::after { content: ''; display: block; width: 4rem; height: .3rem; margin-top: .6rem; border-radius: 1rem; background: var(--lc-red); }
+            .lc-rating { background: #fff; border-color: var(--lc-border); }
+            .lc-rating-num { font-size: 3.5rem; color: var(--lc-red); }
+            .lc-review-preview .lc-review { border-left: .3rem solid var(--lc-red); box-shadow: 0 .75rem 1.75rem rgba(60, 25, 10, .08); }
         }
     </style>
 </head>
@@ -454,28 +484,20 @@ _%>
 
             <div class="row align-items-center g-4 g-lg-5">
                 <div class="col-lg-6">
-                    <span class="local-kicker">Campus <%= local.campus %></span>
-
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <h1 class="local-main-title"><%= local.nombre %></h1>
                     </div>
 
                     <p class="local-intro"><%= local.descripcion %></p>
 
-                    <% if (!estaAbierto) { %>
-                        <div class="lc-closed-note">
-                            🔒 Este local está cerrado por ahora · Horario: <strong><%= local.horario %></strong>
-                        </div>
-                    <% } %>
+                    <dl class="lc-info">
+                        <div><dt>Ubicación</dt><dd><%= local.ubicacion %></dd></div>
+                        <div><dt>Campus</dt><dd><%= local.campus %></dd></div>
+                        <div><dt>Horario</dt><dd><%= local.horario %></dd></div>
+                        <div><dt>Calificación</dt><dd><%= textoCalificacion %></dd></div>
+                    </dl>
 
-                    <div class="lc-actions">
-                        <a href="/register" class="lc-btn lc-btn-primary">Crear cuenta para pedir →</a>
-                        <a href="/comoFunciona" class="lc-btn lc-btn-ghost">Cómo funciona</a>
-                    </div>
-
-                    <p class="status-note">
-                        Estado mostrado según la información configurada para este local.
-                    </p>
+                    <a href="/register" class="lc-btn lc-btn-primary">Crear cuenta para pedir</a>
                 </div>
 
                 <div class="col-lg-6">
@@ -486,50 +508,18 @@ _%>
                             <span class="lc-pill closed">Cerrado</span>
                         <% } %>
                         <img src="<%= local.imagen %>" alt="Imagen de <%= local.nombre %>">
-                        <span class="lc-media-place">📍 <%= local.ubicacion %></span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DATOS RÁPIDOS -->
-    <div class="container lc-facts">
-        <div class="lc-facts-card">
-            <div class="lc-fact">
-                <div class="lc-fact-icon">📍</div>
-                <div><small>Ubicación</small><strong><%= local.ubicacion %></strong></div>
-            </div>
-            <div class="lc-fact">
-                <div class="lc-fact-icon">🕒</div>
-                <div><small>Horario de atención</small><strong><%= local.horario %></strong></div>
-            </div>
-            <div class="lc-fact">
-                <div class="lc-fact-icon">⭐</div>
-                <div><small>Calificación</small><strong><%= textoCalificacion %></strong></div>
-            </div>
-            <div class="lc-fact">
-                <div class="lc-fact-icon">🏫</div>
-                <div><small>Campus</small><strong><%= local.campus %></strong></div>
-            </div>
-        </div>
-    </div>
-
     <main class="container local-info-section">
-
-        <!-- DESCRIPCIÓN -->
-        <section class="mb-5">
-            <article class="lc-card">
-                <h3>Acerca de este local</h3>
-                <p><%= local.descripcion %></p>
-            </article>
-        </section>
 
         <!-- CALIFICACIONES -->
         <section class="mb-5">
             <div class="section-heading">
-                <div class="eyebrow">Opiniones</div>
-                <h2>Calificaciones de <%= local.nombre %></h2>
+                <h2>Calificaciones</h2>
             </div>
 
             <% if (cal.summary.total === 0) { %>
@@ -589,18 +579,6 @@ _%>
                     </div>
                 </div>
             <% } %>
-        </section>
-
-        <!-- LLAMADO A LA ACCIÓN -->
-        <section class="lc-cta">
-            <div>
-                <h2>Pide antes, recoge sin hacer cola</h2>
-                <p>Elige un local, arma tu pedido y recoge con tu código en el mostrador.</p>
-            </div>
-            <div class="lc-actions">
-                <a href="/register" class="lc-btn lc-btn-light">Crear cuenta</a>
-                <a href="/comoFunciona" class="lc-btn lc-btn-outline-light">Cómo funciona</a>
-            </div>
         </section>
 
     </main>

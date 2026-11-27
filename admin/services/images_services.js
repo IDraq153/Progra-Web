@@ -4,7 +4,8 @@ import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { serviceError } from './errors.js';
 
-// Las imágenes subidas se guardan en public/assets/img/uploads/<carpeta>/ y se sirven como archivos estáticos
+// Con SUPABASE_URL y SUPABASE_SECRET_KEY las imágenes se guardan en Supabase Storage (necesario en Vercel).
+// Sin esas variables se guardan en public/assets/img/uploads/<carpeta>/ y se sirven como archivos estáticos
 const UPLOADS_DIR = fileURLToPath(new URL('../../public/assets/img/uploads', import.meta.url));
 const PUBLIC_PREFIX = '/assets/img/uploads/';
 const FOLDERS = ['products', 'stores'];
@@ -18,6 +19,25 @@ const SIGNATURES = {
 };
 
 const EXTENSIONS = { png: 'png', jpeg: 'jpg', webp: 'webp' };
+
+const BUCKET = 'imagenes'; // bucket público de Supabase Storage
+
+// Se lee en cada llamada para que .env ya esté cargado
+const supabaseConfig = () => {
+  const url = process.env.SUPABASE_URL?.trim().replace(/\/+$/, '');
+  const key = process.env.SUPABASE_SECRET_KEY?.trim();
+
+  if (!url || !key) return null;
+
+  // Las claves antiguas (service_role, empiezan con "eyJ") también van en Authorization
+  const headers = key.startsWith('eyJ') ? { apikey: key, Authorization: `Bearer ${key}` } : { apikey: key };
+
+  return {
+    objectUrl: `${url}/storage/v1/object/${BUCKET}/`,
+    publicPrefix: `${url}/storage/v1/object/public/${BUCKET}/`,
+    headers
+  };
+};
 
 /**
  * Guarda una imagen enviada como data URL (data:image/png;base64,...) y devuelve su URL pública.
@@ -46,6 +66,23 @@ export const saveImage = async (dataUrl, folder) => {
   }
 
   const fileName = `${randomUUID()}.${EXTENSIONS[type]}`;
+  const supabase = supabaseConfig();
+
+  if (supabase) {
+    const response = await fetch(`${supabase.objectUrl}${folder}/${fileName}`, {
+      method: 'POST',
+      headers: { ...supabase.headers, 'Content-Type': `image/${type}` },
+      body: buffer
+    });
+
+    if (!response.ok) {
+      console.error('Supabase Storage:', response.status, await response.text());
+      throw serviceError(502, 'IMAGE_UPLOAD_FAILED', 'No se pudo guardar la imagen');
+    }
+
+    return `${supabase.publicPrefix}${folder}/${fileName}`;
+  }
+
   const folderPath = path.join(UPLOADS_DIR, folder);
 
   await fs.mkdir(folderPath, { recursive: true });
@@ -55,10 +92,31 @@ export const saveImage = async (dataUrl, folder) => {
 };
 
 /**
- * Borra una imagen subida. Solo toca archivos dentro de uploads; cualquier otra URL se ignora.
+ * Borra una imagen subida. Solo toca archivos del bucket o de uploads; cualquier otra URL se ignora.
  */
 export const removeImage = async (url) => {
-  if (typeof url !== 'string' || !url.startsWith(PUBLIC_PREFIX)) return;
+  if (typeof url !== 'string') return;
+
+  const supabase = supabaseConfig();
+
+  if (supabase && url.startsWith(supabase.publicPrefix)) {
+    const objectPath = url.slice(supabase.publicPrefix.length);
+
+    if (!/^(products|stores)\/[\w-]+\.(png|jpg|webp)$/.test(objectPath)) return;
+
+    // Si falla el borrado solo queda un archivo sin usar: no se interrumpe la operación
+    try {
+      const response = await fetch(`${supabase.objectUrl}${objectPath}`, { method: 'DELETE', headers: supabase.headers });
+
+      if (!response.ok) console.warn('Supabase Storage: no se borró', objectPath, response.status);
+    } catch (error) {
+      console.warn('Supabase Storage: no se borró', objectPath, error.message);
+    }
+
+    return;
+  }
+
+  if (!url.startsWith(PUBLIC_PREFIX)) return;
 
   const filePath = path.resolve(UPLOADS_DIR, url.slice(PUBLIC_PREFIX.length));
 
