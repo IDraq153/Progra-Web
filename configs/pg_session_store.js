@@ -24,7 +24,10 @@ export default class PgSessionStore extends session.Store {
            expire timestamptz NOT NULL
          )`
       ).then(() => sequelize.query(`CREATE INDEX IF NOT EXISTS idx_${TABLA}_expire ON ${TABLA} (expire)`))
-        .catch((error) => { this.lista = null; throw error; });
+        .catch((error) => {
+          // No es fatal: la tabla puede existir ya (migración db:up). Si no existe, fallarán las consultas con su error real.
+          console.error('[sesiones] No se pudo crear/verificar la tabla sessions:', error.message);
+        });
     }
     return this.lista;
   }
@@ -36,7 +39,11 @@ export default class PgSessionStore extends session.Store {
         { replacements: { sid }, type: 'SELECT' }
       ))
       .then((filas) => callback(null, filas[0] ? filas[0].sess : null))
-      .catch((error) => callback(error));
+      .catch((error) => {
+        // Si la base falla, se trata como "sin sesión" en vez de tumbar la página con un 500
+        console.error('[sesiones] Error al leer la sesión:', error.message);
+        callback(null, null);
+      });
   }
 
   set(sid, sess, callback = () => {}) {
@@ -49,7 +56,10 @@ export default class PgSessionStore extends session.Store {
         { replacements: { sid, sess: JSON.stringify(sess), expire: expira } }
       ))
       .then(() => callback(null))
-      .catch((error) => callback(error));
+      .catch((error) => {
+        console.error('[sesiones] Error al guardar la sesión:', error.message);
+        callback(error);
+      });
   }
 
   touch(sid, sess, callback = () => {}) {
