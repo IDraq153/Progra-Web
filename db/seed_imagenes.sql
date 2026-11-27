@@ -6,7 +6,7 @@
 
 UPDATE products p SET picture_url = '/assets/img/productos/' || v.archivo
 FROM (VALUES
-  ('Jugo de fresa con leche', 'jugo-fresa.jpg'),
+  ('Jugo de fresa con leche', 'jugo-fresa.jpeg'),
   ('Jugo de papaya',          'jugo-papaya.jpg'),
   ('Jugo de piña',            'jugo-pina.jpg'),
   ('Batido de plátano',       'batido-platano.jpg'),
