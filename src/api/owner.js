@@ -4,7 +4,14 @@ import axios from 'axios';
 
 const api = axios.create({ baseURL: '/api/v1', withCredentials: true });
 
-const datos = (respuesta) => respuesta.data.data;
+// Si el servidor no devuelve JSON de la API (p. ej. una página HTML por sesión caída) se lanza un error
+// en vez de devolver undefined, para que cada pantalla muestre su mensaje y no se rompa.
+const datos = (respuesta) => {
+  if (!respuesta.data || typeof respuesta.data !== 'object') {
+    throw new Error('El servidor no devolvió una respuesta válida');
+  }
+  return respuesta.data.data;
+};
 
 // Ventas por día y por local de los últimos N días: { from, to, stores, days }
 export const obtenerVentasDiarias = async (dias = 60) =>

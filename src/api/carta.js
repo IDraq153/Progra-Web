@@ -6,7 +6,14 @@ import axios from 'axios';
 const api = axios.create({ baseURL: '/api/v1', withCredentials: true });
 
 // Respuesta de la API: { success, message, data, error }
-const datos = (respuesta) => respuesta.data.data;
+// Si el servidor no devuelve JSON de la API (p. ej. una página HTML por sesión caída) se lanza un error
+// en vez de devolver undefined, para que cada pantalla muestre su mensaje y no se rompa.
+const datos = (respuesta) => {
+  if (!respuesta.data || typeof respuesta.data !== 'object') {
+    throw new Error('El servidor no devolvió una respuesta válida');
+  }
+  return respuesta.data.data;
+};
 
 // Mensaje legible para mostrar al usuario cuando una llamada falla
 export const mensajeDeError = (error, porDefecto = 'Ocurrió un error. Intenta de nuevo.') =>
